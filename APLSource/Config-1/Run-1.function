@@ -1,0 +1,47 @@
+ {r}←Run refs;def;parms;DT;tips;fn;results
+ r←⍬
+ DT←##.GUI.Enums.EnumInputDataTypes
+ def←0 7⍴⍬
+ def⍪←'&Source_' ''(⊃{⍺,', ',⍵}/⍕¨refs)DT.Character 40 0 1
+ def⍪←'ignore' '&To be ignored' ''DT.Character 40 1 1
+ def⍪←'caption' '&Caption' ''DT.Character(40 120)1 1
+ def⍪←'info' '&Info' ''DT.Character(40 120)1 1
+ fn←(1=⍴,refs)/##.FilesAndDirs.PWD,'\',(⍕refs),'.html'
+ def⍪←'filename' '&Filename'fn DT.Character(40 120)1 1
+ def⍪←'author' '&Author'⎕AN DT.Character 40 1 1
+ def⍪←'date' '&Date'⎕TS DT.Date ⍬ 1 1
+ def⍪←'lang' '&Language' 'en'DT.Character 2 1 1
+ def⍪←'view' '&View HTML in default browser' 0 DT.YesNo ⍬ 1 1
+⍝def⍪←'Select_' '...' 1 DT.Button ⍬ 1 2
+ def⍪←'BrowseFileSystem_' '...' 1 DT.Button ⍬ 1 2
+ def⍪←'CenterInfo2_' 'Center' 1 DT.YesNo ⍬ 1 2
+ def⍪←'PH1' '' ''DT.PlaceHolder(1 5)1 3
+ def⍪←'objects' '&Objects⋄Functions⋄Operators⋄Scripts⋄Variables'(1 1 1 1)DT.YesNo ⍬ 1 4
+ def⍪←'timestampAndAuthor' 'Show author/timestamp' 0 DT.YesNo ⍬ 1 4
+ def⍪←'recursive' 'Recursive' 1 DT.YesNo ⍬ 1 4
+ def⍪←'scrollToTopButton' 'Button for scrolling to top' 1 DT.YesNo ⍬ 1 4
+ def⍪←'backgroundColorPrint' 'Background colour (print)' 1 DT.YesNo ⍬ 1 4
+ def⍪←'doubleSidedPrint' 'Optimize for double-sided print' 0 DT.YesNo ⍬ 1 4
+ def⍪←'printFontSize' 'Print font size' 8 DT.Numeric 2 1 4
+ parms←##.GUI.Input.CreateParms
+ parms.caption←'Configure "CodeBrowser"'
+ parms.onInitial←'OnInitial'
+ parms.onPushButton←'OnPushButtons'
+ parms.onOkay←'OnOk'
+ parms.okBtnCaption←'Process'
+ parms.cancelBtnCaption←'Quit'
+ tips←0 2⍴''
+ tips⍪←'backgroundColorPrint' 'Code blocks should have a background colour when printed'
+ tips⍪←'timestampAndAuthor' 'Functions and operators should tell timestamp/author'
+ tips⍪←'author' 'Is shown (together with "date") at the bottom of the document'
+ tips⍪←'date' 'Is shown (together with "author") at the bottom of the document'
+ tips⍪←'info' 'Shows on the first page after the "caption"'
+ tips⍪←'CenterInfo2_' '"Info" should be centered'
+ tips⍪←'caption' 'Shows on top of the first page; defaults to the source namespace(s)'
+ tips⍪←'ignore' 'Use this to ignore sub namespace (help, test cases...)'
+ tips⍪←'scrollToTopButton'('Should the HTML page have a "Top" button' 'once the user starts scrolling')
+ tips⍪←'filename' 'The fully qualified filename used to save the resulting HTML.'
+ tips⍪←'doubleSidedPrint'('The size of the left margin will be different' 'for left and right pages when printing.')
+ parms.tips←tips
+ {}parms ##.GUI.Input.Run def
+⍝Done

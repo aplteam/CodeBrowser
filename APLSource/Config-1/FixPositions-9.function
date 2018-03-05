@@ -1,0 +1,20 @@
+ {r}←FixPositions n
+ r←⍬
+⍝n.Select_.Posn[1]←n.ignore.Posn[1]
+⍝n.Select_.Size[2]←30
+ n.view.Posn[1]←n.∆Vgap+1⊃+⌿↑n.lang.(Posn Size)
+ n.BrowseFileSystem_.Posn[1]←n.filename.Posn[1]
+ n.BrowseFileSystem_.Size[2]←30
+ n.CenterInfo2_.Posn[1]←n.info.Posn[1]
+⍝n.Select_.Posn[2]-←⌊n.∆Hgap÷2
+ n.BrowseFileSystem_.Posn[2]-←⌊n.∆Hgap÷2
+ n.CenterInfo2_.Posn[2]-←⌊n.∆Hgap÷2
+ n.objects.Posn[1]←n.Source__Label.Posn[1]
+ n.timestampAndAuthor.Posn[1]←n.∆Vgap+⊃+⌿↑n.objects.(Posn Size)
+ n.recursive.Posn[1]←(⌈n.∆Vgap÷2)+⊃+⌿↑n.timestampAndAuthor.(Posn Size)
+ n.scrollToTopButton.Posn[1]←(⌈n.∆Vgap÷2)+⊃+⌿↑n.recursive.(Posn Size)
+ n.backgroundColorPrint.Posn[1]←(⌈n.∆Vgap÷2)+⊃+⌿↑n.scrollToTopButton.(Posn Size)
+ n.doubleSidedPrint.Posn[1]←(⌈n.∆Vgap÷2)+1⊃+⌿↑n.backgroundColorPrint.(Size Posn)
+ n.printFontSize_Label.Posn[1]←n.∆Vgap+⊃+⌿↑n.doubleSidedPrint.(Posn Size)
+ n.printFontSize.Posn[1]←⊃+⌿↑n.printFontSize_Label.(Posn Size)
+⍝Done

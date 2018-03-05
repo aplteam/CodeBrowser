@@ -1,0 +1,9 @@
+ mat←mat Inject new;value;name;ind
+ :If ~0∊⍴new
+     :For name value :InEach ↓⍉new
+         :If 'Source_'≢name
+             ind←mat[;1]⍳⊂name
+             mat[ind;3]←⊂value
+         :EndIf
+     :EndFor
+ :EndIf

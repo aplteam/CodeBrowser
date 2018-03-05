@@ -1,0 +1,11 @@
+ (flag obj)←OnOk n;I;WriteErr
+⍝ First the inout data is checked. Then, when everything is okay, the data is processed.
+ I←##.GUI.Input
+ I.WriteToStatusbar n''
+ WriteErr←n.∆globalParms.alarmColor∘{_←⍺ I.WriteToStatusbar n ⍵ ⋄ 0}
+ (flag obj)←(WriteErr CheckInput)n
+ :If flag
+     (WriteErr ProcessIt)n
+     flag←0
+ :EndIf
+⍝Done

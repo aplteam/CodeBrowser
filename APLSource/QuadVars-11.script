@@ -1,0 +1,4 @@
+:namespace QuadVars
+    ##.⎕IO←1
+    ##.⎕ML←1
+:endnamespace

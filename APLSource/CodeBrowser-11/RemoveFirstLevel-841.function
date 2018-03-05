@@ -1,0 +1,6 @@
+ RemoveFirstLevel←{
+     ref←⍵
+     '#.'≡2⍴ref:2↓ref
+     '⎕SE.'≡A.Uppercase 4⍴ref:4↓ref
+     ref
+ }

@@ -1,0 +1,7 @@
+ OnPushButtons(button n)
+ :Select button
+⍝ :Case n.Select_
+⍝     n.∆globalParms ##.GUI.Dialogs.ShowMsg'Sorry, not ready yet'
+ :Case n.BrowseFileSystem_
+     SelectFilename n
+ :EndSelect

@@ -1,0 +1,4 @@
+ r←MakeBookmarkRef path
+ path←RemoveFirstLevel path
+ r←'href="#',path,'"'
+⍝Done

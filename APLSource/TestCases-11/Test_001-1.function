@@ -1,0 +1,28 @@
+ R←Test_001(stopFlag batchFlag);⎕TRAP;filename;html;names;nav;expected;ind
+⍝ Single namespace with defaults.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ filename←##.CodeBrowser.Run ##.TestData.NS1
+ →GoToTidyUp 0∊⍴filename
+
+ html←#.APLTreeUtils.ReadUtf8File filename
+ names←GetFnsAndOprNamesFromHTML html
+ →GoToTidyUp~names Matches' '~¨⍨⊃,/{↓⍵.⎕NL 3 4}¨{⍵[;2]}↑##.CodeBrowser.GetSubNamespaces ##.TestData.NS1
+ html←⊃,/(⎕UCS 13),¨html
+ nav←html{⍵[2]↑⍵[1]↓⍺}⊃'<nav id="main">.*</nav>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
+ nav←(⎕UCS 13)#.APLTreeUtils.Split nav
+ expected←⊂'<a href="#_CodeBrowser.TestData.NS1">'
+ expected,←⊂'<a href="#_CodeBrowser.TestData.NS1.NS1_a">'
+ expected,←⊂'<a href="#_CodeBrowser.TestData.NS1.NS1_b">'
+ →GoToTidyUp~∧/∨/¨expected⍷¨⊂∊nav
+ →GoToTidyUp 2≠+/'<ol'⍷∊nav
+ ind←'<nav class="sub">.*</nav>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
+ nav←{(⎕UCS 13)#.APLTreeUtils.Split ⍵}¨ind{⍺[2]↑⍺[1]↓⍵}¨⊂html
+ →GoToTidyUp 2 2 3≢∊{(//)⎕VFI(-(⌽⍵)⍳' ')↑⍵}¨#.APLTreeUtils.dmb 2⊃¨nav
+
+ R←∆OK
+
+∆TidyUp:
+ #.FilesAndDirs.DeleteFile filename
+⍝Done

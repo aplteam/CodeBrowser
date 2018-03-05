@@ -1,0 +1,181 @@
+ big←{⎕IO ⎕ML←1                      ⍝ Arithmetic on large integers.
+
+     fn←⍺⍺{aa←⍺⍺ ⋄ ⍬⍴⎕CR'aa'}⍵       ⍝ character rep of operand fn.
+     digits←1
+     factor←10
+
+     dyadic←{                        ⍝ dyadic functions.
+         '+'≡fn:⍺ add ⍵
+         '-'≡fn:⍺ sub ⍵
+         '×'≡fn:⍺ mult ⍵
+         '÷'≡fn:⍺ div ⍵
+         '|'≡fn:⍺ mod ⍵
+         '<≤=≥>≠'∊⍨fn:⍺ ⍺⍺ compare ⍵ ⍝ Note: dyadic & compare are ops
+         'Eh?'⎕SIGNAL 16
+     }
+
+     monadic←{                       ⍝ monadic functions.
+         t←⍺⍺   ⍝ makes it an op; might need it later
+         '+'≡fn:ident ⍵
+         '-'≡fn:neg ⍵
+         '×'≡fn:signum ⍵
+         '|'≡fn:abs ⍵
+         '÷'≡fn:⎕SIGNAL 11
+         'Eh?'⎕SIGNAL 16
+     }
+
+   ⍝ ----------------------------  Arithmetic functions
+
+     add←{
+         sign←signum¨⍺ ⍵
+         a w←abs¨⍺ ⍵
+         evalAsIs←∧/sign≥0
+         negSumOfAbs←∧/sign=¯1
+         useSignAlpha←a>big w
+         useSignOmega←1
+
+         evalAsIs:⍺+add_or_sub ⍵
+         negSumOfAbs:-big a+add_or_sub w
+         useSignAlpha:sign[1]showsign a sub w
+         useSignOmega:sign[2]showsign w sub a
+     }
+     sub←{
+         sign←signum¨⍺ ⍵
+         mustCommute←⍺<compare ⍵
+         evalAsIs←∧/sign≥0
+         addOpposite←1
+
+         mustCommute:neg ⍵ sub ⍺
+         evalAsIs:⍺-add_or_sub ⍵
+         addOpposite:⍺ add neg ⍵
+     }
+     mult←{
+         sign←×/signum¨⍺ ⍵
+         a←¯1+⎕D⍳(⍕⍺)~'¯'
+         w←¯1+⎕D⍳(⍕⍵)~'¯'
+         t←+⌿(¯1+⍳⍴w)⌽((2⍴⍴w)⍴0),⊖w∘.×a
+         sign showsign format check/t
+     }
+     div←{
+
+         divi←{   ⍝ quotient ← dividend div divisor
+            ⍝ called recursively, each call gets one digit of quotient,
+            ⍝ starting from the left; recursive calls look like:
+            ⍝ quotient-so-far remainder-so-far remaining-dividend∇divisor
+             a←⍕⍵
+             Q R d←⍺{
+                 (1<|≡⍺):⍺       ⍝ recursive call
+
+            ⍝ first call; start with divisor digits from dividend
+                 r←¯1+(⍴t←⍕⍺)⌊⍴⍵
+                 ⍬(r↑t)(r↓t)
+             }a
+             R←R,1⊃d ⋄ d←1↓d  ⍝ bring down next digit from dividend
+
+        ⍝ find next digit in the quotient
+             Q,←⍕a{⍺ ⍵{
+                     (⍵ mult 1⊃⍺)≤compare 2⊃⍺:⍵    ⍝ is guess too big?
+                     ⍺ ∇ ⍵-1
+                 }⌊(⍎(digits+1)↑⍵)÷⍎digits↑⍺  ⍝ guess next digit
+             }R
+             R(-big)←a mult⊃⌽Q                 ⍝ multiply & subtract
+
+        ⍝ Finish or find remaining digits in the quotient
+             0∊⍴d:trim Q
+             Q R d ∇ a
+         }
+         (×/signum¨⍺ ⍵)showsign(abs ⍺)divi abs ⍵
+     }
+     mod←{
+         ⍺=compare 0:⍵   ⍝ 0|⍵ → ⍵
+         ⍺=compare ⍵:0   ⍝ ⍵|⍵ → 0
+         ⍵≡compare 0:0   ⍝ ⍺|0 → 0
+         d←⍵ div ⍺
+         t←⍵ sub d mult ⍺
+         =/signum¨⍺ t:t
+         ⍺ add t
+     }
+     compare←{
+         compareParts←{
+             a w←partition ⍵
+             i←((exec¨a)≠exec¨w)⍳1
+             ⍺⍺/exec¨i⊃¨a w
+         }
+
+         sign←signum¨⍺ ⍵
+         a w←abs¨⍺ ⍵
+         (≡/'0 '∘trim¨⍺ ⍵):1 ⍺⍺ 1           ⍝ identical; compare small some small int to itself
+         ∧/sign=1:⍺⍺ compareParts a w       ⍝ both positive; compare partitions
+         ≠/sign:⊃⍺⍺/sign                    ⍝ different signs; compare signs only
+            ⍝ Both are negative; compare absolute values and then determine
+            ⍝ if the result should be flipped.  We don't have to worry about
+            ⍝ anomalies with ≤≥ because if the numbers are equal, we won't get
+            ⍝ this far.
+         t←⍺⍺ compareParts a w               ⍝ work on abs value
+         (1 ⍺⍺ 2)=¯1 ⍺⍺ ¯2:t                 ⍝ this compare fcn doesn't flip for negs
+         ~t                                  ⍝ this compare fcn does flip for negs
+     }
+     ident←{
+         trim ⍵
+     }
+
+     neg←{
+         (-signum ⍵)showsign abs ⍵
+     }
+
+     signum←{
+         w←trim ⍵
+         '¯'=1⊃w:¯1×∇ 1↓w  ⍝ recursive call accounts for ¯0
+         w≡,'0':0
+         1
+     }
+     abs←{
+         (trim ⍵)~'¯'
+     }
+
+   ⍝ ----------------------------  Local utility functions.
+     showsign←{
+         ((1⊃,⍺<0)/'¯'),⍵
+     }
+     exec←{0::⍵
+         ∧/' '=⍵:0
+         ⍎⍵
+     }
+     trim←{
+         ⍺←'0 '
+         w←⍕⍵
+         t←(∨\~w∊⍺)/w
+         t←(1-(' '=t)⊥1)↓t
+         0∊⍴t:,'0'
+         t}
+     check←{
+         new←⍺{
+             ((⍵<factor)∧(⍵>0)):⍺ ⍵
+             (⍵<0):(⍺-1),⍵+factor
+             f←⌊⍵÷factor
+             (⍺+f),⍵-factor×f
+         }(,⍵)[1]
+         new,1↓⍵
+     }
+     partition←{
+         ⍺←digits
+         w←,¨⍕¨,⍵            ⍝ change to chars
+         w←(-⌈/⍴¨w)↑¨w  ⍝ pad left
+         (1,1↓⌽(⍴⊃w)⍴(-⍺)↑1)∘⊂¨w
+     }
+     format←{
+         w←⍕¨,⊃⍵
+         1=⍴w:trim w
+         trim(1⊃w),⊃,/(-digits)↑¨(digits⍴'0')∘,¨1↓w
+     }
+
+     add_or_sub←{
+         a w←¯1+⎕D∘⍳¨(⍕¨⍺ ⍵)
+         a w←(-(⍴a)⌈⍴w)↑¨a w
+         r←a ⍺⍺ w
+         format check/r
+     }
+   ⍝-----------------------------
+
+     0=⎕NC'⍺':⍺⍺ monadic ⍵ ⋄ ⍺ ⍺⍺ dyadic ⍵
+ }

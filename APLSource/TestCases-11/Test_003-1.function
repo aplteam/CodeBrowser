@@ -1,0 +1,41 @@
+ R←Test_003(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;footer;parms;filename
+⍝ Checks handling of footers.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ parms←##.CodeBrowser.CreateParms
+ →GoToTidyUp 2≠⍴⍴parms.∆List
+ parms.author←'John Doe'
+ parms.date←'1982-12-31'
+ filename←parms ##.CodeBrowser.Run ##.TestData.NS1
+
+ html←1↓⊃,/(⎕UCS 13),¨#.APLTreeUtils.ReadUtf8File filename
+ footer←html{⍵[2]↑⍵[1]↓⍺}⊃'<footer>.*</footer>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
+ expected←'<p>Author: John Doe &mdash; Date: 1982-12-31</p>'
+ →GoToTidyUp expected≢2⊃(⎕UCS 13)#.APLTreeUtils.Split footer
+
+ parms.date←''
+ filename←parms ##.CodeBrowser.Run ##.TestData.NS1
+ html←1↓⊃,/(⎕UCS 13),¨#.APLTreeUtils.ReadUtf8File filename
+ footer←html{⍵[2]↑⍵[1]↓⍺}⊃'<footer>.*</footer>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
+ expected←'<p>Author: John Doe</p>'
+ →GoToTidyUp expected≢2⊃(⎕UCS 13)#.APLTreeUtils.Split footer
+
+ parms.author←''
+ parms.date←'1766-03-02'
+ filename←parms ##.CodeBrowser.Run ##.TestData.NS1
+ html←1↓⊃,/(⎕UCS 13),¨#.APLTreeUtils.ReadUtf8File filename
+ footer←html{⍵[2]↑⍵[1]↓⍺}⊃'<footer>.*</footer>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
+ expected←'<p>Date: 1766-03-02</p>'
+ →GoToTidyUp expected≢2⊃(⎕UCS 13)#.APLTreeUtils.Split footer
+
+ parms.date←''
+ filename←parms ##.CodeBrowser.Run ##.TestData.NS1
+ html←1↓⊃,/(⎕UCS 13),¨#.APLTreeUtils.ReadUtf8File filename
+ →GoToTidyUp∨/'<footer'⍷html
+
+ R←∆OK
+
+∆TidyUp:
+ #.FilesAndDirs.DeleteFile filename
+⍝Done

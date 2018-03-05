@@ -1,0 +1,47 @@
+ bf←{⎕ML ⎕IO←1 0                             ⍝ Brainfuck.
+
+     machine←{                               ⍝ machine definition: ⍺:tape ⍵:toks.
+         t←get ⍵                             ⍝ next token.
+    ⍝   ⎕←t,↑' ()',.,⍕∘∊¨⍺                  ⍝ uncomment to trace.
+         '>'≡t:(rgt ⍺)∇ rgt ⍵                ⍝ tape pointer right.
+         '<'≡t:(lft ⍺)∇ rgt ⍵                ⍝ tape pointer left.
+         '+'≡t:(inc ⍺)∇ rgt ⍵                ⍝ increment of current tape cell.
+         '-'≡t:(dec ⍺)∇ rgt ⍵                ⍝ decrement of current tape cell.
+         '['≡t:⍺ ∇ rgt ⍵ rgt skip if 0=get ⍺ ⍝ cell=0: rgt to matching ']' tokn.
+         ']'≡t:⍺ ∇ rgt ⍵ lft skip if 0≠get ⍺ ⍝ cell≠0: lft to matching '[' tokn.
+         '.'≡t:(out ⍺)∇ rgt ⍵                ⍝ current cell value → output.
+         ','≡t:(inp ⍺)∇ rgt ⍵                ⍝ input value to current cell.
+         '∘'≡t:shy←1↓¯1↓∊⍺                   ⍝ end of token stream: memory tape.
+         ⍺ ∇ rgt ⍵                          ⍝ unrecognised token: ignore.
+     }                                       ⍝ :: tape ∇ toks {→ tape}
+
+     lft←{(ll l)m r←⍵ ⋄ ll l(m r)}           ⍝ < next cell to left.
+     rgt←{l m(r rr)←⍵ ⋄ (l m)r rr}           ⍝ > next cell to right.
+
+     inc←+∘0 1 0                             ⍝ + increment current tape cell.
+     dec←-∘0 1 0                             ⍝ - decrement current tape cell.
+
+     out←{⍵⊣⍞←⎕UCS get ⍵}                    ⍝ output single character.
+     inp←{(⎕UCS ⍬⍴⍞)put ⍵}                   ⍝ input single character.
+
+     skip←{                                  ⍝ [] search ⍵ ⍺⍺-wise for match.
+         fm to←('[]'⍳get ⍵)⌽'[]'             ⍝ current and target brackets.
+         ⍺⍺{                                 ⍝ ⍺⍺ is lft or rgt.
+             tok←get ⍵                       ⍝ current token.
+             tok≡to:⍵                        ⍝ found match: done.
+             tok≡fm:∇ ⍺⍺ ∇ ⍺⍺ ⍵              ⍝ inner loop: skip over it.
+             tok≡'∘':⍵                       ⍝ no matching bracket: quit.
+             ∇ ⍺⍺ ⍵                          ⍝ skip lft or rgt to next token.
+         }⍺⍺ ⍵                               ⍝ skipping over starting bracket.
+     }
+
+     get←{_ m _←⍵ ⋄ m}                       ⍝ fetch current value.
+     put←{l _ r←⍵ ⋄ l ⍺ r}                   ⍝ ⍺ replaces current value.
+
+     if←{(⍺⍺⍣⍵)⍺}                            ⍝ conditional function application.
+
+     ⍺←0 ⋄ tape←0,↑{⍺ ⍵}/⍺,0                 ⍝ blank tape by default.
+     toks←'∘',↑{⍺ ⍵}/⍵,'∘'                   ⍝ instruction tokens list.
+
+     tape machine toks                       ⍝ reduced machine state.
+ }

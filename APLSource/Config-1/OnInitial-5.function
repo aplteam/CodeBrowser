@@ -1,0 +1,8 @@
+ OnInitial n;globalParms
+ FixPositions n
+ globalParms←##.GUI.APLGuiGlobalParms.CreateDefaults
+ globalParms.centerIn←n.∆Form
+ globalParms.caption←'CodeBrowser'
+  ⍝TODO⍝ globalParms.icon←
+ n.∆globalParms←globalParms
+⍝Done

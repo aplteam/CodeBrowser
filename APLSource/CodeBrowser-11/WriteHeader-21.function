@@ -1,0 +1,16 @@
+ {r}←WriteHeader parms;html
+ html←⊂'<!DOCTYPE html>'
+ html,←⊂'<html lang="',parms.lang,'">'
+ html,←⊂'<head>'
+ html,←⊂'<meta http-equiv="X-UA-Compatible" content="IE=edge" />'
+ html,←⊂'<meta charset="utf-8">'
+ html,←⊂'<meta name="author" content="',parms.author,'">'
+ html,←⊂'<meta name="date" content="',(FormatDate parms.date),'">'
+ html,←⊂'<title>',parms.caption,'</title>'
+ html,←⊂GetCSS parms
+ html,←GetJavascript parms
+ html,←GetCodeMirrorLib parms
+ html,←⊂'</head>'
+ html,←⊂'<body>'
+ r←WriteHTML html
+⍝Done

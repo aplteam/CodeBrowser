@@ -1,0 +1,6 @@
+ RemoveLevels←{
+     noOf←⍺
+     path←⍵
+     buff←+\'.'=⍵
+     (1++/∧\noOf>buff)↓path
+ }

@@ -1,0 +1,27 @@
+ ambiv←{⎕IO ⎕ML←1                        ⍝ Ambivalize traditional functions.
+     ⍺←⎕THIS                             ⍝ default current space for,
+     ⍺{                                  ⍝ external operations:
+         ⍺≡'src':⍺⍺.⎕CR ⍵                ⍝ source.
+         ⍺≡'syx':2↑⊃⍺⍺.⎕AT ⍵             ⍝ syntax.
+         ⍺≡'fix':⍺⍺.⎕FX ⍵                ⍝ refix.
+     }{
+         hd←⊃↓cr←'src'⍺⍺ ⍵               ⍝ function source.
+         2>⍴⍴cr:shy←''                   ⍝ derived or primitive: quit.
+         0=≢cr:shy←''                    ⍝ locked or external:   quit.
+         rslt vnce←'syx'⍺⍺ ⍵             ⍝ result and function valence.
+         2≠vnce:shy←''                   ⍝ not dyadic:           quit.
+         fix←'fix'∘⍺⍺∘{(⊂⍵),1↓↓cr}       ⍝ refix modified function.
+         split←{(1,1↓<\⍵∊⍺)⊂⍵}           ⍝ split before first ⍵∊⍺.
+
+         rslt:fix{                       ⍝ rslt←larg ...
+             rslt tl←'←'split ⍵          ⍝ rslt← / larg ...
+             larg rest←' ('split 1↓tl    ⍝ larg / ...
+             rslt,'←{',larg,'}',rest     ⍝ rslt←{larg} ...
+         }hd
+
+         sp←+/∧\hd=' '                   ⍝ leading spaces
+         larg tail←' ('split sp↓hd       ⍝ larg ...
+         fix(sp⍴' '),'{',larg,'}',tail   ⍝ {larg} ...
+
+     }¨↓⎕FMT↑⍵                           ⍝ attributes.
+ }

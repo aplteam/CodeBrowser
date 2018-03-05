@@ -1,0 +1,22 @@
+ {r}←SelectFilename n;parms;G;filename;home;fn;ext;path
+ r←⍬
+ G←##.GUI
+ parms←G.FileBox.CreateParms
+ parms.addToCaption←'Select filename for CodeBrowser'
+ parms.filters←('*.html' 'HTML files')('*.htm' 'HTML files')
+ parms.fileMode←G.Enums.FileModes.Write
+ parms.file←n.filename.Text
+ :If 0∊⍴n.filename.Text
+     path←##.FilesAndDirs.PWD
+ :Else
+     path←⊃⎕NPARTS n.filename.Text
+ :EndIf
+ :If ~0∊⍴filename←parms G.FileBox.Run path
+     (home fn ext)←⎕NPARTS filename
+     :If 0∊⍴ext
+         ext←'.html'
+     :EndIf
+     filename←home,fn,ext
+     n.filename.Text←filename
+ :EndIf
+ ⍝Done

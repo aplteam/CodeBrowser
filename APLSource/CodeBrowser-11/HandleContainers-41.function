@@ -1,0 +1,20 @@
+ (html flag)←HandleContainers(ref width flag lists parms collect);html;these
+ html←''
+ :If ~0∊⍴lists.containers←' '~¨⍨↓ref.⎕NL 9
+ :AndIf ~0∊⍴lists.containers←({16::1 ⋄ 0⊣⎕SRC ⍵}¨ref.⍎¨lists.containers)/lists.containers
+ :AndIf ~0∊⍴lists.containers←(~(ref.⍎¨lists.containers)∊parms.ignore)/lists.containers
+ :AndIf ~0∊⍴lists.containers←(ref≠ref.⍎¨lists.containers)/lists.containers
+ :AndIf ~0∊⍴lists.containers←((~'['∊¨⍕¨ref.⍎¨lists.containers))/lists.containers
+ :AndIf ~0∊⍴lists.containers←(~(these←ref.⍎¨lists.containers)∊collect.namespaces)/lists.containers
+     collect.namespaces,←these
+     flag←{0⊣html,←⊂'<nav class="sub">'}⍣1⊣1
+     html,←⊂'<div class="toclist">'
+     html,←⊂'<p><b>Sub namespace',((1<⍴lists.containers)/'s'),': ',(⍕⊃⍴lists.containers),'</b></p>'
+     html,←⊂'<div>'
+     :If parms.recursive
+         html,←⊃,/ref{⊂'<div style="width:',width,'em;"><a ',(MakeBookmarkRef(⍕⍺),'.',⍵),'>',⍵,'</a></div>'}¨lists.containers
+     :Else
+         html,←('<div style="width:',width,'em;">')∘,¨lists.containers,¨⊂'</div>'
+     :EndIf
+     html,←'</div>' '</div>'
+ :EndIf

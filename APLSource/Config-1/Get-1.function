@@ -1,0 +1,9 @@
+ Get←{
+⍝ Takes a two-column matrix (typically the result of `Input.Run` and one
+⍝ or more names as ⍵ and returns their values.
+⍝ If a name does not exist it crashes.
+     mat←⍺
+     names←,∘⊂⍣(⊃0 1∊⍨≡⍵)⊣⍵
+     ind←mat[;1]⍳names
+     mat[ind;2]
+ }

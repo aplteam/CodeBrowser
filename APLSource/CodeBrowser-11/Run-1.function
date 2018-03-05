@@ -1,0 +1,40 @@
+ {filename}←{parms}Run namespaces;ns;WriteHTML;collect;refs
+⍝ Collects the data in the (non-scripted) namespaces listed in `namespaces` and compiles an
+⍝ HTML page with the code in it.\\
+⍝ `namespaces` must be a text vector with fully qualified namespace name(s). You can use either
+⍝ a space or a comma as separators.
+⍝ `parms` is optional. If provided it must be a parameter space, typically created with `CreateParms`.
+⍝ If this is not provided then defaults take place.\\
+⍝ Returns the name of the file the HTML is written to. The page contains the CSS and is therefore
+⍝ fully self contained. You should ot attempt to view it in an outdated browser like IE9.
+ ⎕IO←1 ⋄ ⎕ML←1
+ Init ⍬
+ namespaces←MassageNameLists namespaces
+ 'Invalid right argument'⎕SIGNAL 11/⍨9.1∨.≠⎕NC∘⊂¨namespaces
+ refs←⍎¨namespaces
+ parms←{0<⎕NC ⍵:⍎⍵ ⋄ CreateParms}'parms'
+ parms.filename{~0∊⍴⍺:⍺ ⋄ (¯4↓F.GetTempFilename''),'.html'}←⍬
+ parms.caption{~(⊂⍺)∊¯1 '':⍺ ⋄ 1=⍴,⍵:⍕⍵ ⋄ ⊃,/{⍺,',',⍵}/⍵}←namespaces
+ parms.tno←CreateOrReplaceFile parms.filename
+ parms.ignore←⊃,/{0∊⍴⍵:⍵ ⋄ ⍎⍵}¨MassageNameLists parms.ignore
+ ns←⎕NS''
+ ns.html←''
+ WriteHTML←parms.tno∘{0∊⍴⍵:r←⍬ ⋄ 'append'A.WriteUtf8File ⍺(,⊆,⍵)}
+ WriteHeader parms
+ WriteHTML⊂'<h1>',parms.caption,'</h1>'
+ :If ~0∊⍴parms.info
+     WriteHTML(⊂'<div id="info">'),({'<p>',⍵,'</p>'}¨A.Nest parms.info),⊂'</div>'
+ :EndIf
+ collect←⎕NS''
+ collect.namespaces←⍬
+ collect.remove←⌊/{+/'.'=⍵}¨namespaces
+ :If parms.recursive
+     {}AddMainMenu refs parms collect
+ :EndIf
+ 1 CollectAplObjects refs parms collect
+ AddFooter parms
+ AddButton_ScrollToTop parms
+ WriteHTML('</body>' '</html>')
+ filename←parms.filename
+ ⎕NUNTIE parms.tno
+ ⍝Done

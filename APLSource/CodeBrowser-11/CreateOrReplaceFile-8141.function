@@ -1,0 +1,6 @@
+ tno←CreateOrReplaceFile filename
+ :If ⎕NEXISTS filename
+     ⎕NDELETE filename
+ :EndIf
+ tno←filename ⎕NCREATE 0
+⍝Done

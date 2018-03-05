@@ -1,0 +1,13 @@
+ birthday←{⎕IO←0                     ⍝ probability of same birthday.
+    ⍝ ⍺ : number of possible values
+    ⍝ ⍵ : number of random values
+    ⍝ p ← ⍺ birthday ⍵ : probability that there is one couple with same value
+    ⍝ p ←→ 1-(!⍺)÷((⍺*⍵)×(!⍺-⍵))    ⍝ Birthday solution
+    ⍝ (1-p) ←→ ((!⍺)÷(!⍺-⍵))÷(⍺*⍵)  ⍝ Rewrite of the equation
+    ⍝ (1-p) ←→ (×/⍺-⍳⍵)÷(⍺*⍵)       ⍝ Definition of ! (⎕IO←0)
+    ⍝ (1-p) ←→ ×/(⍺-⍳⍵)÷⍺           ⍝ Definition of *
+    ⍝ (1-p) ←→ *+/(⍟⍺-⍳⍵)-⍟⍺        ⍝ Definition of ⍟
+     11::1-*+/(⍟⍺-⍳⍵)-⍟⍺             ⍝ (×/) failed : take log
+     11::1-×/(⍺-⍳⍵)÷⍺                ⍝ (!⍺) failed : try full computation
+     1-((!⍺)÷(!⍺-⍵))÷(⍺*⍵)           ⍝ Try exact computation (faster)
+ }

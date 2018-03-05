@@ -1,0 +1,3 @@
+ bayes←{         ⍝ Bayes' formula.
+     ⍺(×÷+.×)⍵   ⍝ (implemented as a fork)
+ }

@@ -1,0 +1,12 @@
+ filename←Show_Rumba;parms
+ A←#.APLTreeUtils
+ parms←CodeBrowser.CreateParms
+ parms.caption←'Rumba'
+ parms.ignore←#.Rumba.Doc
+ parms.filename←'D:\Temp\RumbaDoc.html'
+ parms.info←'This document contains all the code but the documentation.'
+ parms.timestampAndAuthor←1
+⍝parms.BackgroundColor←0
+ filename←parms CodeBrowser.Run #.Rumba
+ A.GoToWebPage'file://',filename
+⍝Done

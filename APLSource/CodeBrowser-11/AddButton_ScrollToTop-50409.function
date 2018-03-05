@@ -1,0 +1,4 @@
+ {r}←AddButton_ScrollToTop parms
+ :If parms.scrollToTopButton
+     WriteHTML'<button onclick="topFunction()" id="scrolltotop" title="Go to top">Top</button>'
+ :EndIf

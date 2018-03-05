@@ -1,0 +1,9 @@
+ filename←Show_CookBook_GUI_Chapter;parms
+ A←#.APLTreeUtils
+ parms←CodeBrowser.CreateParms
+ parms.caption←'MyApp'
+ parms.filename←'D:\Temp\MyApp.html'
+ parms.info←'This document contains all the GUI code of the Cookbook''s chapter 18.'
+ filename←parms CodeBrowser.Run #.MyApp
+ A.GoToWebPage'file://',filename
+⍝Done

@@ -1,0 +1,20 @@
+ r←CreateParms
+ r←⎕NS''
+ r.author←⎕AN
+ r.recursive←1
+ r.caption←¯1                                   ⍝ Defaults to the list of namespaces specified by the user.
+ r.codeMirrorLib←0                              ⍝ 1 = make the CSS support APL syntax colouring. The page is not stand-alone then any more!
+ r.date←##.APLTreeUtils.FormatDateTime ⎕TS
+ r.doubleSidedPrint←1
+ r.filename←''                                  ⍝ If not set this defaults to a temp file name.
+ r.ignore←''                                    ⍝ Use this to ignore, say, a help system etc.
+ r.info←''                                      ⍝ If not empty this is shown under the caption with ID="info".
+ r.lang←'en'                                    ⍝ Language. May have an influence on " for example.
+ r.backgroundColorPrint←1                       ⍝ Set this to 0 if you don't want background color when printing.
+ r.lastEditedAt←0                               ⍝ Show "Last edited at ... by..." underneath functions and operators.
+ r.printFontSize←8                              ⍝ Base font size in pt.
+ r.recursive←1                                  ⍝ Scan sub-namespaces as well.
+ r.scrollToTopButton←1                          ⍝ As soon as you start scrolling the bottom-right corner starts to show a button "Top".
+⍝r.nameClasses←3 4                              ⍝ by default only functions and operators are taken into account. Maube one day
+ r.⎕FX'r←∆List' 'r←{⍵,[1.5]⍎¨⍵}↓⎕nl 2'
+ ⍝Done

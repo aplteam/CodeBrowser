@@ -1,0 +1,10 @@
+ filename←Show_Acre_Code_Flat;parms
+ A←#.APLTreeUtils
+ parms←CodeBrowser.CreateParms
+ parms.caption←'acre.acre._code'
+ parms.filename←'D:\Temp\acre.html'
+ parms.info←'This document contains just the code in _code.'
+ parms.recursive←0
+ filename←parms CodeBrowser.Run ⎕SE.acre.acre._code
+ A.GoToWebPage'file://',filename
+⍝Done

@@ -1,0 +1,23 @@
+ filename←Show_Structure;parms
+ #.⎕EX'AAA'
+ 'AAA'#.⎕NS''
+ 'A1'#.AAA.⎕NS''
+ 'B1'#.AAA.A1.⎕NS''
+ 'B2'#.AAA.A1.⎕NS''
+ 'A2'#.AAA.⎕NS''
+ 'A3'#.AAA.⎕NS''
+ 'C1'#.AAA.A3.⎕NS''
+ 'C2'#.AAA.A3.⎕NS''
+ 'D1'#.AAA.A3.C2.⎕NS''
+ 'D2'#.AAA.A3.C2.⎕NS''
+ #.AAA.A3.C3←#.AAA.A1.B2
+
+ A←#.APLTreeUtils
+ parms←CodeBrowser.CreateParms
+ parms.caption←'Nested namespaces'
+ parms.ignore←⎕SE.acre.Conga
+ parms.filename←'D:\Temp\AAA.html'
+ parms.info←'This document contains tests.'
+ filename←parms CodeBrowser.Run #.AAA
+ A.GoToWebPage'file://',filename
+⍝Done

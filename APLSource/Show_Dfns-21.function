@@ -1,0 +1,9 @@
+ filename←Show_Dfns;parms
+ A←#.APLTreeUtils
+ parms←CodeBrowser.CreateParms
+ parms.caption←'Dfns'
+ parms.filename←'D:\Temp\Dfns.html'
+ parms.info←'This document contains all functions from the Dfns workspace'
+ filename←parms CodeBrowser.Run #.Dfns
+ A.GoToWebPage'file://',filename
+⍝Done

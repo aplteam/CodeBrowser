@@ -1,0 +1,10 @@
+ {r}←(Write ProcessIt)n;parms
+ r←⍬
+ parms←##.CodeBrowser.CreateParms
+ parms(DistributeParm)←n.∆result
+ parms ##.CodeBrowser.Run⍎n.Source_.Text
+ {}Write n('HTML created: ',n.filename.Text)
+ :If n.view.State
+     ##.APLTreeUtils.GoToWebPage n.filename.Text
+ :EndIf
+⍝Done

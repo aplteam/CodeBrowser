@@ -1,0 +1,12 @@
+ GetCodeMirrorLib←{
+     parms←⍵
+     0=parms.codeMirrorLib:''
+     r←''
+     r,←⊂'<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.33.0/codemirror.js"></script>'
+     r,←⊂'<link  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.33.0/codemirror.css" rel="stylesheet">'
+     r,←⊂'<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.33.0/mode/apl/apl.js"></script>'
+     r,←⊂'<style>'
+     r,←⊂'.CodeMirror{height:auto; border: 1px solid #eee;}'
+     r,←⊂'</style>'
+     r
+ }

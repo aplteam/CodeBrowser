@@ -1,0 +1,4 @@
+ alvals←{            ⍝ Values of names ⍵ in association list ⍺.
+     names vals←⍺    ⍝ name vector and corresponding values.
+     vals[names⍳⍵]   ⍝ leftmost value for each name.
+ }

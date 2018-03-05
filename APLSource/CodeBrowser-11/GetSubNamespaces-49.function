@@ -1,0 +1,21 @@
+ r←{y}GetSubNamespaces ref;list;level
+ level←0
+ :If 0=⎕NC'y'
+     ⎕SHADOW'parms'
+     parms←CreateParms ⍬
+ :ElseIf 326=⎕DR y
+     ⎕SHADOW'parms'
+     parms←y
+ :Else
+     level←y
+ :EndIf
+ r←⊂level ref
+ :If ~0∊⍴list←' '~¨⍨↓ref.⎕NL 9.1                                    ⍝ All namespaces
+     list←ref.⍎¨list                                                ⍝ Make them refs
+     list~←ref,{0∊⍴⊃,/⍵:⍵ ⋄ ⍎¨⍵}MassageNameLists parms.ignore       ⍝ Remove any self references and parms.without
+ :AndIf ~0∊⍴list
+ :AndIf ~0∊⍴list←(~'['∊¨⍕¨list)/list                                ⍝ Remove unnamed namespaces and instances
+ :AndIf ~0∊⍴list←({16::1 ⋄ 0⊣⎕SRC ⍵}¨list)/list                     ⍝ Remove scripted ones
+     r←((⊂level,ref),⊃,/(1+level)GetSubNamespaces¨list)~⊂''
+ :EndIf
+⍝Done

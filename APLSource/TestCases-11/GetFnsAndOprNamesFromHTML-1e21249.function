@@ -1,0 +1,5 @@
+ GetFnsAndOprNamesFromHTML←{
+⍝ ⍵ is HTML.
+⍝ We look for <pre><code> and look for names in the lines carrying those tags.
+     {⍵↑⍨¯1+⍵⍳'←'}∘{⍵↓⍨1+⍵⍳'∇'}¨⍵[1+'<pre><code>.*$'⎕S 2⊣⍵]
+ }

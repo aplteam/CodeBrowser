@@ -1,0 +1,7 @@
+ flag←AskForNoObjects n;parms;D;msg
+ D←##.GUI.Dialogs
+ parms←D.CreateParmsForYesOrNo
+ parms.addToCaption←'No objects'
+ msg←'You have not selected any objects' '' 'Are you sure?'
+ flag←~n.∆globalParms parms D.YesOrNo msg
+⍝Done

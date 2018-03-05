@@ -1,0 +1,8 @@
+ defaults←defaults DistributeParm parms;name;value
+ :For name value :InEach ↓⍉(~'_'∊¨parms[;1])⌿parms
+     :If ' '=1↑0⍴{⎕ML←3 ⋄ ∊⍵}value
+         defaults.⍎name,'←''',value,''''
+     :Else
+         defaults.⍎name,'←',⍕value
+     :EndIf
+ :EndFor

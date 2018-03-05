@@ -1,0 +1,10 @@
+ filename←Show_Acre_Full;parms
+ A←#.APLTreeUtils
+ parms←CodeBrowser.CreateParms
+ parms.caption←'acre'
+ parms.ignore←⎕SE.acre.Conga
+ parms.filename←'D:\Temp\acre.html'
+ parms.info←'This document contains all the acre code.'
+ filename←parms CodeBrowser.Run ⎕SE.acre
+ A.GoToWebPage'file://',filename
+⍝Done

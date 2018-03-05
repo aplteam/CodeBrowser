@@ -1,0 +1,22 @@
+ (flag obj)←(WriteErr CheckInput)n;I;WriteErr;list;bool
+ flag←1
+ obj←⍬
+ :If 2≠⍴,n.lang.Text
+     obj←n.lang
+     flag←WriteErr'Invalid "language" definition'
+ :ElseIf 0∊⍴n.filename.Text
+     obj←n.filename
+     flag←WriteErr'Please specify a filename'
+ :ElseIf 0=+/{⍵.State}¨⎕WN n.objects
+     :If AskForNoObjects n
+         obj←n.objects_check_00
+         flag←WriteErr'Please specify objects'
+     :EndIf
+ :ElseIf ~0∊⍴list←n.ignore.Text
+     ((','=list)/list)←' '
+     list←' '##.APLTreeUtils.Split ##.APLTreeUtils.dmb list
+     :If ∨/bool←9.1≠⎕NC¨⊂¨list
+         obj←n.ignore
+         flag←WriteErr'Invalid: ',⊃{⍺,', ',⍵}/bool/list
+     :EndIf
+ :EndIf
