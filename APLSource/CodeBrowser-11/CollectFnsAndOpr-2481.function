@@ -7,7 +7,7 @@
          body←(,¨'<>&')⎕R'\&lt;' '\&gt;' '\&amp;'⍠('Greedy' 0)⊣↓⎕FMT body
      :EndTrap
      r,←⊂'<div class="code_block" ',(collect MakeID(⍕ref),'.',name),'>'
-     caption←MakeBreadCrumb RemoveFirstLevel collect.remove RemoveLevels⍕ref
+     caption←MakeBreadCrumb collect.remove RemoveLevels⍕ref
      r,←⊂'<p class="caption">',(⍕i),'. ',caption,'.',name,'</p>'
      (1⊃body)←'<pre><code>',1⊃body
      r,←body,⊂'</code></pre>'

@@ -1,2 +1,2 @@
  r
- CodeBrowser.Run'#._CodeBrowser'
+ ⎕←CodeBrowser.Run'#._CodeBrowser'

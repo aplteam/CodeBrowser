@@ -5,7 +5,7 @@
  r,←'footer {margin-top:1.87em;}'
  r,←'footer p {text-align:center;}'
  r,←'pre {overflow: auto; padding: 0.62em 0.31em; margin: .12em 0 0.62em 0 !important; white-space:pre-wrap; background-color: #faebd7; color:#3e3e3e; border:1px silver dashed;}'
- r,←'h1 {font-family: "APL385 Unicode"; font-size:300%; border: 2px Black solid; text-align: center; padding:0.62em 0 0.9em 0;}'
+ r,←'h1 {font-family: "APL385 Unicode"; font-size:180%; border: 2px Black solid; text-align: center; padding:0.62em 0 0.9em 0;}'
  r,←'h2,h3,h4,h5,h6 {font-family: "APL385 Unicode"; font-size:140%; margin:1.25em 0 0.62em 0; padding:0;}'
  r,←'p.caption {font-family: "APL385 Unicode"; font-size:100%; font-weight:800; margin:2em 0 0.3em 0; padding:0;}'
  r,←'p.timestamp {margin: -0.25em 0 0.31em 0; font-size:0.8em}'
@@ -28,7 +28,7 @@
  r,←'#scrolltotop {display: none; position: fixed; bottom: 1.25em; right: 1.87em; z-index: 99; border: none; outline: none; background-color: black; color: white; cursor: pointer; padding: 1em; border-radius: 0.62em;}'
  r,←'#scrolltotop:hover {background-color: #555;}'
  r,←'}'
- :If parms.doubleSidedPrint
+ :If parms.twoSidedPrint
      r,←'@page :left {margin: 20mm 20mm 20mm 10mm;}'
  :Else
      r,←'@page :left {margin: 20mm 20mm 20mm 20mm;}'

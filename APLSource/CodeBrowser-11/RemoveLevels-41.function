@@ -1,6 +1,8 @@
  RemoveLevels←{
      noOf←⍺
      path←⍵
+     (,'#')≡,path:path
      buff←+\'.'=⍵
-     (1++/∧\noOf>buff)↓path
+     path←(1++/∧\noOf>buff)↓path
+     ('.'=1⍴path)↓path
  }

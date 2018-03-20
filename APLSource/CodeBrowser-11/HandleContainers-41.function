@@ -12,7 +12,7 @@
      html,←⊂'<p><b>Sub namespace',((1<⍴lists.containers)/'s'),': ',(⍕⊃⍴lists.containers),'</b></p>'
      html,←⊂'<div>'
      :If parms.recursive
-         html,←⊃,/ref{⊂'<div style="width:',width,'em;"><a ',(MakeBookmarkRef(⍕⍺),'.',⍵),'>',⍵,'</a></div>'}¨lists.containers
+         html,←⊃,/ref{⊂'<div style="width:',width,'em;"><a ',(collect MakeBookmarkRef(⍕⍺),'.',⍵),'>',⍵,'</a></div>'}¨lists.containers
      :Else
          html,←('<div style="width:',width,'em;">')∘,¨lists.containers,¨⊂'</div>'
      :EndIf

@@ -8,7 +8,6 @@
  html,←⊂'<meta name="date" content="',(FormatDate parms.date),'">'
  html,←⊂'<title>',parms.caption,'</title>'
  html,←⊂GetCSS parms
- html,←GetJavascript parms
  html,←GetCodeMirrorLib parms
  html,←⊂'</head>'
  html,←⊂'<body>'

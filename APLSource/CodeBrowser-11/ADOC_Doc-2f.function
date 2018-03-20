@@ -1,6 +1,7 @@
  ADOC_Doc
-⍝ `CodeBrowser` is designed to collect the code of all functions and operators within the given non-scripted namespace
-⍝ and compile an HTML page from it. It's a tool to view all the code of such namespace(s) in a single document.
+⍝ `CodeBrowser` is designed to collect the code of all functions, operators, classes, namespace scripts and Interfaces
+⍝ within the given non-scripted namespace and compile an HTML page from it.
+⍝ It's a tool to view all the code of such namespace(s) in a single document.
 
 ⍝ By default the work horse --- the function `Run` --- requires nothing but a right argument which is a list of references
 ⍝ pointing to non-scripted namespaces. If that is not sufficient for you then create a parameter space by calling
@@ -10,5 +11,4 @@
 ⍝ You may then make amendments to those variables and finally pass the parameter space as the (optional) left argument
 ⍝ to `Run`.
 ⍝
-⍝ If you want to have a GUI collecting your settings call `Config.Run` and provide refs to the namespaces you want to
-⍝ document as right argument.
+⍝
