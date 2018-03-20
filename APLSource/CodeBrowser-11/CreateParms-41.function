@@ -18,7 +18,7 @@
 ⍝ | `processClassesAndInterfaces` | Boolean that defaults to 1. |
 ⍝ | `processVars` | Boolean that defaults to 1. |
 ⍝ | `recursive` | Boolean that defaults to 1, meaning that sub-namespaces will be scanned as well. |
-⍝ | `timestampAndAuthor` | Boolean that defaults to 1. Make `CodeBrowser` print a fotter with `author` and `timestamp`. |
+⍝ | `timestampAndAuthor` | Boolean that defaults to 1. Make `CodeBrowser` print a footer with `author` and `timestamp`. |
  r←⎕NS''
  r.author←⎕AN
  r.recursive←1
