@@ -1,5 +1,5 @@
  {hasMainMenu}←AddMainMenu(sourceRefs parms collect);html;refs
- refs←{⍬≡⍴⊃⍵:1 2⍴1⊃,⊃⍵ ⋄ ↑⊃⍵}parms GetSubNamespaces¨sourceRefs
+ refs←↑⊃,/parms GetSubNamespaces¨sourceRefs
  refs←({(⍵⍳⍵)=⍳⍴⍵}refs[;2])⌿refs        ⍝ Get rid of (additional) refs
  hasMainMenu←0
  :If ~0∊⍴html←1 AddMainMenu_ refs collect

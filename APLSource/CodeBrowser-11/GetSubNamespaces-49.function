@@ -2,7 +2,7 @@
  level←0
  :If 0=⎕NC'y'
      ⎕SHADOW'parms'
-     parms←CreateParms ⍬
+     parms←CreateParms
  :ElseIf 326=⎕DR y
      ⎕SHADOW'parms'
      parms←y

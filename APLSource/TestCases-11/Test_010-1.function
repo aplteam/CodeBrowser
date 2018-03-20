@@ -8,13 +8,14 @@
 
  html←#.APLTreeUtils.ReadUtf8File filename
  names←GetFnsAndOprNamesFromHTML html
- →GoToTidyUp~names Matches' '~¨⍨⊃,/{↓⍵.⎕NL 3 4}¨{⍵[;2]}↑##.CodeBrowser.GetSubNamespaces ##.TestData.NS1
+ →GoToTidyUp~names Matches' '~¨⍨⊃,/{↓⍵.⎕NL 3 4}¨{⍵[;2]}↑⊃,/##.CodeBrowser.GetSubNamespaces¨##.TestData.(NS1 NS2)
  html←⊃,/(⎕UCS 13),¨html
  nav←html{⍵[2]↑⍵[1]↓⍺}⊃'<nav id="main">.*</nav>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
  nav←(⎕UCS 13)#.APLTreeUtils.Split nav
- expected←⊂'<a href="#_CodeBrowser.TestData.NS1">'
- expected,←⊂'<a href="#_CodeBrowser.TestData.NS1.NS1_a">'
- expected,←⊂'<a href="#_CodeBrowser.TestData.NS1.NS1_b">'
+ expected←⊂'<a href="#NS1">'
+ expected,←⊂'<a href="#NS1.NS1_a">'
+ expected,←⊂'<a href="#NS1.NS1_b">'
+ expected,←⊂'<a href="#NS2">'
  →GoToTidyUp~∧/∨/¨expected⍷¨⊂∊nav
 
  R←∆OK
