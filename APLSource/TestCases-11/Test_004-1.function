@@ -12,14 +12,14 @@
 
  html←1↓⊃,/(⎕UCS 13),¨#.APLTreeUtils.ReadUtf8File filename
  footer←html{⍵[2]↑⍵[1]↓⍺}⊃'<footer>.*</footer>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
- expected←'<p>Author: John Doe &mdash; Date: 1982-12-31</p>'
+ expected←'<p>Created by John Doe &mdash; Created at 1982-12-31</p>'
  →GoToTidyUp expected≢3⊃(⎕UCS 13)#.APLTreeUtils.Split footer
 
  parms.date←''
  filename←parms ##.CodeBrowser.Run ##.TestData.NS1
  html←1↓⊃,/(⎕UCS 13),¨#.APLTreeUtils.ReadUtf8File filename
  footer←html{⍵[2]↑⍵[1]↓⍺}⊃'<footer>.*</footer>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
- expected←'<p>Author: John Doe</p>'
+ expected←'<p>Created by John Doe</p>'
  →GoToTidyUp expected≢3⊃(⎕UCS 13)#.APLTreeUtils.Split footer
 
  parms.author←''
@@ -27,7 +27,7 @@
  filename←parms ##.CodeBrowser.Run ##.TestData.NS1
  html←1↓⊃,/(⎕UCS 13),¨#.APLTreeUtils.ReadUtf8File filename
  footer←html{⍵[2]↑⍵[1]↓⍺}⊃'<footer>.*</footer>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
- expected←'<p>Date: 1766-03-02</p>'
+ expected←'<p>Created at 1766-03-02</p>'
  →GoToTidyUp expected≢3⊃(⎕UCS 13)#.APLTreeUtils.Split footer
 
  parms.date←''
