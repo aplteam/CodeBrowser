@@ -1,0 +1,2 @@
+ r←Call
+ r←'⎕se.CodeBrowser.CodeBrowser.Run ''#.TheNamespace'''

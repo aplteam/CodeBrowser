@@ -5,7 +5,7 @@
 ⍝ a space or a comma as separator.\\
 ⍝ `parms` is optional. If provided it must be a parameter space, typically created with `CreateParms`.\\
 ⍝ Returns the name of the file the HTML is written to.\\
-⍝ The HTML page contains the CSS and JavaScript needed and is therefore fully self contained.
+⍝ The HTML page contains the CSS and JavaScript needed and is therefore fully self-contained.
 ⍝ You should not attempt to view it in an outdated browser like IE9.
  ⎕IO←1 ⋄ ⎕ML←1
  Init ⍬
@@ -21,7 +21,7 @@
  parms.ignore←⊃,/{0∊⍴⍵:⍵ ⋄ ⍎⍵}¨MassageNameLists parms.ignore
  ns←⎕NS''
  ns.html←''
- WriteHTML←parms.tno∘{0∊⍴⍵:r←⍬ ⋄ 'append'A.WriteUtf8File ⍺(,⊆,⍵)}
+ WriteHTML←parms.tno∘{0∊⍴⍵:r←⍬ ⋄ 'append'A.WriteUtf8File ⍺(,A.Nest,⍵)}
  WriteHeader parms
  WriteHTML⊂'<h1>',parms.caption,'</h1>'
  :If ~0∊⍴parms.info
@@ -40,4 +40,5 @@
  WriteHTML('</body>' '</html>')
  filename←parms.filename
  ⎕NUNTIE parms.tno
+ {}A.GoToWebPage⍣(⊃parms.show)⊣filename
 ⍝Done

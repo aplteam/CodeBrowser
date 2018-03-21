@@ -1,4 +1,4 @@
  {r}←Init dummy
  r←⍬
- A←#.APLTreeUtils ⋄ F←##.FilesAndDirs
+ A←##.APLTreeUtils ⋄ F←##.FilesAndDirs
 ⍝Done
