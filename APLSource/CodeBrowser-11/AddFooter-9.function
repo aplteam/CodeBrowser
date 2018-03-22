@@ -1,16 +1,10 @@
  {r}←AddFooter parms;html
  r←⍬
  html←''
- :If ~0∊⍴parms.(author,date)
+ :If ~0∊⍴parms.footer
      html←⊂'<footer>'
      html,←⊂'<hr>'
-     :If (0∊⍴parms.date)∧~0∊⍴parms.author
-         html,←⊂'<p>Created by ',parms.author,'</p>'
-     :ElseIf (0∊⍴parms.author)∧~0∊⍴parms.date
-         html,←⊂'<p>Created at ',(FormatDate parms.date),'</p>'
-     :Else
-         html,←⊂'<p>Created by ',parms.author,' &mdash; Created at ',(FormatDate parms.date),'</p>'
-     :EndIf
+     html,←⊂'<p>',parms.footer,'</p>'
      html,←⊂'</footer>'
      WriteHTML html
  :EndIf

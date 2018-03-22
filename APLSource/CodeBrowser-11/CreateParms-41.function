@@ -1,16 +1,13 @@
  r←CreateParms
 ⍝ | Name     | Description|
 ⍝ |:---------|:-----------|
-⍝ | `author` | By default this is `⎕AN`. |
+⍝ | `backgroundColorPrint` | Set this to 0 if you don't want background color when printing. |
 ⍝ | `caption` | Defaults to the list of namespaces specified by the user. |
-⍝ | `codeMirrorLib` | Boolean that defaults to 0. A 1 makes the CSS support APL syntax colouring. The page is not stand-alone then any more! |
-⍝ | `date`| Defaults to now. |
-⍝ | `twoSidedPrint` | Boolean that defaults to 0. If 1 the left margin is always larger than the right one.|
 ⍝ | `filename` | If not set this defaults to a temp file name. |
+⍝ | `footer`| No default. Text string added to the bottom of the HTML file. |
 ⍝ | `ignore` | Use this to ignore, say, a help system etc. |
 ⍝ | `info`  | If not empty this is shown under the caption with ID="info". |
 ⍝ | `lang` | Language. May have an influence on " for example. |
-⍝ | `backgroundColorPrint` | Set this to 0 if you don't want background color when printing. |
 ⍝ | `lastEditedAt` | Show "Last edited at ... by..." underneath functions and operators. |
 ⍝ | `printFontSize` | Base font size in pt. |
 ⍝ | `processFunctions` | Boolean that defaults to 1. |
@@ -19,15 +16,13 @@
 ⍝ | `processVars` | Boolean that defaults to 1. |
 ⍝ | `recursive` | Boolean that defaults to 1, meaning that sub-namespaces will be scanned as well. |
 ⍝ | `show` | Boolean that defaults to 0. A 1 lets CodeBrowser put the resulting HTML page on display in your default browser. |
-⍝ | `timestampAndAuthor` | Boolean that defaults to 0. A 1 makes `CodeBrowser` print a footer with `author` and `timestamp`. |
+⍝ | `twoSidedPrint` | Boolean that defaults to 0. If 1 the left margin is always larger than the right one.|
  r←⎕NS''
- r.author←⎕AN
  r.recursive←1
  r.caption←¯1
- r.codeMirrorLib←0
- r.date←##.APLTreeUtils.FormatDateTime ⎕TS
  r.twoSidedPrint←0
  r.filename←''
+ r.footer←''
  r.ignore←''
  r.info←''
  r.lang←'en'
@@ -40,6 +35,5 @@
  r.processVars←1
  r.recursive←1
  r.show←0
- r.timestampAndAuthor←0
  r.⎕FX'r←∆List' 'r←{⍵,[1.5]⍎¨⍵}↓⎕nl 2'
  ⍝Done

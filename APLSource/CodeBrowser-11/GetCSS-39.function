@@ -52,7 +52,7 @@
  r,←'nav#main ol {margin: 0; margin-left: 15pt; padding-left: 5pt; list-style: none}'
  r,←'nav#main li {margin-top: 3pt;}'
  r,←'nav.sub {border:1pt silver solid; display:block; padding:0 5pt 5pt 5pt; margin:0 0 15pt 0;}'
- r,←'.toclist {margin: 15pt 0 15pt 0; padding: 0 1pt;}'
+ r,←'.toclist {margin: 0.8em 0 0.3em 0; padding: 0 1pt;}'
  r,←'.toclist > p {margin-bottom: 2pt;}'
  r,←'.toclist > div {display:flex; flex-wrap:wrap;}'
  r,←'.toclist > div div {margin: 1pt 0 1pt 0;}'

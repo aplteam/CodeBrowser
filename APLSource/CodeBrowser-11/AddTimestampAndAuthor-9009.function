@@ -1,7 +1,0 @@
- AddTimestampAndAuthor←{
-     (ref name)←⍵
-     (date author)←(ref.⎕AT name)[2 4]
-     0=+/date:''            ⍝ Assigned function?!
-     date←A.FormatDateTime date
-     '<p class="timestamp">Last edited by ',author,' at ',date,'</p>'
- }

@@ -11,9 +11,6 @@
      r,←⊂'<p class="caption">',(⍕i),'. ',caption,'.',name,'</p>'
      (1⊃body)←'<pre><code>',1⊃body
      r,←body,⊂'</code></pre>'
-     :If parms.timestampAndAuthor
-         r,←⊂AddTimestampAndAuthor ref name
-     :EndIf
      r,←⊂'</div>'
  :EndIf
 ⍝Done

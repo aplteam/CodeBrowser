@@ -1,6 +1,10 @@
  R←Test_004(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;footer;parms;filename
-⍝ Includes the CodeMirror library (APL syntax colouring).
+⍝ Includes the CodeMirror library (APL syntax colouring). Not implemented yet.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ R←∆Inactive
+ :Return
+
  R←∆Failed
 
  parms←##.CodeBrowser.CreateParms

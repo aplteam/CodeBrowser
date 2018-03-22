@@ -9,7 +9,7 @@
  :EndIf
  flag←1
  :If 0<⊃⍴↓ref.⎕NL 2 3 4 9
-     width←⍕6⌈⌈0.8×⌈/⊃∘⍴¨↓ref.⎕NL GetNameClasses parms
+     width←⍕6⌈⌈0.8×⌈/⊃∘⍴¨↓ref.⎕NL 9,GetNameClasses parms
      (buff flag)←HandleContainers ref width flag lists parms collect
      html,←buff
      :If parms.processFunctions
