@@ -1,0 +1,7 @@
+ r←Demo2 stopFlag;options;NL
+ NL←⎕UCS 13
+ options←''
+ options,←' -caption="acre"'
+ options,←' -vib'
+ r←⎕SE.UCMD'CodeBrowser ⎕se.acre',options,stopFlag/' -'
+⍝Done

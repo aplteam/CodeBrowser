@@ -1,39 +1,43 @@
  r←CreateParms
-⍝ | Name     | Description|
-⍝ |:---------|:-----------|
-⍝ | `backgroundColorPrint` | Set this to 0 if you don't want background color when printing. |
-⍝ | `caption` | Defaults to the list of namespaces specified by the user. |
-⍝ | `filename` | If not set this defaults to a temp file name. |
-⍝ | `footer`| No default. Text string added to the bottom of the HTML file. |
-⍝ | `ignore` | Use this to ignore, say, a help system etc. |
-⍝ | `info`  | If not empty this is shown under the caption with ID="info". |
-⍝ | `lang` | Language. May have an influence on " for example. |
-⍝ | `lastEditedAt` | Show "Last edited at ... by..." underneath functions and operators. |
-⍝ | `printFontSize` | Base font size in pt. |
-⍝ | `processFunctions` | Boolean that defaults to 1. |
-⍝ | `processOperators`| Boolean that defaults to 1. |
-⍝ | `processClassesAndInterfaces` | Boolean that defaults to 1. |
-⍝ | `processVars` | Boolean that defaults to 1. |
-⍝ | `recursive` | Boolean that defaults to 1, meaning that sub-namespaces will be scanned as well. |
-⍝ | `show` | Boolean that defaults to 0. A 1 lets CodeBrowser put the resulting HTML page on display in your default browser. |
-⍝ | `twoSidedPrint` | Boolean that defaults to 0. If 1 the left margin is always larger than the right one.|
+⍝ | Name     | Description | Options/flag |
+⍝ |:---------|:------------|:-------------|
+⍝ | `backgroundColorPrint` | Set this to 0 if you don't want background color when printing. | --- |
+⍝ | `caption` | Defaults to the list of namespaces specified by the user. | `-caption |
+⍝ | `cssfile` | Location of the CSS file. | --- |
+⍝ | `filename` | If not set this defaults to a temp file name. | `-filename`. |
+⍝ | `footer`| No default. Text string added to the bottom of the HTML file. | `-footer` |
+⍝ | `ignore` | Use this to ignore, say, a help system etc. | `-ignore`. |
+⍝ | `info`  | If not empty this is shown under the caption with ID="info". | `-info` |
+⍝ | `lang` | Specifies the language; defaults to "en". | `-lang` |
+⍝ | `linkcssfile` | Boolean that defaults to 0 menaing that contents of `cssfile` is embedded. | --- |
+⍝ | `printFontSize` | Base font size in pt. | `-pfs` |
+⍝ | `processFunctions` | Boolean that defaults to 1. | `-obj=f` |
+⍝ | `processOperators`| Boolean that defaults to 1. | `-obj=o` |
+⍝ | `processScripts` | Boolean that defaults to 1. Regards classes, interfaces and scripted namespaces. | `-obj=s` |
+⍝ | `processVars` | Boolean that defaults to 1. | `-obj=v` |
+⍝ | `recursive` | Boolean that defaults to 1, meaning that sub-namespaces will be scanned as well. | `-r=1` |
+⍝ | `showParms` | Boolean that defaults to 0. Specify 1 to append a table with parameters. | `-p` |
+⍝ | `viewInBrowser` | Boolean that defaults to 0. Specify 1 for displaying the HTML in your default browser. | `-vib` |
+⍝ | `twoSidedPrint` | Boolean that defaults to 0. If 1 the left margin is always larger than the right one.| `-twosided` |
  r←⎕NS''
  r.recursive←1
  r.caption←¯1
+ r.cssfilename←'codebrowser_styles.css'
  r.twoSidedPrint←0
  r.filename←''
  r.footer←''
  r.ignore←''
  r.info←''
  r.lang←'en'
+ r.linkcssfile←0
  r.backgroundColorPrint←1
- r.lastEditedAt←0
  r.printFontSize←8
  r.processFunctions←1
  r.processOperators←1
- r.processClassesAndInterfaces←1
+ r.processScripts←1
  r.processVars←1
  r.recursive←1
- r.show←0
+ r.viewInBrowser←0
+ r.showParms←0
  r.⎕FX'r←∆List' 'r←{⍵,[1.5]⍎¨⍵}↓⎕nl 2'
  ⍝Done

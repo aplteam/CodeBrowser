@@ -22,7 +22,7 @@
          (html flag)←html OpenNavSub flag
          html,←CreateToc_ ref parms lists.opr'Operator'collect width
      :EndIf
-     :If parms.processClassesAndInterfaces
+     :If parms.processScripts
      :AndIf ~0∊⍴lists.scripts←ListScriptsIn ref
          (html flag)←html OpenNavSub flag
          html,←CreateToc_ ref parms lists.scripts'Script'collect width

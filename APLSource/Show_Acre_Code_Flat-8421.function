@@ -2,9 +2,13 @@
  A←#.APLTreeUtils
  parms←CodeBrowser.CreateParms
  parms.caption←'acre.acre._code'
- parms.filename←'D:\Temp\acre.html'
+ parms.filename←##.FilesAndDirs.GetTempFilename''
+ ##.FilesAndDirs.DeleteFile parms.filename
+ parms.filename←(¯4↓parms.filename),'.html'
  parms.info←'This document contains just the code in _code.'
  parms.recursive←0
- filename←parms CodeBrowser.Run ⎕SE.acre.acre._code
+ filename←parms CodeBrowser.Run ⎕SE.acre._code
  A.GoToWebPage'file://',filename
+ ⎕DL 0.3
+ ##.FilesAndDirs.DeleteFile parms.filename
 ⍝Done

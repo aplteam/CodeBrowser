@@ -1,0 +1,11 @@
+ r←Demo1 stopFlag;options;NL
+ NL←⎕UCS 13
+ options←''
+ options,←' -caption="CodeBrowser Demo"'
+ options,←' -info="This is a test',NL,'It comes with all the code in <CodeBrowser>"'
+ options,←' -obj=fo'
+ options,←' -lang="de"'
+ options,←' -p'
+ options,←' -vib'
+ r←⎕SE.UCMD'CodeBrowser #._CodeBrowser.CodeBrowser ',options,stopFlag/' -'
+⍝Done

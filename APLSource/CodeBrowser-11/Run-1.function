@@ -1,4 +1,4 @@
- filename←{parms}Run namespaces;ns;WriteHTML;collect;refs
+ filename←{parms}Run namespaces;refs
 ⍝ Collects the code and variables in the (non-scripted) namespaces listed in `namespaces` and
 ⍝ compiles an HTML page with the code in it.\\
 ⍝ `namespaces` must be a text vector with fully qualified namespace name(s). You can use either
@@ -10,35 +10,8 @@
  ⎕IO←1 ⋄ ⎕ML←1
  Init ⍬
  namespaces←MassageNameLists namespaces
- :If (,⊂,'#')≢,namespaces
-     'No namespace(s) specified'⎕SIGNAL 11/⍨9.1∨.≠⎕NC∘⊂¨namespaces
- :EndIf
- refs←⍎¨namespaces
  parms←{0<⎕NC ⍵:⍎⍵ ⋄ CreateParms}'parms'
- parms.filename{~0∊⍴⍺:⍺ ⋄ (¯4↓F.GetTempFilename''),'.html'}←⍬
- parms.caption{~(⊂⍺)∊¯1 '':⍺ ⋄ 1=⍴,⍵:⍕⍵ ⋄ ⊃,/{⍺,',',⍵}/⍵}←namespaces
- parms.tno←CreateOrReplaceFile parms.filename
- parms.ignore←⊃,/{0∊⍴⍵:⍵ ⋄ ⍎⍵}¨MassageNameLists parms.ignore
- ns←⎕NS''
- ns.html←''
- WriteHTML←parms.tno∘{0∊⍴⍵:r←⍬ ⋄ 'append'A.WriteUtf8File ⍺(,A.Nest,⍵)}
- WriteHeader parms
- WriteHTML⊂'<h1>',parms.caption,'</h1>'
- :If ~0∊⍴parms.info
-     WriteHTML(⊂'<div id="info">'),({'<p>',⍵,'</p>'}¨A.Nest parms.info),⊂'</div>'
- :EndIf
- collect←⎕NS''
- collect.namespaces←⍬
- collect.remove←⌊/{+/'.'=⍵}¨namespaces
- :If parms.recursive
-     collect.hasMainMenu←AddMainMenu refs parms collect
- :Else
-     collect.hasMainMenu←0
- :EndIf
- 1 CollectAplObjects refs parms collect
- AddFooter parms
- WriteHTML('</body>' '</html>')
- filename←parms.filename
- ⎕NUNTIE parms.tno
- {}A.GoToWebPage⍣(⊃parms.show)⊣filename
+ ⎕SIGNAL/HandleParms parms namespaces
+ filename←CreateHtml parms
+ {}A.GoToWebPage⍣(⊃parms.viewInBrowser)⊣filename
 ⍝Done

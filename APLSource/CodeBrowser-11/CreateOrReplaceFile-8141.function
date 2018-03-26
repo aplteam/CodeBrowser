@@ -1,6 +1,11 @@
- tno←CreateOrReplaceFile filename
- :If ⎕NEXISTS filename
-     ⎕NDELETE filename
+ tno←CreateOrReplaceFile parms
+ :If ⎕NEXISTS parms.filename
+     :Trap 19
+         ⎕NDELETE parms.filename
+     :Case 19
+         ⎕NUNTIE((A.dtb↓⎕NNAMES)⍳⊂parms.filename)⊃⎕NNUMS
+         ⎕NDELETE parms.filename
+     :EndTrap
  :EndIf
- tno←filename ⎕NCREATE 0
+ tno←parms.filename ⎕NCREATE 0
 ⍝Done

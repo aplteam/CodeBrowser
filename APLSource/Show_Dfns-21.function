@@ -2,8 +2,15 @@
  A←#.APLTreeUtils
  parms←CodeBrowser.CreateParms
  parms.caption←'Dfns'
- parms.filename←'D:\Temp\Dfns.html'
+ parms.filename←##.FilesAndDirs.GetTempFilename''
+ ##.FilesAndDirs.DeleteFile parms.filename
+ parms.filename←(¯4↓parms.filename),'.html'
+ #.⎕SHADOW'Dfns'
+ 'Dfns'#.⎕NS''
+ #.Dfns.⎕CY'Dfns'
  parms.info←'This document contains all functions from the Dfns workspace'
  filename←parms CodeBrowser.Run #.Dfns
  A.GoToWebPage'file://',filename
+ ⎕DL 0.3
+ ##.FilesAndDirs.DeleteFile parms.filename
 ⍝Done

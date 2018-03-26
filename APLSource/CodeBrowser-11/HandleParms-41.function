@@ -1,0 +1,31 @@
+ (msg en)←HandleParms(parms namespaces)
+ en←11 ⍝ DOMAIN ERROR
+ :If (,⊂,'#')≢,namespaces
+ :AndIf 9.1∨.≠⎕NC∘⊂¨namespaces
+     msg←'No namespace(s) specified'
+     :Return
+ :EndIf
+ :Trap 0
+     parms.refs←⍎¨namespaces
+ :Else
+     msg←'Something went wrong - check the namespace list'
+     :Return
+ :EndTrap
+ :If 1≥|≡parms.cssfilename
+     parms.cssfilename←A.dmb parms.cssfilename
+     :If ∨/' ,'∊parms.cssfilename
+         ((' '=parms.cssfilename)/parms.cssfilename)←','
+         parms.cssfilename←','A.Split parms.cssfilename
+     :EndIf
+     parms.cssfilename←A.Nest parms.cssfilename
+ :EndIf
+ parms.filename{~0∊⍴⍺:⍺ ⋄ (¯4↓F.GetTempFilename''),'.html'}←⍬
+ parms.caption{~(⊂⍺)∊¯1 '':⍺ ⋄ 1=⍴,⍵:⍕⍵ ⋄ ⊃,/{⍺,',',⍵}/⍵}←namespaces
+ parms.tno←CreateOrReplaceFile parms
+ :Trap 0
+     parms.ignore←⊃,/{0∊⍴⍵:⍵ ⋄ ⍎⍵}¨MassageNameLists parms.ignore
+     en←0⍴msg←''
+ :Else
+     msg←'Something went wrong - check -ignore'
+ :EndTrap
+⍝Done

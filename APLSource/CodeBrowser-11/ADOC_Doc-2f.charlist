@@ -1,0 +1,75 @@
+## Overview
+
+`CodeBrowser` is designed to collect the code of all functions, operators, classes, namespace scripts and Interfaces
+within the given non-scripted namespace(s) and compile a stand-alone HTML page from it.
+
+It's a tool to view all the code of such namespace(s) in a single HTML document. Extensive linking allows you to jump
+around easily; ideal for a code review.
+
+
+## Usage
+
+In order to use it you need to download the workspace `CodeBrowser` and the user command script `CodeBrowser_UC.dyalog`
+from [GitHub](https://github.com/aplteam/CodeBrowser).
+
+You then need to put these two files somewhere where Dyalog recognizes it as a user command. Restart Dyalog APL or
+execute the command `]UReset` which will make it available in an already running session.
+
+You then have two different ways of using `CodeBrowser`:
+
+## Use the user command `]CodeBrowser`
+
+This is by far the easiest way to use but it comes with limitations.
+
+To create an HTML page for a namespace `#.Foo`:
+
+```
+]CodeBrowser #.Foo
+```
+
+There are several flags available which allow you to adapt the behaviour and/or the information shown by `CodeBrowser`.
+
+For details regarding those options and flags execute `]??CodeBrowser`.
+
+However, not all parameters can be set this way. If you need to set one of the parameters that are not available via
+the user command interface then you have to consider the two other ways to use `CodeBrowser` because they give you full
+access to all parameter.
+
+
+## Copy it into your workspace
+
+`CodeBrowser` does not only contain a namespace `CodeBrowser`, it also contains quite a number of classes from the
+[APLTree library](https://github.com/aplteam/apltree/wiki).
+
+That's why you don't want to copy the `CodeBrowser` workspace straight into your own workspace. Instead you are
+advised to do the following:
+
+```
+'Foo' #.⎕ns ''   ⍝ Note the #!
+#.Foo.⎕CY '/path2CodeBrowser/CodeBrowser
+```
+See "Example" for how to continue.
+
+
+## Example
+
+This example assumes that you have copied the workspace `CodeBrowser` into a namespace `#.Foo`.
+
+Let's assume that you need to change some of the defaults. For that you need to create a namespace with all the defaults
+in it as ordinary variables:
+
+```
+      #.Foo.parms←⎕SE.Foo.CodeBrowser.CreateParms
+      #.Foo.parms.caption←'CodeBrowser processing itself'
+      parms.viewInBrowser←1
+```
+`viewInBrowser` defaults to 0. When it's a 1 then the HTML document produced by `CodeBrowser` is displayed with your default
+browser.
+
+We could now use `CodeBrowser` to document itself:
+
+```
+#.Foo.parms #.Foo..CodeBrowser.CodeBrowser.Run '#.Foo.CodeBrowser.CodeBrowser'
+```
+
+This will print the name of the HTML file to the session, but due to `viewInBrowser←1` it will also put the file on display.

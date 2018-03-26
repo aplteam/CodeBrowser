@@ -1,4 +1,5 @@
  GetCodeMirrorLib←{
+     ⍝ NOT SUPPORTED (yet)
      parms←⍵
      0=parms.codeMirrorLib:''
      r←''

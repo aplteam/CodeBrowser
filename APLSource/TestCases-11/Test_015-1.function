@@ -1,0 +1,57 @@
+ R←Test_015(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;parms;footer;ind;filename
+⍝ Check the `linkcssfile` parameter
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ filename←#.FilesAndDirs.GetTempPath,'CodeViewer_Test_013.html'
+
+ parms←##.CodeBrowser.CreateParms
+ parms.filename←filename
+ parms.linkcssfile←1
+ {}parms ##.CodeBrowser.Run ##.TestData
+ html←#.APLTreeUtils.ReadUtf8File parms.filename
+ →GoToTidyUp~(⊂'<link href="codebrowser_styles.css" rel="stylesheet">')∊html
+
+ parms←##.CodeBrowser.CreateParms
+ parms.filename←filename
+ parms.linkcssfile←1
+ parms.cssfilename←⊂'abc.css'
+ {}parms ##.CodeBrowser.Run ##.TestData
+ html←#.APLTreeUtils.ReadUtf8File parms.filename
+ →GoToTidyUp~(⊂'<link href="abc.css" rel="stylesheet">')∊html
+
+ parms←##.CodeBrowser.CreateParms
+ parms.filename←filename
+ parms.linkcssfile←1
+ parms.cssfilename←'abc.css' 'foo.css'
+ {}parms ##.CodeBrowser.Run ##.TestData
+ html←#.APLTreeUtils.ReadUtf8File parms.filename
+ →GoToTidyUp~(⊂'<link href="abc.css" rel="stylesheet">')∊html
+ →GoToTidyUp~(⊂'<link href="foo.css" rel="stylesheet">')∊html
+ →GoToTidyUp 2≠⍴'<link href=".*" rel="stylesheet">'⎕S 0⍠('Greedy' 0)⊣html
+
+ parms←##.CodeBrowser.CreateParms
+ parms.filename←filename
+ parms.linkcssfile←1
+ parms.cssfilename←'abc.css foo.css'
+ {}parms ##.CodeBrowser.Run ##.TestData
+ html←#.APLTreeUtils.ReadUtf8File parms.filename
+ →GoToTidyUp~(⊂'<link href="abc.css" rel="stylesheet">')∊html
+ →GoToTidyUp~(⊂'<link href="foo.css" rel="stylesheet">')∊html
+ →GoToTidyUp 2≠⍴'<link href=".*" rel="stylesheet">'⎕S 0⍠('Greedy' 0)⊣html
+
+ parms←##.CodeBrowser.CreateParms
+ parms.filename←filename
+ parms.linkcssfile←1
+ parms.cssfilename←'abc.css,foo.css'
+ {}parms ##.CodeBrowser.Run ##.TestData
+ html←#.APLTreeUtils.ReadUtf8File parms.filename
+ →GoToTidyUp~(⊂'<link href="abc.css" rel="stylesheet">')∊html
+ →GoToTidyUp~(⊂'<link href="foo.css" rel="stylesheet">')∊html
+ →GoToTidyUp 2≠⍴'<link href=".*" rel="stylesheet">'⎕S 0⍠('Greedy' 0)⊣html
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ #.FilesAndDirs.DeleteFile parms.filename ⋄ :EndTrap
+⍝Done

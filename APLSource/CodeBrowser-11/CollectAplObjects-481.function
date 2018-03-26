@@ -1,6 +1,6 @@
- {r}←level CollectAplObjects(refs parms collect);buff;ref;For;level
+ {r}←level CollectAplObjects(parms collect);buff;ref;For;level
  r←⍬
- :For ref :In refs
+ :For ref :In parms.refs
      level CollectAplObjects_ ref parms collect
  :EndFor
 ⍝Done

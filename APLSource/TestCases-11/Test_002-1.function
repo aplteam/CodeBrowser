@@ -1,33 +1,34 @@
  R←Test_002(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;parms;footer;ind
-⍝ Check all parameters but `recursive`.
+⍝ Check all parameters but `recursive`, `showParms` and `ignore`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
  parms←##.CodeBrowser.CreateParms
  →GoToTidyUp 2≠⍴⍴parms.∆List
- parms.author←'John Doe'
- parms.date←'1982-12-31'
  parms.caption←'Foo Goo'
  parms.filename←#.FilesAndDirs.GetTempPath,'CodeViewer_Test_002.html'
  parms.lang←'de'
+ parms.backgroundColorPrint←0
+ parms.footer←'My footer'
+ parms.info←'My Info'
+ parms.printFontSize←48
+ parms.processFunctions←0
+ parms.processOperators←0
+ parms.processScripts←0
+ parms.processVars←1
+ parms.processFunctions←0
+ parms.twoSidedPrint←1
+ parms.viewInBrowser←1
+
  parms ##.CodeBrowser.Run ##.TestData.NS1
 
- html←#.APLTreeUtils.ReadUtf8File parms.filename
- names←GetFnsAndOprNamesFromHTML html
- →GoToTidyUp~names Matches' '~¨⍨⊃,/{↓⍵.⎕NL 3 4}¨{⍵[;2]}↑##.CodeBrowser.GetSubNamespaces ##.TestData.NS1
- html←⊃,/(⎕UCS 13),¨html
- nav←html{⍵[2]↑⍵[1]↓⍺}⊃'<nav id="main">.*</nav>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
- nav←(⎕UCS 13)#.APLTreeUtils.Split nav
- expected←⊂'<a href="#NS1"'
- expected,←⊂'<a href="#NS1.NS1_a">'
- expected,←⊂'<a href="#NS1.NS1_b">'
- →GoToTidyUp~∧/∨/¨expected⍷¨⊂∊nav
- →GoToTidyUp 2≠+/'<ol'⍷∊nav
- ind←'<nav class="sub">.*</nav>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
- nav←{(⎕UCS 13)#.APLTreeUtils.Split ⍵}¨ind{⍺[2]↑⍺[1]↓⍵}¨⊂html
+ html←'flat'#.APLTreeUtils.ReadUtf8File parms.filename
+ →GoToTidyUp 1≠∨/'print{html{font-size:48pt;}'⍷html
+ →GoToTidyUp 1≠∨/'@page:left{margin:20mm 20mm 20mm 10mm;}'⍷html
 
  R←∆OK
 
 ∆TidyUp:
+ ⎕DL 0.2
  :Trap 0 ⋄ #.FilesAndDirs.DeleteFile parms.filename ⋄ :EndTrap
 ⍝Done

@@ -1,11 +1,7 @@
  r←level CollectFnsAndOpr(ref name parms collect i);body;no;caption
  r←''
  :If ¯3≠≡body←(⎕UCS 13)A.Split ref.⎕VR name
-     :Trap 11
-         body←(,¨'<>&')⎕R'\&lt;' '\&gt;' '\&amp;'⍠('Greedy' 0)⊣body
-     :Else
-         body←(,¨'<>&')⎕R'\&lt;' '\&gt;' '\&amp;'⍠('Greedy' 0)⊣↓⎕FMT body
-     :EndTrap
+     body←ExchangeHtmlSpecialChars body
      r,←⊂'<div class="code_block" ',(collect MakeID(⍕ref),'.',name),'>'
      caption←MakeBreadCrumb collect.remove RemoveLevels⍕ref
      r,←⊂'<p class="caption">',(⍕i),'. ',caption,'.',name,'</p>'
