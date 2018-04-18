@@ -1,2 +1,7 @@
- r
- ⎕←CodeBrowser.Run'#._CodeBrowser'
+ r;parms
+ parms←CodeBrowser.CreateParms ⍬
+ parms.viewInBrowser←1
+ parms.processScripts←0
+ parms.showParms←1
+ ⎕←parms CodeBrowser.Run'#._CodeBrowser' '⎕SE.APLTreeUtils'
+⍝Done

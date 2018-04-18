@@ -1,4 +1,4 @@
- R←Test_012(stopFlag batchFlag);⎕TRAP;filename;html;names;nav;parms
+ R←Test_Parms_001(stopFlag batchFlag);⎕TRAP;filename;html;names;nav;parms
 ⍝ Exercise the "showParms" parameter
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
@@ -8,7 +8,7 @@
  html←'flat'#.APLTreeUtils.ReadUtf8File filename
  →GoToTidyUp∨/'<table id="parms">'⍷html
 
- parms←##.CodeBrowser.CreateParms
+ parms←##.CodeBrowser.CreateParms ⍬
  parms.filename←filename
  parms.showParms←1
  filename←parms ##.CodeBrowser.Run ##.TestData.NS2

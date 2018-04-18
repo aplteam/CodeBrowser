@@ -1,0 +1,17 @@
+ R←Test_Parms_010(stopFlag batchFlag);⎕TRAP;filename;html;parms
+⍝ Check the `footer` parameter
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ parms←##.CodeBrowser.CreateParms ⍬
+ parms.footer←'This is my footer'
+ filename←parms ##.CodeBrowser.Run'#._CodeBrowser.TestData.NS1'
+ html←'flat'#.APLTreeUtils.ReadUtf8File filename
+ →GoToTidyUp 0∊⍴html
+ →GoToTidyUp 1≠+/('<footer>',CRLF,'<hr>',CRLF,'<p>This is my footer</p>')⍷html
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ #.FilesAndDirs.DeleteFile filename ⋄ :EndTrap
+⍝Done

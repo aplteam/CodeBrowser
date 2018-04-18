@@ -1,4 +1,4 @@
- R←Test_011(stopFlag batchFlag);⎕TRAP;filename;html;names;nav
+ R←Test_Misc_006(stopFlag batchFlag);⎕TRAP;filename;html;names;nav
 ⍝ Single namespace.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed

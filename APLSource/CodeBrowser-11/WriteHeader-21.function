@@ -4,7 +4,7 @@
  html,←⊂'<head>'
  html,←⊂'<meta http-equiv="X-UA-Compatible" content="IE=edge" />'
  html,←⊂'<meta charset="utf-8">'
- html,←⊂'<title>',parms.caption,'</title>'
+ html,←⊂'<title>',(ExchangeHtmlSpecialChars parms.caption),'</title>'
  :If parms.linkcssfile
      :For thisCssFile :In parms.cssfilename
          html,←⊂'<link href="',thisCssFile,'" rel="stylesheet">'
@@ -12,7 +12,7 @@
  :Else
      html,←⊂CompressCSS GetCSS parms
  :EndIf
- ⍝html,←GetCodeMirrorLib parms  ⍝ Not implemented yet
+ ⍝html,←GetCodeMirrorLib parms  ⍝ Not implemented yet   ⍝TODO⍝
  html,←⊂'</head>'
  html,←⊂'<body>'
  r←WriteHTML html

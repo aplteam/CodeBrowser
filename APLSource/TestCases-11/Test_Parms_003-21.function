@@ -1,0 +1,36 @@
+ R←Test_Parms_003(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;parms;footer;ind;filename
+⍝ Check the `info` parameter
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ filename←#.FilesAndDirs.GetTempPath,'CodeViewer_Test_013.html'
+
+ parms←##.CodeBrowser.CreateParms ⍬
+ parms.filename←filename
+ parms.info←'Simple string'
+ {}parms ##.CodeBrowser.Run ##.TestData.NS1
+ html←'flat'#.APLTreeUtils.ReadUtf8File parms.filename
+ expected←'<div id="info"><p>Simple string</p></div>'
+ →GoToTidyUp 1=+/expected⍷html
+
+ parms←##.CodeBrowser.CreateParms ⍬
+ parms.filename←filename
+ parms.info←'First string' 'Second string'
+ {}parms ##.CodeBrowser.Run ##.TestData.NS1
+ html←'flat'#.APLTreeUtils.ReadUtf8File parms.filename
+ expected←'<div id="info"><p>First string</p><p>Second string</p></div>'
+ →GoToTidyUp 1=+/expected⍷html
+
+ parms←##.CodeBrowser.CreateParms ⍬
+ parms.filename←filename
+ parms.info←'First string ⋄ Second string'
+ {}parms ##.CodeBrowser.Run ##.TestData.NS1
+ html←'flat'#.APLTreeUtils.ReadUtf8File parms.filename
+ expected←'<div id="info"><p>First string</p><p>Second string</p></div>'
+ →GoToTidyUp 1=+/expected⍷html
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ #.FilesAndDirs.DeleteFile parms.filename ⋄ :EndTrap
+⍝Done

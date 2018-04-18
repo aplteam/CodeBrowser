@@ -1,0 +1,17 @@
+ R←Test_Parms_008(stopFlag batchFlag);⎕TRAP;filename;html;parms
+⍝ Check the `filename` parameter
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ parms←##.CodeBrowser.CreateParms ⍬
+ parms.filename←'html'##.FilesAndDirs.GetTempFilename2''
+ filename←parms ##.CodeBrowser.Run'#._CodeBrowser.TestData.NS1'
+ →GoToTidyUp filename≢parms.filename
+ html←'flat'#.APLTreeUtils.ReadUtf8File filename
+ →GoToTidyUp 0∊⍴html
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ #.FilesAndDirs.DeleteFile filename ⋄ :EndTrap
+⍝Done

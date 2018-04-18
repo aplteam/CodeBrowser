@@ -1,36 +1,51 @@
 ﻿:Class  CodeBrowser
 ⍝ User Command script for "CodeBrowser"
 ⍝ The workspace "CodeBrowse.dws" must be a sibling of this user command script.
-⍝ The WS is copied into a namespace ⎕SE.CodeBrowsaer___ which is deleted afterwards.
+⍝ The WS is copied into a namespace ⎕SE.CodeBrowser which is deleted afterwards except when -load is specified.
 ⍝ Kai Jaeger ⋄ APL Team Ltd
-⍝ Version 1.0.0 - 2018-03-26
+⍝ Version 1.0.0 - 2018-04-17
 
-    ∇ r←List;⎕IO;⎕ML ⍝ this function usually returns 1 or more namespaces (here only 1)
+    ∇ r←List;⎕IO;⎕ML
       :Access Shared Public
       ⎕IO←⎕ML←1
-      r←⎕NS''                               ⍝ create the command
-      r.Name←'CodeBrowser'                  ⍝ name
+      r←⎕NS''
+      r.Name←'CodeBrowser'
       r.Desc←'Starts "CodeBrowser"'
       r.Group←'Tools'
-     ⍝ Parsing rules for each:
-      r.Parse←'1L -ignore= -caption= -filename= -footer= -info= -r= -vib -twosided -pfs= -obj= -lang= -p'
+      r.Parse←'-ignore= -caption= -filename= -footer= -info= -r= -vib -twosided -pfs= -obj= -lang= -p -load -gui'
     ∇
 
-    ∇ r←Run(Cmd Args);⎕IO;⎕ML;parms;namespaceList;ref
+    ∇ r←Run(Cmd Args);⎕IO;⎕ML;parms;ref;CR
       :Access Shared Public
       ⎕IO←1 ⋄ ⎕ML←1 ⋄ ⎕WX←3
-      ⎕SE.⎕SHADOW'CodeBrowser___'
-      ref←⍎'CodeBrowser___'⎕SE.⎕NS''
-      'Could not find/load CodeBrowser'⎕SIGNAL 11/⍨~Load ⍬
-      parms←ref.CodeBrowser.CreateParms
-      parms←parms Args2Parms Args
-      :If ~0∊⍴parms.ignore
-          parms.ignore←' 'ref.APLTreeUtils.Split ref.APLTreeUtils.dmb parms.ignore
-          parms.ignore←({⊃⍵↓⍨+/∧\'⎕'=⊃¨⍵}⎕NSI)∘{0<⎕NC ⍵:⍵ ⋄ ⍺,'.',⍕⍵}¨parms.ignore
+      :If Args.load
+          ⎕SE.⎕EX'CodeBrowser'
+          'CodeBrowser'⎕SE.⎕NS''
+          'Could not find/load CodeBrowser'⎕SIGNAL 11/⍨~Load ⍬
+          ⎕SE.CodeBrowser.⎕FX↑'r←parms Run namespaces' 'r←parms CodeBrowser.Run namespaces'
+          ⎕SE.CodeBrowser.⎕FX 'r←CreateParms dummy' ('r←CodeBrowser.CreateParms ''',((⊃⎕NPARTS ##.SourceFile),'CodeBrowser'),'''')
+          CR←⎕UCS 13
+          ⎕←'CodeBrowser loaded into ⎕SE. Call:',CR,' parms←⎕SE.CodeBrowser.CreateParms ⍬',CR,'and',CR,' parms ⎕SE.CodeBrowser.Run #'
+          r←''
+      :ElseIf Args.gui
+          'Don''t specify any other flags with -gui'⎕SIGNAL 11/⍨1≠⍴,Args.gui
+          ⎕SE.⎕SHADOW'CodeBrowser'
+          ref←⍎'CodeBrowser'⎕SE.⎕NS''
+          'Could not find/load CodeBrowser'⎕SIGNAL 11/⍨~Load CodeBrowser
+          r←ref.CodeBrowser.GUI.Run Args.Arguments((⊃⎕NPARTS ##.SourceFile),'/CodeBrowser')
+      :Else
+          'No namespace(s) specified'⎕SIGNAL 11/⍨0∊⍴Args.Arguments
+          ⎕SE.⎕SHADOW'CodeBrowser'
+          ref←⍎'CodeBrowser'⎕SE.⎕NS''
+          'Could not find/load CodeBrowser'⎕SIGNAL 11/⍨~Load CodeBrowser
+          parms←ref.CodeBrowser.CreateParms(⊃⎕NPARTS ##.SourceFile),'/CodeBrowser'
+          parms←parms Args2Parms Args
+          :If ~0∊⍴parms.ignore
+              parms.ignore←' 'ref.APLTreeUtils.Split ref.APLTreeUtils.dmb parms.ignore
+              parms.ignore←({⊃⍵↓⍨+/∧\'⎕'=⊃¨⍵}⎕NSI)∘{0<⎕NC ⍵:⍵ ⋄ ⍺,'.',⍕⍵}¨parms.ignore
+          :EndIf
+          r←parms ref.CodeBrowser.Run Args.Arguments
       :EndIf
-      namespaceList←' 'ref.APLTreeUtils.Split ref.APLTreeUtils.dmb⊃Args.Arguments
-      namespaceList←({⊃⍵↓⍨+/∧\'⎕'=⊃¨⍵}⎕NSI)∘{0<⎕NC ⍵:⍵ ⋄ ⍺,'.',⍕⍵}¨namespaceList
-      r←parms ref.CodeBrowser.Run namespaceList
     ∇
 
     ∇ r←level Help Cmd;⎕IO;⎕ML;ref
@@ -48,6 +63,7 @@
           r,←⊂'-caption=   Defaults to the list of namespaces to be scanned.'
           r,←⊂'-filename=  Defaults to a temp filename.'
           r,←⊂'-footer=    No default. If specified it goes underneath a horizontal line at the bottom of the document.'
+          r,←⊂'-gui=       Puts a GUI on display. You may specify namespace(s) with -gui but no other flags.'
           r,←⊂'-info=      No default. Ordinary text that goes underneath the main header ("caption"). No HTML please.'
           r,←⊂'-lang=      "language"; defaults to "en".'
           r,←⊂'-p          Add table with parameters to the end of the document with a page break before the table.'
@@ -55,12 +71,14 @@
           r,←⊂'-vib        View In Browser. Boolean that defaults to 0.  A 1 shows the HTML in your default browser.'
           r,←⊂'-twosided   Boolean that defaults to 0. Two-side prints have different left margins on odd/even pages.'
           r,←⊂'-pfs=       Print Font Size. Defaults to 8. Must be numeric (pt).'
-          r,←⊂'-obj=       f=function, o=operators, v=variables, s=scripts (classes, interfaces, namespaces).'
+          r,←⊂'-obj=       f=function, g=GUI (only when KeepOnClose is 1), o=operators, v=variables, s=scripts (classes, interfaces, namespaces).'
+          r,←⊂'-load       If you specify this flag then all other flags are ignored. CodeBrowser is copied into ⎕SE.'
+          r,←⊂'            You then have two functions at your disposal ⎕SE.CodeBrowser: CreateParms and Run.'
       :Case 1
-          ⎕SE.⎕SHADOW'CodeBrowser___'
-          ref←⍎'CodeBrowser___'⎕SE.⎕NS''
+          ⎕SE.⎕SHADOW'CodeBrowser'
+          ref←⍎'CodeBrowser'⎕SE.⎕NS''
           'Could not find/load CodeBrowser'⎕SIGNAL 11/⍨~Load ⍬
-          {}⎕SE.UCMD']ADOC ⎕SE.CodeBrowser___.CodeBrowser'
+          {}⎕SE.UCMD']ADOC ⎕SE.CodeBrowser.CodeBrowser'
           r,←⊂'Watch your default browser'
       :Case 2
           r←⊂'Not available'
@@ -98,7 +116,7 @@
       paths←';'Split regData
       :For thisPath :In paths
           :Trap 11
-              ⎕SE.CodeBrowser___.⎕CY thisPath,'\CodeBrowser\CodeBrowser.dws'
+              ⎕SE.CodeBrowser.⎕CY thisPath,'\CodeBrowser\CodeBrowser.dws'
               success←1
               :Leave
           :EndTrap
@@ -136,6 +154,7 @@
           parms.processFunctions←∨/'fF'∊args.obj
           parms.processOperators←∨/'Oo'∊args.obj
           parms.processVars←∨/'Vv'∊args.obj
+          parms.processGuiInstances←∨/'Gu'∊args.obj
       :EndIf
       :If 0≢args.r
           '"recursive" is not a Boolean'⎕SIGNAL 11/⍨0=1↑∊⎕VFI args.r

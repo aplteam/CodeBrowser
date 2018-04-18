@@ -1,4 +1,4 @@
- {r}←CollectAplObjects__(lists ref parms collect);type;i;obj;html
+ {r}←level CollectAplObjects__(lists ref parms collect);type;i;obj;html
  r←⍬
  html←''
  :For type :In lists.(fns opr scripts variables)

@@ -1,21 +1,22 @@
- filename←CreateHtml parms;ns;collect;WriteHTML
+ filename←CreateHtml parms;ns;collect;WriteHTML;info
  ns←⎕NS''
  ns.html←''
  WriteHTML←parms.tno∘{0∊⍴⍵:r←⍬ ⋄ 'append'A.WriteUtf8File ⍺(,A.Nest,⍵)}
  WriteHTML WriteHeader parms
  WriteHTML⊂'<h1>',(ExchangeHtmlSpecialChars parms.caption),'</h1>'
  :If ~0∊⍴parms.info
-     :If 0 1∊⍨≡parms.info
-     :AndIf ~(⎕UCS 13)∊parms.info
-         WriteHTML(⊂'<div id="info">'),({'<p>',⍵,'</p>'}¨A.Nest ExchangeHtmlSpecialChars parms.info),⊂'</div>'
+     info←ExchangeHtmlSpecialChars⍣(~parms.infoIsHTML)⊣parms.info
+     :If 0 1∊⍨≡info
+     :AndIf ~(⎕UCS 13)∊info
+         WriteHTML(⊂'<div id="info">'),({'<p>',⍵,'</p>'}¨A.Nest info),⊂'</div>'
      :Else
-         parms.info←ExchangeHtmlSpecialChars¨(⎕UCS 13)A.Split⍣((⎕UCS 13)∊parms.info)⊣parms.info
-         WriteHTML(⊂'<div id="info">'),({({'<p>',⍵,'</p>'}⍵)}¨parms.info),⊂'</div>'
+         info←(⎕UCS 13)A.Split⍣((⎕UCS 13)∊info)⊣info
+         WriteHTML(⊂'<div id="info">'),({({'<p>',⍵,'</p>'}⍵)}¨info),⊂'</div>'
      :EndIf
  :EndIf
  collect←⎕NS''
  collect.namespaces←⍬
- collect.remove←⌊/{+/'.'=⍵}¨namespaces
+ collect.remove←¯1+⌊/{+/'.'=⍵}¨namespaces
  :If parms.recursive
      collect.hasMainMenu←AddMainMenu parms collect
  :Else

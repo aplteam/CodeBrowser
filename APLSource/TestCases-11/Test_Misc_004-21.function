@@ -1,4 +1,4 @@
- R←Test_004(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;footer;parms;filename
+ R←Test_Misc_004(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;footer;parms;filename
 ⍝ Includes the CodeMirror library (APL syntax colouring). Not implemented yet.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
@@ -7,7 +7,7 @@
 
  R←∆Failed
 
- parms←##.CodeBrowser.CreateParms
+ parms←##.CodeBrowser.CreateParms ⍬
  →GoToTidyUp 2≠⍴⍴parms.∆List
  parms.author←'John Doe'
  parms.date←'1982-12-31'

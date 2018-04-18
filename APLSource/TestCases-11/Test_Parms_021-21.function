@@ -1,0 +1,26 @@
+ R←Test_Parms_021(stopFlag batchFlag);⎕TRAP;html;parms;filename2;filename1
+⍝ Check the `processGuiInstances` parameter
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ #.⎕SHADOW'Temp'
+ 'Temp'#.⎕NS''
+ 'NS1'#.Temp.⎕WC'Form'('Visible' 0)('KeepOnClose' 1)
+ #.Temp.NS1.⎕FX'r←Hello' 'r←''World'''
+ filename1←##.CodeBrowser.Run'#.Temp'
+ →GoToTidyUp 0∊⍴filename1
+ html←'flat'#.APLTreeUtils.ReadUtf8File filename1
+ →GoToTidyUp 0≠+/'''World'''⍷html
+
+ parms←##.CodeBrowser.CreateParms ⍬
+ parms.processGuiInstances←1
+ filename2←parms ##.CodeBrowser.Run'#.Temp.NS1'
+ →GoToTidyUp 0∊⍴filename2
+ html←'flat'#.APLTreeUtils.ReadUtf8File filename2
+ →GoToTidyUp 1≠+/'''World'''⍷html
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ #.FilesAndDirs.DeleteFile filename1 filename2 ⋄ :EndTrap
+⍝Done

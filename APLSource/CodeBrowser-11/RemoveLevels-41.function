@@ -3,6 +3,6 @@
      path←⍵
      (,'#')≡,path:path
      buff←+\'.'=⍵
-     path←(1++/∧\noOf>buff)↓path
+     path←(+/∧\noOf>buff)↓path
      ('.'=1⍴path)↓path
  }

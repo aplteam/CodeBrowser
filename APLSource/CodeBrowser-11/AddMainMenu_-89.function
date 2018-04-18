@@ -3,7 +3,7 @@
  i←1
  :Repeat
      :If ~0∊⍴refs
-         html,←{'<li>'('<a href="#',(collect.remove RemoveLevels⍕⍵),'">',((⊃{⍺,'.',⍵}/⍕¨level),'. ',A.Last⍕⍵),'</a>')}refs[i;2]
+         html,←{'<li>'('<a href="#',(collect.remove RemoveLevels⍕⍵),'">',((⊃{⍺,'.',⍵}/⍕¨level),'. ',⍕⍵),'</a>')}refs[i;2]
          :If 0<noOf←{+/∧\1↓⍵[;1]>⊃⍵}(i-1)↓refs
              html,←(level,1)AddMainMenu_(noOf↑i↓refs)collect
              i←i+noOf+1
@@ -14,7 +14,4 @@
      (¯1↑level)←1+¯1↑level
  :Until i>1⊃⍴refs
  html,←⊂'</ol>'
- :If 1=+/'<li>'⍷∊html       ⍝ Just one?!
-     html←''                ⍝ Then there is no need for this!
- :EndIf
 ⍝Done

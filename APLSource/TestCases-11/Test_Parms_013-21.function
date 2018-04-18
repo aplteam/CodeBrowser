@@ -1,0 +1,17 @@
+ R←Test_Parms_013(stopFlag batchFlag);⎕TRAP;filename;html;parms
+⍝ Check the `printFontSize` parameter
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ parms←##.CodeBrowser.CreateParms ⍬
+ parms.printFontSize←89
+ filename←parms ##.CodeBrowser.Run'#._CodeBrowser.TestData.NS1'
+ html←'flat'#.APLTreeUtils.ReadUtf8File filename
+ →GoToTidyUp 0∊⍴html
+ →GoToTidyUp 1≠+/'@media print{html{font-size:89pt;'⍷html
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ #.FilesAndDirs.DeleteFile filename ⋄ :EndTrap
+⍝Done

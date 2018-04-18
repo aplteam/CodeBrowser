@@ -2,6 +2,7 @@
      css←A.ReadUtf8File 1⊃,parms.cssfilename
      against←'font-size: ',(⍕parms.printFontSize),'pt;'
      css←'font-size: *8pt;'⎕R against⊣css
+     css←{'-webkit-print-color-adjust: *exact;'⎕R''⊣⍵}⍣(⊃~parms.backgroundColorPrint)⊣css
      0=parms.twoSidedPrint:css
      against←'@page :left {margin: 20mm 20mm 20mm 10mm;}'
      '@page :left *{margin: *20mm *20mm *20mm *20mm;}'⎕R against⊣css

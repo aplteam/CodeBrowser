@@ -3,7 +3,7 @@
  :If parms.showParms
      mat←parms.∆List
      toc←mat[;1]~¨' '
-     mat⌿⍨←~toc∊'tno' 'refs'      ⍝ Striclty speaking these are not parameters
+     mat⌿⍨←~toc∊'tno' 'refs'      ⍝ Strictly speaking these are not parameters
      row←toc⍳⊂'info'
      mat[row;2]←⊂Max 2⊃mat[row;]
      row←toc⍳⊂'caption'
@@ -12,6 +12,6 @@
      mat[row;2]←⊂Max 2⊃mat[row;]
      html←({{'<tr>',⍵,'</tr>'}⊃,/{'<td>',(⍕⍵),'</td>'}¨⍵}¨↓mat)
      header←⊂'<tr><th>Name</th><th>Setting</th></tr>'
-     html←('<div id="parameters">' '<hr>' '<table id="parms">'),header,(⊂'<tbody>'),html,'</tbody>' '</table>' '</div>'
+     html←('<div id="parameters">' '<hr>' '<h2 class="center">Parameters</h2>' '<table id="parms">'),header,(⊂'<tbody>'),html,'</tbody>' '</table>' '</div>'
  :EndIf
 ⍝Done

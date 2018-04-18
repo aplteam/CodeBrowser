@@ -1,0 +1,21 @@
+ R←Test_Parms_014(stopFlag batchFlag);⎕TRAP;html;parms;filename1;filename2
+⍝ Check the `backgroundColorPrint` parameter
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ filename1←##.CodeBrowser.Run'#._CodeBrowser.TestData.NS1'
+ html←'flat'#.APLTreeUtils.ReadUtf8File filename1
+ →GoToTidyUp 1≠+/'-webkit-print-color-adjust:exact;'⍷html
+
+ parms←##.CodeBrowser.CreateParms ⍬
+ parms.backgroundColorPrint←0
+ filename2←parms ##.CodeBrowser.Run'#._CodeBrowser.TestData.NS1'
+ html←'flat'#.APLTreeUtils.ReadUtf8File filename2
+ →GoToTidyUp 0∊⍴html
+ →GoToTidyUp 0≠+/'-webkit-print-color-adjust:exact;'⍷html
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ #.FilesAndDirs.DeleteFile filename1 filename2 ⋄ :EndTrap
+⍝Done

@@ -1,4 +1,4 @@
- R←Test_001(stopFlag batchFlag);⎕TRAP;filename;html;names;nav;expected;ind
+ R←Test_Misc_001(stopFlag batchFlag);⎕TRAP;filename;html;names;nav;expected;ind
 ⍝ Single namespace with defaults.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
@@ -12,9 +12,9 @@
  html←⊃,/(⎕UCS 13),¨html
  nav←html{⍵[2]↑⍵[1]↓⍺}⊃'<nav id="main">.*</nav>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
  nav←(⎕UCS 13)#.APLTreeUtils.Split nav
- expected←⊂'<a href="#NS1">'
- expected,←⊂'<a href="#NS1.NS1_a">'
- expected,←⊂'<a href="#NS1.NS1_b">'
+ expected←⊂'<a href="#TestData.NS1">'
+ expected,←⊂'<a href="#TestData.NS1.NS1_a">'
+ expected,←⊂'<a href="#TestData.NS1.NS1_b">'
  →GoToTidyUp~∧/∨/¨expected⍷¨⊂∊nav
  →GoToTidyUp 2≠+/'<ol'⍷∊nav
  ind←'<nav class="sub">.*</nav>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html

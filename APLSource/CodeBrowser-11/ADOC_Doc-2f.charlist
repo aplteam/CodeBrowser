@@ -1,7 +1,8 @@
 ## Overview
 
-`CodeBrowser` is designed to collect the code of all functions, operators, classes, namespace scripts and Interfaces
-within the given non-scripted namespace(s) and compile a stand-alone HTML page from it.
+`CodeBrowser` is designed to collect the code of all functions, operators, classes, namespace scripts, Interfaces and
+even GUI instances (optionally, and only when `KeepOnClose←1`) within the given non-scripted namespace(s) and compile 
+a stand-alone HTML page from it.
 
 It's a tool to view all the code of such namespace(s) in a single HTML document. Extensive linking allows you to jump
 around easily; ideal for a code review.
@@ -9,13 +10,14 @@ around easily; ideal for a code review.
 
 ## Usage
 
-In order to use it you need to download the workspace `CodeBrowser` and the user command script `CodeBrowser_UC.dyalog`
-from [GitHub](https://github.com/aplteam/CodeBrowser).
+In order to use it you need to download it from [GitHub](https://github.com/aplteam/CodeBrowser). All files need to go 
+into a folder that is scanned by Dyalog's SALT in order to find user commands. 
 
-You then need to put these two files somewhere where Dyalog recognizes it as a user command. Restart Dyalog APL or
-execute the command `]UReset` which will make it available in an already running session.
+Both the user command script `CodeBrowser_UC.dyalog` and the folder `CodeBrowser\` goe into that folder.
 
-You then have two different ways of using `CodeBrowser`:
+Restart Dyalog APL or execute the command `]UReset` which will make it available in an already running session.
+
+You then have three different ways of using `CodeBrowser`:
 
 ## Use the user command `]CodeBrowser`
 
@@ -29,47 +31,58 @@ To create an HTML page for a namespace `#.Foo`:
 
 There are several flags available which allow you to adapt the behaviour and/or the information shown by `CodeBrowser`.
 
-For details regarding those options and flags execute `]??CodeBrowser`.
+For details regarding those options and flags execute `]?CodeBrowser`.
 
 However, not all parameters can be set this way. If you need to set one of the parameters that are not available via
 the user command interface then you have to consider the two other ways to use `CodeBrowser` because they give you full
-access to all parameter.
+access to all parameters.
 
 
-## Copy it into your workspace
+## Using the GUI
 
-`CodeBrowser` does not only contain a namespace `CodeBrowser`, it also contains quite a number of classes from the
+Call
+
+```
+      ]CodeBrowser -gui
+```
+
+That will show a GUI that allows you to specify or amend all parameters available. You may specify one or more 
+namespaces together with the `-gui` flag but no other flags. If you try anway an error is thrown.
+
+
+## Load it into `⎕SE`
+
+Use this only when you want to take advantage of parameters that are not available via the user command interface but
+you want to create CodeBrowser's HTML page under program control. In this case the GUI is not suitable of course.
+
+`CodeBrowser` does not only comprise a namespace `CodeBrowser`, it also needs quite a number of classes from the
 [APLTree library](https://github.com/aplteam/apltree/wiki).
 
-That's why you don't want to copy the `CodeBrowser` workspace straight into your own workspace. Instead you are
-advised to do the following:
+That and possible name clashes are the reasons why you don't want to copy the `CodeBrowser` workspace straight into 
+your own workspace. Instead you are advised to take advantage of the `-load` flag:
 
 ```
-'Foo' #.⎕ns ''   ⍝ Note the #!
-#.Foo.⎕CY '/path2CodeBrowser/CodeBrowser
-```
-See "Example" for how to continue.
-
-
-## Example
-
-This example assumes that you have copied the workspace `CodeBrowser` into a namespace `#.Foo`.
-
-Let's assume that you need to change some of the defaults. For that you need to create a namespace with all the defaults
-in it as ordinary variables:
-
-```
-      #.Foo.parms←⎕SE.Foo.CodeBrowser.CreateParms
-      #.Foo.parms.caption←'CodeBrowser processing itself'
-      parms.viewInBrowser←1
-```
-`viewInBrowser` defaults to 0. When it's a 1 then the HTML document produced by `CodeBrowser` is displayed with your default
-browser.
-
-We could now use `CodeBrowser` to document itself:
-
-```
-#.Foo.parms #.Foo..CodeBrowser.CodeBrowser.Run '#.Foo.CodeBrowser.CodeBrowser'
+      ]CodeBrowser -load
 ```
 
-This will print the name of the HTML file to the session, but due to `viewInBrowser←1` it will also put the file on display.
+This will load the `CodeBrowser` namespace as well as all the classes and namespace scripts needed into `⎕SE.CodeBrowser`.
+It will also establish two functions, `⎕SE.CodeBrowser.CreateParms` as well as `⎕SE.CodeBrowser.Run`. You can use these
+to amend all parameters you want and then path them as right argument to the `Run` function.
+
+Note that in case you specify any other parameters or flags together with the `-load` flag they will be ignored: the
+`-load` flag takes presedence.
+
+### Example
+
+```
+      ]CodeBrowser -load 
+      parms←⎕SE.CodeBrowser.CreateParms ⍬
+      parms.caption←'My First Ty'
+      parms ⎕SE.CodeBrowser.Run #
+```
+
+Note that you can get a list of all (almost) parameters with their current values by calling the `∆List` function:
+
+```
+      ⎕SE.CodeBrowser.CreateParms.∆List
+```

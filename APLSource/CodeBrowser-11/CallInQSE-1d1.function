@@ -1,3 +1,0 @@
- r←CallInQSE
- ⍝ This is returned in case `CodeBrowser` was copied into `⎕SE` by the user command `]CopyIntoQE`.
- r←'⎕se.CodeBrowser.CodeBrowser.Run ''#.TheNamespace'''

@@ -1,0 +1,21 @@
+ R←Test_Parms_009(stopFlag batchFlag);⎕TRAP;filename;html;parms;cssFilename;css
+⍝ Check the `cssFilename` parameter
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ cssFilename←'css'##.FilesAndDirs.GetTempFilename2''
+ css←'p {' 'font-size:96em;' '}'
+ ##.APLTreeUtils.WriteUtf8File cssFilename css
+
+ parms←##.CodeBrowser.CreateParms ⍬
+ parms.cssfilename←cssFilename
+ filename←parms ##.CodeBrowser.Run'#._CodeBrowser.TestData.NS1'
+ html←'flat'#.APLTreeUtils.ReadUtf8File filename
+ →GoToTidyUp 0∊⍴html
+ →GoToTidyUp 1≠+/'<style>p{font-size:96em;}</style'⍷html
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ #.FilesAndDirs.DeleteFile filename ⋄ :EndTrap
+⍝Done

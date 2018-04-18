@@ -5,7 +5,8 @@
  parms.filename←##.FilesAndDirs.GetTempFilename''
  ##.FilesAndDirs.DeleteFile parms.filename
  parms.filename←(¯4↓parms.filename),'.html'
- parms.info←'This document contains just the code in _code.'
+ parms.info←1⊃#.MarkAPL.Markdown2HTML⊂'This document contains just the code in `acre._code`.{.center}'
+ parms.infoIsHTML←1
  parms.recursive←0
  filename←parms CodeBrowser.Run ⎕SE.acre._code
  A.GoToWebPage'file://',filename

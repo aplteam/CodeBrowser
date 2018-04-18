@@ -2,7 +2,6 @@
  A←#.APLTreeUtils
  parms←CodeBrowser.CreateParms
  parms.caption←'acre'
- parms.ignore←⎕SE.acre.Conga
  parms.filename←##.FilesAndDirs.GetTempFilename''
  ##.FilesAndDirs.DeleteFile parms.filename
  parms.filename←(¯4↓parms.filename),'.html'

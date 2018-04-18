@@ -1,0 +1,8 @@
+ r←GetCssFilename path;F
+ F←##.FilesAndDirs
+ :If 0∊⍴path
+     r←'codebrowser_styles.css'
+ :Else
+     ((path∊'/\')/path)←F.CurrentSep
+     r←path,F.CurrentSep,'codebrowser_styles.css'
+ :EndIf

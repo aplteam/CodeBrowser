@@ -1,9 +1,9 @@
- R←Test_002(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;parms;footer;ind
+ R←Test_Misc_003(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;parms;footer;ind
 ⍝ Check all parameters but `recursive`, `showParms` and `ignore`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
- parms←##.CodeBrowser.CreateParms
+ parms←##.CodeBrowser.CreateParms ⍬
  →GoToTidyUp 2≠⍴⍴parms.∆List
  parms.caption←'Foo Goo'
  parms.filename←#.FilesAndDirs.GetTempPath,'CodeViewer_Test_002.html'
@@ -11,6 +11,7 @@
  parms.backgroundColorPrint←0
  parms.footer←'My footer'
  parms.info←'My Info'
+ parms.infoIsHTML←1
  parms.printFontSize←48
  parms.processFunctions←0
  parms.processOperators←0
@@ -23,7 +24,7 @@
  parms ##.CodeBrowser.Run ##.TestData.NS1
 
  html←'flat'#.APLTreeUtils.ReadUtf8File parms.filename
- →GoToTidyUp 1≠∨/'print{html{font-size:48pt;}'⍷html
+ →GoToTidyUp 1≠∨/'@media print{html{font-size:48pt;'⍷html
  →GoToTidyUp 1≠∨/'@page:left{margin:20mm 20mm 20mm 10mm;}'⍷html
 
  R←∆OK

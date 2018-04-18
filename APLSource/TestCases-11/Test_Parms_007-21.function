@@ -1,0 +1,23 @@
+ R←Test_Parms_007(stopFlag batchFlag);⎕TRAP;filename;html
+⍝ Check the `ignoreEmpty` parameter
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ #.⎕SHADOW'Temp'
+ 'Temp'#.⎕NS''
+ 'NS1'#.Temp.⎕NS''
+ 'NS2'#.Temp.⎕NS''
+ 'NS3'#.Temp.⎕NS''
+ #.Temp.NS3.⎕FX'r←Hello' 'r←''World'''
+ filename←##.CodeBrowser.Run'#.Temp'
+ →GoToTidyUp 0∊⍴filename
+ html←'flat'#.APLTreeUtils.ReadUtf8File filename
+ →GoToTidyUp 0≠+/'NS1'⍷html
+ →GoToTidyUp 0≠+/'NS2'⍷html
+ →GoToTidyUp 0=+/'NS3'⍷html
+
+ R←∆OK
+
+∆TidyUp:
+ :Trap 0 ⋄ #.FilesAndDirs.DeleteFile filename ⋄ :EndTrap
+⍝Done

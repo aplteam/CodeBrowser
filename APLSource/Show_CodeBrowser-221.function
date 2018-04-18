@@ -1,0 +1,22 @@
+ filename←Show_CodeBrowser;parms;A
+ A←#.APLTreeUtils
+ parms←CodeBrowser.CreateParms
+ parms.caption←'CodeBrowser'
+ parms.filename←##.FilesAndDirs.GetTempFilename''
+ ##.FilesAndDirs.DeleteFile parms.filename
+ parms.filename←(¯4↓parms.filename),'.html'
+ parms.info←1⊃#.MarkAPL.Markdown2HTML⊂'This document contains all the `CodeBrowser` code.{.center}'
+ parms.infoIsHTML←1
+ parms.ignore←'#._CodeBrowser.CodeBrowser.A' '#._CodeBrowser.CodeBrowser.F'
+ parms.processVars←0    ⍝ Makes little sense because CodeBrowser would report his own local vars.
+ :If 0<#._CodeBrowser.⎕NC'CodeBrowser'
+     filename←parms CodeBrowser.Run #._CodeBrowser.CodeBrowser
+ :ElseIf 0<#._CodeBrowser.⎕NC'CodeBrowser'
+     filename←parms CodeBrowser.Run #.CodeBrowser
+ :Else
+     'Could not find "CodeBrowser"'⎕SIGNAL 6
+ :EndIf
+ A.GoToWebPage'file://',filename
+ ⎕DL 0.3
+ ##.FilesAndDirs.DeleteFile parms.filename
+⍝Done

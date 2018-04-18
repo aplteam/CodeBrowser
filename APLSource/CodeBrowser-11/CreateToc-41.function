@@ -24,6 +24,7 @@
      :EndIf
      :If parms.processScripts
      :AndIf ~0∊⍴lists.scripts←ListScriptsIn ref
+     :AndIf ~0∊⍴lists.scripts←(~(ref.{0∊⍴⊃,/⍵:⍵ ⋄ ⍎¨⍵}lists.scripts)∊parms.ignore)/lists.scripts
          (html flag)←html OpenNavSub flag
          html,←CreateToc_ ref parms lists.scripts'Script'collect width
      :EndIf

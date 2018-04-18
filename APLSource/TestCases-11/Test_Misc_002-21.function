@@ -1,9 +1,9 @@
- R←Test_003(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;footer;parms;filename
+ R←Test_Misc_002(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;footer;parms;filename
 ⍝ Checks handling of footers.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
- parms←##.CodeBrowser.CreateParms
+ parms←##.CodeBrowser.CreateParms ⍬
  →GoToTidyUp 2≠⍴⍴parms.∆List
  parms.footer←'John Doe on the 1982-12-31'
  filename←parms ##.CodeBrowser.Run ##.TestData.NS1

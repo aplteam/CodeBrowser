@@ -1,0 +1,13 @@
+ R←Test_Misc_007(stopFlag batchFlag);⎕TRAP;nav
+⍝ No namespace at all.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ :Trap 11
+     {}##.CodeBrowser.Run''
+     →FailsIf 1
+ :Else
+     →PassesIf'No namespace(s) specified'{⍺≡(⍴⍺)↑⍵}⊃⎕DMX.DM
+ :EndTrap
+
+ R←∆OK

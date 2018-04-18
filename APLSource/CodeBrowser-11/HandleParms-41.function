@@ -1,14 +1,17 @@
- (msg en)←HandleParms(parms namespaces)
- en←11 ⍝ DOMAIN ERROR
- :If (,⊂,'#')≢,namespaces
- :AndIf 9.1∨.≠⎕NC∘⊂¨namespaces
+ (msg en)←HandleParms(parms namespaces);DE
+⍝ Returns either `'' 0` or an error message in `msg` and 11 in `en`.
+ DE←11 ⍝ DOMAIN ERROR
+ msg←en←⍬
+ :If ~∧/((,¨namespaces)∊,¨'#' '⎕SE')∨⊃¨9=⎕NC¨namespaces
      msg←'No namespace(s) specified'
+     en←DE
      :Return
  :EndIf
  :Trap 0
      parms.refs←⍎¨namespaces
  :Else
      msg←'Something went wrong - check the namespace list'
+     en←DE
      :Return
  :EndTrap
  :If 1≥|≡parms.cssfilename
@@ -23,9 +26,24 @@
  parms.caption{~(⊂⍺)∊¯1 '':⍺ ⋄ 1=⍴,⍵:⍕⍵ ⋄ ⊃,/{⍺,',',⍵}/⍵}←namespaces
  parms.tno←CreateOrReplaceFile parms
  :Trap 0
-     parms.ignore←⊃,/{0∊⍴⍵:⍵ ⋄ ⍎⍵}¨MassageNameLists parms.ignore
-     en←0⍴msg←''
+     parms.ignore←{0∊⍴⊃,/⍵:⍵ ⋄ ⍎¨⍵}MassageNameLists parms.ignore
  :Else
      msg←'Something went wrong - check -ignore'
+     en←DE
  :EndTrap
+ :If '⋄'∊parms.info
+     parms.info←'⋄'A.Split parms.info
+ :EndIf
+ :If ~(⊂parms.infoIsHTML)∊0 1
+     msg←'"infoIsHTML" is not a Boolean'
+     en←DE
+ :EndIf
+ :If ~(⊂parms.processGuiInstances)∊0 1
+     msg←'"processGuiInstances" is not a Boolean'
+     en←DE
+ :EndIf
+ :If ~(≡parms.info)∊0 1 2
+     msg←'"info" is neither a text vector nor a vector of text vectors'
+     en←DE
+ :EndIf
 ⍝Done
