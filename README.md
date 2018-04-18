@@ -29,3 +29,11 @@ For a detailed documentation including examples enter
 ```
 ]??CodeBrowser
 ```
+
+The simplest example:
+
+```
+]CodeBrowser ⎕se -vib
+```
+
+The `-vib` flag stands for `wiew in browser`. This will allow you to see everything in `⎕SE`.
