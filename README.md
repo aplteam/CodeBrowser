@@ -36,4 +36,4 @@ The simplest example:
 ]CodeBrowser ⎕se -vib
 ```
 
-The `-vib` flag stands for `wiew in browser`. This will allow you to see everything in `⎕SE`.
+The `-vib` flag stands for `view in browser`. This will allow you to see everything in `⎕SE`.
