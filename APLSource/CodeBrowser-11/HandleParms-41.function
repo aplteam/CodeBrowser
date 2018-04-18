@@ -2,6 +2,7 @@
 ⍝ Returns either `'' 0` or an error message in `msg` and 11 in `en`.
  DE←11 ⍝ DOMAIN ERROR
  msg←en←⍬
+ namespaces←'⎕se'⎕R'⎕SE'⊣namespaces
  :If ~∧/((,¨namespaces)∊,¨'#' '⎕SE')∨⊃¨9=⎕NC¨namespaces
      msg←'No namespace(s) specified'
      en←DE
