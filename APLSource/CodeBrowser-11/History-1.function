@@ -1,3 +1,6 @@
  History
+⍝ * Version 0.0.2
+⍝   Creating the HTML file sometimes causes a FILENAME ERROR for now apparent
+⍝   reason. After a short delay it works, so we try that 5 times now.
 ⍝ * Version 0.0.1
 ⍝   * Initial version

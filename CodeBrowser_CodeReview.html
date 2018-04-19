@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="utf-8">
+<title>CodeBrowser</title>
+<style>@media screen{html{margin:1em 1em 1em 1em;}footer{margin-top:1.87em;}footer p{text-align:center;}pre{overflow:auto;padding:0.62em 0.31em;margin:.12em 0 0.62em 0 !important;white-space:pre-wrap;background-color:#faebd7;color:#3e3e3e;border:1px silver dashed;}h1{font-family:"APL385 Unicode";font-size:180%;border:2px Black solid;text-align:center;padding:0.62em 0 0.9em 0;}h2,h3,h4,h5,h6{font-family:"APL385 Unicode";font-size:140%;margin:1.25em 0 0.62em 0;padding:0;}p.caption{font-family:"APL385 Unicode";font-size:100%;font-weight:800;margin:2em 0 0.3em 0;padding:0;}p.timestamp{margin:-0.25em 0 0.31em 0;font-size:0.8em}nav, code{font-family:"APL385 Unicode";}code{background-color:#EFEFEF;padding:0 3px 0 3px;}nav#main{padding-bottom:0.62em;}nav#main li{line-height:1.3;list-style:none}nav#main > p{font-family:Verdana, "Serif";margin:.31em 0 0.12em 0;}nav#main{border:1px black solid;display:block;padding-left:0.62em;}nav#main ol{margin:0;margin-left:0.62em;padding-left:0.62em}nav.sub{border:1px silver solid;display:block;padding:0.18em;margin:1.25em 0;}.toclist > p, .functionlist > p, div.operatorlist > p{margin-bottom:0.18em;}.toclist{margin:1em 0 1em 0;padding:0 0.25em;}.toclist > div{display:flex;flex-wrap:wrap;}.toclist > div div{margin:0.12em 0 0.12em 0;}nav.sub p{font-family:Verdana, "Serif";margin:0 0 0.31em;padding:0;}div#info{display:block;margin:0.62em 0 1.87em 0;font-family:"Verdana2", "Serif"}p#after_h1{display:none;}a{text-decoration:none;border-bottom:1px Black dotted;}#scrolltotop{display:none;position:fixed;bottom:1.25em;right:1.87em;z-index:99;border:none;outline:none;background-color:black;color:white;cursor:pointer;padding:1em;border-radius:0.62em;}#scrolltotop:hover{background-color:#555;}div#parameters hr{margin-top:4em;}#parms{margin:1em auto 0 auto;border-collapse:collapse;font-family:"APL385 Unicode";font-size:0.8em;border:1px solid Black;border-spacing:2px;}#parms td{padding:3px 5px;text-align:left;}#parms tbody tr:nth-child(even){background-color:#DEDEDE;}#parms th{padding:3px 5px;text-align:left;background-color:Black;color:white;}hr{background-color:black;width:75%;margin-left:auto;margin-right:auto;}pre code{white-space:pre-wrap;background-color:#faebd7;color:#3e3e3e;}.center{text-align:center;}}@page:left{margin:20mm 20mm 20mm 20mm;}@page:right{margin:20mm 10mm 20mm 20mm;}@media print{html{font-size:8pt;-webkit-print-color-adjust:exact;}footer{margin-top:20pt;}footer p{text-align:center;}pre{overflow:auto;padding:5pt;margin:2pt 0 5pt 0 !important;white-space:pre-wrap;background-color:#F7F7F7;border:1pt silver solid;}code{color:black;white-space:pre-wrap;}h1{font-family:"APL385 Unicode";font-size:300%;text-align:center;padding:20pt 0 50pt;}h2{page-break-before:always;}h2,h3,h4,h5,h6{font-family:"APL385 Unicode";font-size:115%;margin:12pt 0 4pt 0;padding:0;}h3{page-break-before:always;}p.caption{font-family:"APL385 Unicode";font-size:100%;font-weight:800;margin:0;padding:0;}p.timestamp{margin:-4pt 0 0 0;font-size:0.80em}nav, code{font-family:"APL385 Unicode";}nav#main > p{font-family:Verdana, "Serif";}nav#main ol{margin:0;margin-left:15pt;padding-left:5pt;list-style:none}nav#main li{margin-top:3pt;}nav.sub{border:1pt silver solid;display:block;padding:0 5pt 5pt 5pt;margin:0 0 15pt 0;}.toclist{margin:0.8em 0 0.3em 0;padding:0 1pt;}.toclist > p{margin-bottom:2pt;}.toclist > div{display:flex;flex-wrap:wrap;}.toclist > div div{margin:1pt 0 1pt 0;}nav.sub p{font-family:Verdana, "Serif";margin:0 0 2pt 0;padding:0;}div#info{display:block;margin:5pt 0 5pt 0;font-family:"Verdana2", "Serif";page-break-after:always;}a{text-decoration:none;color:black}div.code_block{page-break-inside:avoid;margin:15pt 0}nav#main+h2{page-break-before:always;}h2+h3{page-break-before:avoid;}#scrolltotop{display:none !important;}hr{background-color:black;width:75%;margin-left:auto;margin-right:auto;}div#parameters hr{display:none;}#parms{margin:1em auto 0 auto;border-collapse:collapse;font-family:"APL385 Unicode";font-size:0.8em;border:1pt solid Black;border-spacing:2pt;}#parms td{padding:3pt 5pt;text-align:left;}#parms tbody tr:nth-child(even){background-color:#efefef;}#parms th{padding:3pt 5pt;text-align:left;background-color:Black;color:white;}.center{text-align:center;}}</style>
+</head>
+<body>
+<h1>CodeBrowser</h1>
+<div id="info">
+<p>Contains the CodeBrowser code without the test cases.</p>
+</div>
+<nav id="main">
+<p>Namespace structure:</p>
+<ol>
+<li>
+<a href="#_CodeBrowser.CodeBrowser">1. #._CodeBrowser.CodeBrowser</a>
+<ol>
+<li>
+<a href="#_CodeBrowser.CodeBrowser.GUI">1.1. #._CodeBrowser.CodeBrowser.GUI</a>
+</ol>
+</ol>
+</nav>
+<h3 id="_CodeBrowser.CodeBrowser">1. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a></h3>
+<nav class="sub">
+<div class="toclist">
+<p><b>Sub namespace: 1</b></p>
+<div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a></div>
+</div>
+</div>
+<div class="toclist">
+<p><b>Functions: 45</b></p>
+<div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.AddFooter">1. AddFooter</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.AddMainMenu">2. AddMainMenu</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.AddMainMenu_">3. AddMainMenu_</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.AddParameters">4. AddParameters</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.CollectAplObjects">5. CollectAplObjects</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.CollectAplObjects_">6. CollectAplObjects_</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.CollectAplObjects__">7. CollectAplObjects__</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.CollectFnsAndOpr">8. CollectFnsAndOpr</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.CollectFnsAndOprAndScriptsAndVars">9. CollectFnsAndOprAndScriptsAndVars</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.CollectScript">10. CollectScript</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.CollectVariable">11. CollectVariable</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.CompressCSS">12. CompressCSS</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.CreateHtml">13. CreateHtml</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.CreateOrReplaceFile">14. CreateOrReplaceFile</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.CreateParms">15. CreateParms</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.CreateToc">16. CreateToc</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.CreateToc_">17. CreateToc_</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.ExchangeHtmlSpecialChars">18. ExchangeHtmlSpecialChars</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.FormatDate">19. FormatDate</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.FormatLevel">20. FormatLevel</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.GetCSS">21. GetCSS</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.GetCodeMirrorLib">22. GetCodeMirrorLib</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.GetCssFilename">23. GetCssFilename</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.GetNameClasses">24. GetNameClasses</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.GetSubNamespaces">25. GetSubNamespaces</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.HandleContainers">26. HandleContainers</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.HandleParms">27. HandleParms</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.History">28. History</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.Init">29. Init</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.ListScriptsIn">30. ListScriptsIn</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.MakeBookmarkRef">31. MakeBookmarkRef</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.MakeBreadCrumb">32. MakeBreadCrumb</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.MakeID">33. MakeID</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.MassageNameLists">34. MassageNameLists</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.Max">35. Max</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.OpenInDefaultBrowser">36. OpenInDefaultBrowser</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.OpenNavSub">37. OpenNavSub</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.Public">38. Public</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.RemoveEmptyContainers">39. RemoveEmptyContainers</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.RemoveGuiInstances">40. RemoveGuiInstances</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.RemoveLevels">41. RemoveLevels</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.Run">42. Run</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.Selfie">43. Selfie</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.Version">44. Version</a></div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.WriteHeader">45. WriteHeader</a></div>
+</div>
+</div>
+<div class="toclist">
+<p><b>Variable: 1</b></p>
+<div>
+<div style="width:27em;"><a href="#_CodeBrowser.CodeBrowser.ADOC_Doc">1. ADOC_Doc</a></div>
+</div>
+</div>
+</nav>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.AddFooter">
+<p class="caption">1. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.AddFooter</p>
+<pre><code>     ∇ {html}←AddFooter parms
+[1]    html←''
+[2]    :If ~0∊⍴parms.footer
+[3]        html←⊂'&lt;footer&gt;'
+[4]        html,←⊂'&lt;hr&gt;'
+[5]        html,←⊂'&lt;p&gt;',(ExchangeHtmlSpecialChars parms.footer),'&lt;/p&gt;'
+[6]        html,←⊂'&lt;/footer&gt;'
+[7]    :EndIf
+[8]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.AddMainMenu">
+<p class="caption">2. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.AddMainMenu</p>
+<pre><code>     ∇ {hasMainMenu}←AddMainMenu(parms collect);html;refs
+[1]    refs←{1&lt;⍴,⍵:↑⍵ ⋄ ⍉⍪⊃⍵}⊃,/parms GetSubNamespaces¨parms.refs
+[2]    refs←({(⍵⍳⍵)=⍳⍴⍵}refs[;2])⌿refs        ⍝ Get rid of (additional) refs
+[3]    hasMainMenu←0
+[4]    html←1 AddMainMenu_ refs collect
+[5]    :If 1≥+/∨/¨'&lt;li&gt;'∘⍷¨html
+[6]        html←''
+[7]    :EndIf
+[8]    :If ~0∊⍴html
+[9]        html←('&lt;nav id="main"&gt;' '&lt;p&gt;Namespace structure:&lt;/p&gt;'),html,(⊂'&lt;/nav&gt;')
+[10]       WriteHTML html
+[11]       hasMainMenu←1
+[12]   :EndIf
+[13]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.AddMainMenu_">
+<p class="caption">3. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.AddMainMenu_</p>
+<pre><code>     ∇ html←level AddMainMenu_(refs collect);i;buff;noOf
+[1]    html←⊂'&lt;ol&gt;'
+[2]    i←1
+[3]    :Repeat
+[4]        :If ~0∊⍴refs
+[5]            html,←{'&lt;li&gt;'('&lt;a href="#',(collect.remove RemoveLevels⍕⍵),'"&gt;',((⊃{⍺,'.',⍵}/⍕¨level),'. ',⍕⍵),'&lt;/a&gt;')}refs[i;2]
+[6]            :If 0&lt;noOf←{+/∧\1↓⍵[;1]&gt;⊃⍵}(i-1)↓refs
+[7]                html,←(level,1)AddMainMenu_(noOf↑i↓refs)collect
+[8]                i←i+noOf+1
+[9]            :Else
+[10]               i+←1
+[11]           :EndIf
+[12]       :EndIf
+[13]       (¯1↑level)←1+¯1↑level
+[14]   :Until i&gt;1⊃⍴refs
+[15]   html,←⊂'&lt;/ol&gt;'
+[16]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.AddParameters">
+<p class="caption">4. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.AddParameters</p>
+<pre><code>     ∇ html←AddParameters parms;mat;toc;header;row
+[1]    html←''
+[2]    :If parms.showParms
+[3]        mat←parms.∆List
+[4]        toc←mat[;1]~¨' '
+[5]        mat⌿⍨←~toc∊'tno' 'refs'      ⍝ Strictly speaking these are not parameters
+[6]        row←toc⍳⊂'info'
+[7]        mat[row;2]←⊂Max 2⊃mat[row;]
+[8]        row←toc⍳⊂'caption'
+[9]        mat[row;2]←⊂Max 2⊃mat[row;]
+[10]       row←toc⍳⊂'footer'
+[11]       mat[row;2]←⊂Max 2⊃mat[row;]
+[12]       html←({{'&lt;tr&gt;',⍵,'&lt;/tr&gt;'}⊃,/{'&lt;td&gt;',(⍕⍵),'&lt;/td&gt;'}¨⍵}¨↓mat)
+[13]       header←⊂'&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Setting&lt;/th&gt;&lt;/tr&gt;'
+[14]       html←('&lt;div id="parameters"&gt;' '&lt;hr&gt;' '&lt;h2 class="center"&gt;Parameters&lt;/h2&gt;' '&lt;table id="parms"&gt;'),header,(⊂'&lt;tbody&gt;'),html,'&lt;/tbody&gt;' '&lt;/table&gt;' '&lt;/div&gt;'
+[15]   :EndIf
+[16]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.CollectAplObjects">
+<p class="caption">5. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.CollectAplObjects</p>
+<pre><code>     ∇ {r}←level CollectAplObjects(parms collect);buff;ref;For;level
+[1]    r←⍬
+[2]    :For ref :In parms.refs
+[3]        level CollectAplObjects_ ref parms collect
+[4]    :EndFor
+[5]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.CollectAplObjects_">
+<p class="caption">6. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.CollectAplObjects_</p>
+<pre><code>     ∇ {r}←level CollectAplObjects_(ref parms collect);EndIf;lists
+[1]    r←⍬
+[2]    lists←level CreateToc ref parms collect
+[3]    level CollectAplObjects__ lists ref parms collect
+[4]    :If ~0∊⍴lists.containers
+[5]    :AndIf parms.recursive
+[6]        ((⊂level),¨⍳⍴lists.containers){⍺ CollectAplObjects_ ⍵ parms collect}¨ref.⍎¨lists.containers
+[7]    :EndIf
+[8]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.CollectAplObjects__">
+<p class="caption">7. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.CollectAplObjects__</p>
+<pre><code>     ∇ {r}←level CollectAplObjects__(lists ref parms collect);type;i;obj;html
+[1]    r←⍬
+[2]    html←''
+[3]    :For type :In lists.(fns opr scripts variables)
+[4]        :For i :In ⍳⍴type
+[5]            obj←i⊃type
+[6]            html,←level CollectFnsAndOprAndScriptsAndVars ref obj parms i collect
+[7]        :EndFor
+[8]    :EndFor
+[9]    r←WriteHTML html
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.CollectFnsAndOpr">
+<p class="caption">8. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.CollectFnsAndOpr</p>
+<pre><code>     ∇ r←level CollectFnsAndOpr(ref name parms collect i);body;no;caption
+[1]    r←''
+[2]    :If ¯3≠≡body←(⎕UCS 13)A.Split ref.⎕VR name
+[3]        body←ExchangeHtmlSpecialChars body
+[4]        r,←⊂'&lt;div class="code_block" ',(collect MakeID(⍕ref),'.',name),'&gt;'
+[5]        caption←MakeBreadCrumb collect.remove RemoveLevels⍕ref
+[6]        r,←⊂'&lt;p class="caption"&gt;',(⍕i),'. ',caption,'.',name,'&lt;/p&gt;'
+[7]        (1⊃body)←'&lt;pre&gt;&lt;code&gt;',1⊃body
+[8]        r,←body,⊂'&lt;/code&gt;&lt;/pre&gt;'
+[9]        r,←⊂'&lt;/div&gt;'
+[10]   :EndIf
+[11]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.CollectFnsAndOprAndScriptsAndVars">
+<p class="caption">9. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.CollectFnsAndOprAndScriptsAndVars</p>
+<pre><code>     ∇ r←level CollectFnsAndOprAndScriptsAndVars(ref name parms i collect);body;no;caption
+[1]    r←''
+[2]    :Select ⊃ref.⎕NC name
+[3]    :Case 9
+[4]        r←level CollectScript ref name parms collect i
+[5]    :Case 2
+[6]        r←level CollectVariable ref name parms collect i
+[7]    :Else
+[8]        r←level CollectFnsAndOpr ref name parms collect i
+[9]    :EndSelect
+[10]  ⍝DoneColl
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.CollectScript">
+<p class="caption">10. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.CollectScript</p>
+<pre><code>     ∇ r←level CollectScript(ref name parms collect i);body;no;caption
+[1]    r←''
+[2]    :If 2=≡body←ref.⎕SRC ref.⍎name
+[3]        body←(,¨'&lt;&gt;&amp;')⎕R'\&amp;lt;' '\&amp;gt;' '\&amp;amp;'⍠('Greedy' 0)⊣body
+[4]        no←⍕2+level
+[5]        r,←⊂'&lt;div ',(collect MakeID(⍕ref),'.',name),'&gt;'
+[6]        caption←MakeBreadCrumb collect.remove RemoveLevels⍕ref
+[7]        r,←⊂'&lt;p class="caption"&gt;',(⍕i),'. ',caption,'.',name,'&lt;/p&gt;'
+[8]        r,←⊂'&lt;/div&gt;'
+[9]        body←({(3+⍴,⍕⍵){⍺↑'[',(⍕⍵),']'}¨¯1+⍳⍵}⍴body),¨body
+[10]       (1⊃body)←'&lt;pre&gt;&lt;code&gt;',1⊃body
+[11]       r,←body,⊂'&lt;/code&gt;&lt;/pre&gt;'
+[12]   :EndIf
+[13]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.CollectVariable">
+<p class="caption">11. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.CollectVariable</p>
+<pre><code>     ∇ r←level CollectVariable(ref name parms collect i);no;info;caption
+[1]    r←''
+[2]    no←⍕2+level
+[3]    r,←⊂'&lt;div ',(collect MakeID(⍕ref),'.',name),'&gt;'
+[4]    caption←MakeBreadCrumb collect.remove RemoveLevels⍕ref
+[5]    r,←⊂'&lt;p class="caption"&gt;',(⍕i),'. ',caption,'.',name,'&lt;/p&gt;'
+[6]    r,←⊂'&lt;/div&gt;'
+[7]    :Trap 6
+[8]        info←'Rank: ',(⍕⍴⍴ref.⍎name),'; Shape: ',({0∊⍴⍵:'⍬' ⋄ ⍕⍵}⍴ref.⍎name),'; Depth: ',(⍕≡ref.⍎name),'; Data Representation: ',⍕⎕DR ref.⍎name
+[9]        r,←⊂'&lt;pre&gt;&lt;code&gt;',info,'&lt;/code&gt;&lt;/pre&gt;'
+[10]   :Else  ⍝ This may well fail because the variable is now hidden (CodeBrowser on CodeBrowser)
+[11]       r←''
+[12]   :EndTrap
+[13]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.CompressCSS">
+<p class="caption">12. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.CompressCSS</p>
+<pre><code>     ∇ CompressCSS←{
+[1]   ⍝ Takes CSS and compresses it to a single line.
+[2]   ⍝ Along the way it...
+[3]   ⍝ * removes all comments
+[4]   ⍝ * removes any spaces around `;:{}`
+[5]   ⍝ * replaces &lt;TAB&gt; chars by spaces
+[6]   ⍝ * removes multiple spaces
+[7]   ⍝ Note that this method can have desastrous results when performed on non-valid CSS!\\
+[8]   ⍝ Throws an error in case something is not right with the CSS.
+[9]        css←⍵
+[10]       css←{(1↓⊃,/(⎕UCS 13),¨⍵)}⍣(1≠≡css)⊣css
+[11]       start←'/*'⍷css
+[12]       end←'*/'⍷css
+[13]       mask←~{⍵∨≠\⍵}css='"'
+[14]       0=≡/+/¨mask∘/¨start end:'Cannot compress CSS: number of occurrences of /* and */ are different'⎕SIGNAL 11
+[15]       ~0∊⍴(∪⊃-/+\¨start end)~0 1:'Cannot compress CSS: Invalid nested comments'⎕SIGNAL 11
+[16]       start∧←mask
+[17]       end∧←mask
+[18]       bool←~{⍵∨≠\⍵}start∨end
+[19]       bool[1+A.Where end]←0
+[20]       css←bool/css
+[21]       css←A.dmb css~⎕TC
+[22]       ((css=⎕UCS 9)/css)←' '
+[23]       mask←~{⍵∨≠\⍵}css='"'
+[24]       b1←mask\mask/⊃∨/' :' ' ;' ' {' ' }'⍷¨⊂css
+[25]       b2←mask\mask/⊃∨/': ' '; ' '{ ' '} '⍷¨⊂css
+[26]       b←~b1∨0,¯1↓b2
+[27]       '&lt;style&gt;',(b/css),'&lt;/style&gt;'
+[28]   }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.CreateHtml">
+<p class="caption">13. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.CreateHtml</p>
+<pre><code>     ∇ filename←CreateHtml parms;ns;collect;WriteHTML;info
+[1]    ns←⎕NS''
+[2]    ns.html←''
+[3]    WriteHTML←parms.tno∘{0∊⍴⍵:r←⍬ ⋄ 'append'A.WriteUtf8File ⍺(,A.Nest,⍵)}
+[4]    WriteHTML WriteHeader parms
+[5]    WriteHTML⊂'&lt;h1&gt;',(ExchangeHtmlSpecialChars parms.caption),'&lt;/h1&gt;'
+[6]    :If ~0∊⍴parms.info
+[7]        info←ExchangeHtmlSpecialChars⍣(~parms.infoIsHTML)⊣parms.info
+[8]        :If 0 1∊⍨≡info
+[9]        :AndIf ~(⎕UCS 13)∊info
+[10]           WriteHTML(⊂'&lt;div id="info"&gt;'),({'&lt;p&gt;',⍵,'&lt;/p&gt;'}¨A.Nest info),⊂'&lt;/div&gt;'
+[11]       :Else
+[12]           info←(⎕UCS 13)A.Split⍣((⎕UCS 13)∊info)⊣info
+[13]           WriteHTML(⊂'&lt;div id="info"&gt;'),({({'&lt;p&gt;',⍵,'&lt;/p&gt;'}⍵)}¨info),⊂'&lt;/div&gt;'
+[14]       :EndIf
+[15]   :EndIf
+[16]   collect←⎕NS''
+[17]   collect.namespaces←⍬
+[18]   collect.remove←¯1+⌊/{+/'.'=⍵}¨namespaces
+[19]   :If parms.recursive
+[20]       collect.hasMainMenu←AddMainMenu parms collect
+[21]   :Else
+[22]       collect.hasMainMenu←0
+[23]   :EndIf
+[24]   1 CollectAplObjects parms collect
+[25]   WriteHTML AddFooter parms
+[26]   WriteHTML AddParameters parms
+[27]   WriteHTML('&lt;/body&gt;' '&lt;/html&gt;')
+[28]   filename←parms.filename
+[29]   ⎕NUNTIE parms.tno
+[30]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.CreateOrReplaceFile">
+<p class="caption">14. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.CreateOrReplaceFile</p>
+<pre><code>     ∇ tno←CreateOrReplaceFile parms;errCounter
+[1]    :If ⎕NEXISTS parms.filename
+[2]        :Trap 19
+[3]            ⎕NDELETE parms.filename
+[4]        :Case 19
+[5]            ⎕NUNTIE((A.dtb↓⎕NNAMES)⍳⊂parms.filename)⊃⎕NNUMS
+[6]            ⎕NDELETE parms.filename
+[7]        :EndTrap
+[8]    :EndIf
+[9]    errCounter←0
+[10]   :Repeat
+[11]       :Trap 22
+[12]           ⍝ This causes sometimes an error that goes away
+[13]           ⍝ after a short delay. DropBox?!
+[14]           tno←parms.filename ⎕NCREATE 0
+[15]       :Else
+[16]           tno←0
+[17]           ⎕DL 0.2
+[18]           errCounter←errCounter+1
+[19]       :EndTrap
+[20]   :Until (tno&lt;0)∨5&lt;errCounter ⍝ Try max 5 times.
+[21]   'Unable to create the HTML file'⎕SIGNAL 22/⍨tno=0
+[22]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.CreateParms">
+<p class="caption">15. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.CreateParms</p>
+<pre><code>     ∇ r←CreateParms path
+[1]   ⍝ If `path` is not empty it is assumed that this points to the CodeBrowser home directory of a user command folder.
+[2]   ⍝ | Name            | Description | Options/flag |
+[3]   ⍝ |:----------------|:------------|:-------------|
+[4]   ⍝ | `backgroundColorPrint` | Set this to 0 if you don't want background color when printing. | --- |
+[5]   ⍝ | `caption`       | Defaults to the list of namespaces specified by the user. | `-caption |
+[6]   ⍝ | `cssfile`       | Location of the CSS file. | --- |
+[7]   ⍝ | `filename`      | If not set this defaults to a temp file name. | `-filename` |
+[8]   ⍝ | `footer`        | No default. Text string added to the bottom of the HTML file. | `-footer` |
+[9]   ⍝ | `ignore`        | Use this to ignore, say, a help system etc.&lt;&lt;br&gt;&gt;Text vector with comma-separated fully qualified namespace names. | `-ignore` |
+[10]  ⍝ | `ignoreEmpty`   | Boolean that defaults to 1 menaing that empty containers are ignored. | --- |
+[11]  ⍝ | `info`          | If not empty this is shown under the caption with ID="info". | `-info` |
+[12]  ⍝ | `infoIsHTML`    | Boolean that defaults to 0, meaning that any `&lt;` becomes `&amp;lt;`.&lt;&lt;br&gt;&gt;Typically used for HTML that was generated by the `MarkAPL` class. |
+[13]  ⍝ | `lang`          | Specifies the language; defaults to "en". | `-lang` |
+[14]  ⍝ | `linkcssfile`   | Boolean that defaults to 0 menaing that contents of `cssfile` is embedded. | --- |
+[15]  ⍝ | `namespaces`    | Will be becomes the namespaces to be scanned. Is read-only.| --- |
+[16]  ⍝ | `printFontSize` | Base font size in pt. | `-pfs` |
+[17]  ⍝ | `processFunctions`   | Boolean that defaults to 1. | `-obj=f` |
+[18]  ⍝ | `processGuiInstances | Boolean that defaults to 0. | `-obj=g` |
+[19]  ⍝ | `processOperators`   | Boolean that defaults to 1. | `-obj=o` |
+[20]  ⍝ | `processScripts`| Boolean that defaults to 1. Regards classes, interfaces and scripted namespaces. | `-obj=s` |
+[21]  ⍝ | `processVars`   | Boolean that defaults to 1. | `-obj=v` |
+[22]  ⍝ | `recursive`     | Boolean that defaults to 1, meaning that sub-namespaces will be scanned as well. | `-r=1` |
+[23]  ⍝ | `showParms`     | Boolean that defaults to 0. Specify 1 to append a table with parameters. | `-p` |
+[24]  ⍝ | `viewInBrowser` | Boolean that defaults to 0. Specify 1 for displaying the HTML in your default browser. | `-vib` |
+[25]  ⍝ | `twoSidedPrint` | Boolean that defaults to 0. If 1 the left margin is always larger than the right one.| `-twosided` |
+[26]  ⍝ | `version`       | Text vector with version number and version data. Is read-only| --- |
+[27]   r←⎕NS''
+[28]   r.recursive←1
+[29]   r.caption←¯1
+[30]   r.cssfilename←GetCssFilename path
+[31]   r.twoSidedPrint←0
+[32]   r.filename←''
+[33]   r.footer←''
+[34]   r.ignore←''
+[35]   r.ignoreEmpty←1
+[36]   r.info←''
+[37]   r.infoIsHTML←0
+[38]   r.lang←'en'
+[39]   r.linkcssfile←0
+[40]   r.namespaces←''
+[41]   r.backgroundColorPrint←1
+[42]   r.printFontSize←8
+[43]   r.processFunctions←1
+[44]   r.processGuiInstances←0
+[45]   r.processOperators←1
+[46]   r.processScripts←1
+[47]   r.processVars←1
+[48]   r.recursive←1
+[49]   r.viewInBrowser←0
+[50]   r.showParms←0
+[51]   r.version←{(1⊃⍵),' ',(2⊃⍵),' from ',(3⊃⍵)}Version
+[52]   r.⎕FX'r←∆List' 'r←{⍵,[1.5]⍎¨⍵}↓⎕nl 2'
+[53]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.CreateToc">
+<p class="caption">16. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.CreateToc</p>
+<pre><code>     ∇ lists←level CreateToc(ref parms collect);lists;width;caption;flag;html;buff
+[1]    lists←⎕NS''                ⍝ All lists: functions, operators, non-scripted namespaces (containers)
+[2]    lists.(fns opr scripts variables containers)←⊂''
+[3]    :If collect.hasMainMenu
+[4]        caption←(FormatLevel level),MakeBreadCrumb collect.remove RemoveLevels⍕ref
+[5]        html←⊂caption{'&lt;h3 id="',(collect.remove RemoveLevels ⍵),'"&gt;',⍺,'&lt;/h3&gt;'}⍕ref
+[6]    :Else
+[7]        html←''
+[8]    :EndIf
+[9]    flag←1
+[10]   :If 0&lt;⊃⍴↓ref.⎕NL 2 3 4 9
+[11]       width←⍕6⌈⌈0.8×⌈/⊃∘⍴¨↓ref.⎕NL 9,GetNameClasses parms
+[12]       (buff flag)←HandleContainers ref width flag lists parms collect
+[13]       html,←buff
+[14]       :If parms.processFunctions
+[15]       :AndIf ~0∊⍴lists.fns←' '~¨⍨↓ref.⎕NL 3
+[16]           (html flag)←html OpenNavSub flag
+[17]           html,←CreateToc_ ref parms lists.fns'Function'collect width
+[18]       :EndIf
+[19]       :If parms.processOperators
+[20]       :AndIf ~0∊⍴lists.opr←' '~¨⍨↓ref.⎕NL 4
+[21]           (html flag)←html OpenNavSub flag
+[22]           html,←CreateToc_ ref parms lists.opr'Operator'collect width
+[23]       :EndIf
+[24]       :If parms.processScripts
+[25]       :AndIf ~0∊⍴lists.scripts←ListScriptsIn ref
+[26]       :AndIf ~0∊⍴lists.scripts←(~(ref.{0∊⍴⊃,/⍵:⍵ ⋄ ⍎¨⍵}lists.scripts)∊parms.ignore)/lists.scripts
+[27]           (html flag)←html OpenNavSub flag
+[28]           html,←CreateToc_ ref parms lists.scripts'Script'collect width
+[29]       :EndIf
+[30]       :If parms.processVars
+[31]       :AndIf ~0∊⍴lists.variables←' '~¨⍨↓ref.⎕NL 2
+[32]           (html flag)←html OpenNavSub flag
+[33]           html,←CreateToc_ ref parms lists.variables'Variable'collect width
+[34]       :EndIf
+[35]       html,←(~flag)/⊂'&lt;/nav&gt;'
+[36]   :EndIf
+[37]   {}WriteHTML html
+[38]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.CreateToc_">
+<p class="caption">17. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.CreateToc_</p>
+<pre><code>     ∇ html←CreateToc_(ref parms list title collect width)
+[1]    html←''
+[2]    html,←⊂'&lt;div class="toclist"&gt;'
+[3]    html,←⊂'&lt;p&gt;&lt;b&gt;',title,(((1&lt;⍴list)/'s'),': ',⍕⊃⍴list),'&lt;/b&gt;&lt;/p&gt;'
+[4]    html,←⊂'&lt;div&gt;'
+[5]    html,←(ref{'&lt;div style="width:',width,'em;"&gt;&lt;a ',(collect MakeBookmarkRef(⍕⍺),'.',{⍵↓⍨⍵⍳' '}⍵),'&gt;',⍵}¨{(⍕¨⍳⍴⍵),¨'. '∘,¨⍵}list),¨⊂'&lt;/a&gt;&lt;/div&gt;'
+[6]    html,←'&lt;/div&gt;' '&lt;/div&gt;'
+[7]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.ExchangeHtmlSpecialChars">
+<p class="caption">18. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.ExchangeHtmlSpecialChars</p>
+<pre><code>     ∇ ExchangeHtmlSpecialChars←{
+[1]        11::(,¨'&lt;&gt;&amp;')⎕R'\&amp;lt;' '\&amp;gt;' '\&amp;amp;'⍠('Greedy' 0)⊣↓⎕FMT ⍵
+[2]        (,¨'&lt;&gt;&amp;')⎕R'\&amp;lt;' '\&amp;gt;' '\&amp;amp;'⍠('Greedy' 0)⊣⍵
+[3]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.FormatDate">
+<p class="caption">19. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.FormatDate</p>
+<pre><code>     ∇ FormatDate←{
+[1]        date←⍵
+[2]        ' '=1↑0⍴date:date
+[3]        10↑A.FormatDateTime date
+[4]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.FormatLevel">
+<p class="caption">20. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.FormatLevel</p>
+<pre><code>     ∇ FormatLevel←{
+[1]        (⊃{⍺,'.',⍵}/⍕¨⍵),'. '
+[2]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GetCSS">
+<p class="caption">21. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.GetCSS</p>
+<pre><code>     ∇ GetCSS←{
+[1]        css←A.ReadUtf8File 1⊃,parms.cssfilename
+[2]        against←'font-size: ',(⍕parms.printFontSize),'pt;'
+[3]        css←'font-size: *8pt;'⎕R against⊣css
+[4]        css←{'-webkit-print-color-adjust: *exact;'⎕R''⊣⍵}⍣(⊃~parms.backgroundColorPrint)⊣css
+[5]        0=parms.twoSidedPrint:css
+[6]        against←'@page :left {margin: 20mm 20mm 20mm 10mm;}'
+[7]        '@page :left *{margin: *20mm *20mm *20mm *20mm;}'⎕R against⊣css
+[8]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GetCodeMirrorLib">
+<p class="caption">22. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.GetCodeMirrorLib</p>
+<pre><code>     ∇ GetCodeMirrorLib←{
+[1]        ⍝ NOT SUPPORTED (yet)
+[2]        parms←⍵
+[3]        0=parms.codeMirrorLib:''
+[4]        r←''
+[5]        r,←⊂'&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.33.0/codemirror.js"&gt;&lt;/script&gt;'
+[6]        r,←⊂'&lt;link  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.33.0/codemirror.css" rel="stylesheet"&gt;'
+[7]        r,←⊂'&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.33.0/mode/apl/apl.js"&gt;&lt;/script&gt;'
+[8]        r,←⊂'&lt;style&gt;'
+[9]        r,←⊂'.CodeMirror{height:auto; border: 1px solid #eee;}'
+[10]       r,←⊂'&lt;/style&gt;'
+[11]       r,←⊂'     &lt;script&gt;'
+[12]       r,←⊂'(function(){'
+[13]       r,←⊂'nodes=document.getElementsByTagName(''code'')'
+[14]       r,←⊂'Array.from(nodes).forEach(node=&gt;{'
+[15]       r,←⊂'    if(node.parentNode.tagName===''PRE''){'
+[16]       r,←⊂'        let pre=node.parentNode;'
+[17]       r,←⊂'        let ta=document.createElement("TEXTAREA");'
+[18]       r,←⊂'        ta.value=node.innerText;'
+[19]       r,←⊂'        pre.parentNode.replaceChild(ta,pre);'
+[20]       r,←⊂'        CodeMirror.fromTextArea(ta);'
+[21]       r,←⊂'    }'
+[22]       r,←⊂'})'
+[23]       r,←⊂'})();'
+[24]       r,←⊂'&lt;/script&gt;'
+[25]       r
+[26]   }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GetCssFilename">
+<p class="caption">23. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.GetCssFilename</p>
+<pre><code>     ∇ r←GetCssFilename path;F
+[1]    F←##.FilesAndDirs
+[2]    :If 0∊⍴path
+[3]        r←'codebrowser_styles.css'
+[4]    :Else
+[5]        ((path∊'/\')/path)←F.CurrentSep
+[6]        r←path,F.CurrentSep,'codebrowser_styles.css'
+[7]    :EndIf
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GetNameClasses">
+<p class="caption">24. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.GetNameClasses</p>
+<pre><code>     ∇ r←GetNameClasses parms
+[1]    r←parms.(processVars processFunctions processOperators processScripts)/2 3 4 9
+[2]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GetSubNamespaces">
+<p class="caption">25. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.GetSubNamespaces</p>
+<pre><code>     ∇ r←{y}GetSubNamespaces ref;list;level;bool
+[1]    level←0
+[2]    :If 0=⎕NC'y'
+[3]        ⎕SHADOW'parms'
+[4]        parms←CreateParms''
+[5]    :ElseIf 326=⎕DR y
+[6]        ⎕SHADOW'parms'
+[7]        parms←y
+[8]    :Else
+[9]        level←y
+[10]   :EndIf
+[11]   r←⊂level ref
+[12]   :If ~0∊⍴list←' '~¨⍨↓ref.⎕NL 9.1 9.2                                ⍝ All namespaces
+[13]       list←ref.⍎¨list                                                ⍝ Make them refs
+[14]       list~←ref,{0∊⍴⊃,/⍵:⍵ ⋄ ⍎¨⍵}MassageNameLists parms.ignore       ⍝ Remove any self references and those to be ignored
+[15]   :AndIf ~0∊⍴list
+[16]   :AndIf ~0∊⍴list←(~'['∊¨⍕¨list)/list                                ⍝ Remove unnamed namespaces and instances
+[17]   :AndIf ~0∊⍴list←({16::1 ⋄ 0⊣⎕SRC ⍵}¨list)/list                     ⍝ Remove scripted ones
+[18]       :If 0∊bool←'Namespace'∘≡¨ref.{⍵ ⎕WG'Type'}¨list
+[19]           :If parms.processGuiInstances
+[20]               bool∨←(~bool)\ref.{⍵ ⎕WG'KeepOnClose'}¨(~bool)/list
+[21]           :EndIf
+[22]           list←bool/list
+[23]       :EndIf
+[24]   :AndIf ~0∊⍴list
+[25]       :If parms.ignoreEmpty
+[26]           list←({~0∊⍴⍵.⎕NL⍳16}¨list)/list
+[27]       :EndIf
+[28]   :AndIf ~0∊⍴list
+[29]       r←((⊂level,ref),⊃,/(1+level)GetSubNamespaces¨list)~⊂''
+[30]   :EndIf
+[31]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.HandleContainers">
+<p class="caption">26. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.HandleContainers</p>
+<pre><code>     ∇ (html flag)←HandleContainers(ref width flag lists parms collect);html;these;recursiveMsg
+[1]    html←''
+[2]    :If ~0∊⍴lists.containers←' '~¨⍨↓ref.⎕NL 9
+[3]    :AndIf ~0∊⍴lists.containers←({16::1 ⋄ 0⊣⎕SRC ⍵}¨ref.⍎¨lists.containers)/lists.containers
+[4]    :AndIf ~0∊⍴lists.containers←(~(ref.⍎¨lists.containers)∊parms.ignore)/lists.containers
+[5]    :AndIf ~0∊⍴lists.containers←(ref≠ref.⍎¨lists.containers)/lists.containers
+[6]    :AndIf ~0∊⍴lists.containers←((~'['∊¨⍕¨ref.⍎¨lists.containers))/lists.containers
+[7]    :AndIf ~0∊⍴lists.containers←(~(these←ref.⍎¨lists.containers)∊collect.namespaces)/lists.containers
+[8]        lists←RemoveGuiInstances lists ref parms
+[9]    :AndIf ~0∊⍴lists.containers
+[10]       lists←RemoveEmptyContainers lists ref parms
+[11]   :AndIf ~0∊⍴lists.containers
+[12]       collect.namespaces,←these
+[13]       flag←{0⊣html,←⊂'&lt;nav class="sub"&gt;'}⍣1⊣1
+[14]       html,←⊂'&lt;div class="toclist"&gt;'
+[15]       recursiveMsg←(~collect.hasMainMenu)/' (not scanned)'
+[16]       html,←⊂'&lt;p&gt;&lt;b&gt;Sub namespace',((1&lt;⍴lists.containers)/'s'),': ',(⍕⊃⍴lists.containers),'&lt;/b&gt;',recursiveMsg,'&lt;/p&gt;'
+[17]       html,←⊂'&lt;div&gt;'
+[18]       :If parms.recursive
+[19]           html,←⊃,/ref{⊂'&lt;div style="width:',width,'em;"&gt;&lt;a ',(collect MakeBookmarkRef(⍕⍺),'.',⍵),'&gt;',⍵,'&lt;/a&gt;&lt;/div&gt;'}¨lists.containers
+[20]       :Else
+[21]           html,←('&lt;div style="width:',width,'em;"&gt;')∘,¨lists.containers,¨⊂'&lt;/div&gt;'
+[22]       :EndIf
+[23]       html,←'&lt;/div&gt;' '&lt;/div&gt;'
+[24]   :EndIf
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.HandleParms">
+<p class="caption">27. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.HandleParms</p>
+<pre><code>     ∇ (msg en)←HandleParms(parms namespaces);DE
+[1]   ⍝ Returns either `'' 0` or an error message in `msg` and 11 in `en`.
+[2]    DE←11 ⍝ DOMAIN ERROR
+[3]    msg←en←⍬
+[4]    namespaces←'⎕se'⎕R'⎕SE'⊣namespaces
+[5]    :If ~∧/((,¨namespaces)∊,¨'#' '⎕SE')∨⊃¨9=⎕NC¨namespaces
+[6]        msg←'No namespace(s) specified'
+[7]        en←DE
+[8]        :Return
+[9]    :EndIf
+[10]   :Trap 0
+[11]       parms.refs←⍎¨namespaces
+[12]   :Else
+[13]       msg←'Something went wrong - check the namespace list'
+[14]       en←DE
+[15]       :Return
+[16]   :EndTrap
+[17]   :If 1≥|≡parms.cssfilename
+[18]       parms.cssfilename←A.dmb parms.cssfilename
+[19]       :If ∨/' ,'∊parms.cssfilename
+[20]           ((' '=parms.cssfilename)/parms.cssfilename)←','
+[21]           parms.cssfilename←','A.Split parms.cssfilename
+[22]       :EndIf
+[23]       parms.cssfilename←A.Nest parms.cssfilename
+[24]   :EndIf
+[25]   parms.filename{~0∊⍴⍺:⍺ ⋄ (¯4↓F.GetTempFilename''),'.html'}←⍬
+[26]   parms.caption{~(⊂⍺)∊¯1 '':⍺ ⋄ 1=⍴,⍵:⍕⍵ ⋄ ⊃,/{⍺,',',⍵}/⍵}←namespaces
+[27]   parms.tno←CreateOrReplaceFile parms
+[28]   :Trap 0
+[29]       parms.ignore←{0∊⍴⊃,/⍵:⍵ ⋄ ⍎¨⍵}MassageNameLists parms.ignore
+[30]   :Else
+[31]       msg←'Something went wrong - check -ignore'
+[32]       en←DE
+[33]   :EndTrap
+[34]   :If '⋄'∊parms.info
+[35]       parms.info←'⋄'A.Split parms.info
+[36]   :EndIf
+[37]   :If ~(⊂parms.infoIsHTML)∊0 1
+[38]       msg←'"infoIsHTML" is not a Boolean'
+[39]       en←DE
+[40]   :EndIf
+[41]   :If ~(⊂parms.processGuiInstances)∊0 1
+[42]       msg←'"processGuiInstances" is not a Boolean'
+[43]       en←DE
+[44]   :EndIf
+[45]   :If ~(≡parms.info)∊0 1 2
+[46]       msg←'"info" is neither a text vector nor a vector of text vectors'
+[47]       en←DE
+[48]   :EndIf
+[49]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.History">
+<p class="caption">28. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.History</p>
+<pre><code>     ∇ History
+[1]   ⍝ * Version 0.0.2
+[2]   ⍝   Creating the HTML file sometimes causes a FILENAME ERROR for now apparent
+[3]   ⍝   reason. After a short delay it works, so we try that 5 times now.
+[4]   ⍝ * Version 0.0.1
+[5]   ⍝   * Initial version
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.Init">
+<p class="caption">29. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.Init</p>
+<pre><code>     ∇ {r}←Init dummy
+[1]    r←⍬
+[2]    A←##.APLTreeUtils ⋄ F←##.FilesAndDirs
+[3]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.ListScriptsIn">
+<p class="caption">30. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.ListScriptsIn</p>
+<pre><code>     ∇ ListScriptsIn←{
+[1]        l1←' '~¨⍨↓ref.⎕NL 9.4 9.5      ⍝ Class and interfaces
+[2]        l2←' '~¨⍨↓ref.⎕NL 9.1          ⍝ All namespaces
+[3]        l2←(ref.{0::0 ⋄ 1⊣⍴⎕SRC⍎⍵}¨l2)/l2
+[4]        0∊⍴l2:l1
+[5]        {⍵[⍋↑⍵]}l1,l2
+[6]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.MakeBookmarkRef">
+<p class="caption">31. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.MakeBookmarkRef</p>
+<pre><code>     ∇ r←collect MakeBookmarkRef path
+[1]    path←collect.remove RemoveLevels path
+[2]    r←'href="#',path,'"'
+[3]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.MakeBreadCrumb">
+<p class="caption">32. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.MakeBreadCrumb</p>
+<pre><code>     ∇ MakeBreadCrumb←{
+[1]        parts←'.'A.Split ⍵
+[2]        first←1⊃parts
+[3]        urls←{(⍳⍴⍵)↑¨⊂⍵}parts
+[4]        top←{'&lt;a href="#',(⊃{⍺,'.',⍵}/⍵),'"&gt;'}¨urls
+[5]        r←top,¨parts
+[6]        first,{((~0∊⍴⍵)/'.'),⍵}¯1↓⊃,/(1↓r),¨⊂'&lt;/a&gt;.'
+[7]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.MakeID">
+<p class="caption">33. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.MakeID</p>
+<pre><code>     ∇ r←collect MakeID ref
+[1]    ref←collect.remove RemoveLevels ref
+[2]    r←'id="',ref,'"'
+[3]    ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.MassageNameLists">
+<p class="caption">34. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.MassageNameLists</p>
+<pre><code>     ∇ MassageNameLists←{
+[1]   ⍝ (⊂'#.abc') ←→ MassageNameLists '#.abc'
+[2]   ⍝ ('#.abc' '#.x' '#.y') ←→ MassageNameLists '#.abc  #.x , #.y'
+[3]   ⍝ ('#.abc' '#.x' '#.y') ←→ MassageNameLists #.abc  #.x #.y'
+[4]        1&lt;|≡⍵:⍕¨⍵
+[5]        r←⍕,⍵
+[6]        ((','=r)/r)←' '
+[7]        ' 'A.Split A.dmb r
+[8]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.Max">
+<p class="caption">35. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.Max</p>
+<pre><code>     ∇ Max←{
+[1]        ⍺←80
+[2]        ⍺&gt;⍴⍵:⍵
+[3]        (⍺⍴⍵),'...'
+[4]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.OpenInDefaultBrowser">
+<p class="caption">36. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.OpenInDefaultBrowser</p>
+<pre><code>     ∇ OpenInDefaultBrowser←{
+[1]        6::0
+[2]        ⎕USING←'' 'System' 'System.Diagnostics,System.dll'
+[3]        proc←Process.Start,⊂⍵
+[4]        1:proc←proc     ⍝ was a NEW process started = True?
+[5]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.OpenNavSub">
+<p class="caption">37. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.OpenNavSub</p>
+<pre><code>     ∇ (html flag)←html OpenNavSub flag
+[1]    :If flag
+[2]        html,←⊂'&lt;nav class="sub"&gt;'
+[3]        flag←0
+[4]    :EndIf
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.Public">
+<p class="caption">38. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.Public</p>
+<pre><code>     ∇ r←Public
+[1]    r←'Run' 'CreateParms'
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.RemoveEmptyContainers">
+<p class="caption">39. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.RemoveEmptyContainers</p>
+<pre><code>     ∇ lists←RemoveEmptyContainers(lists ref parms);bool;list
+[1]   ⍝ Remove all empty containers unless parms.ignoreEmpty is 0.
+[2]    :If parms.ignoreEmpty
+[3]        list←ref.⍎¨lists.containers
+[4]        :If 0∊bool←{~0∊⍴⍵.⎕NL⍳16}¨list
+[5]            lists.containers←bool/lists.containers
+[6]        :EndIf
+[7]    :EndIf
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.RemoveGuiInstances">
+<p class="caption">40. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.RemoveGuiInstances</p>
+<pre><code>     ∇ lists←RemoveGuiInstances(lists ref parms);bool;list
+[1]   ⍝ Remove all GUI instances unless parms.processGuiInstances is 1.
+[2]   ⍝ Even then everything that does not carry `KeepOnClose←` is
+[3]   ⍝ removed
+[4]    list←ref.⍎¨lists.containers
+[5]    :If 0∊bool←'Namespace'∘≡¨list ⎕WG¨⊂'Type'
+[6]        :If parms.processGuiInstances
+[7]            bool∨←(~bool)\ref.{⍵ ⎕WG'KeepOnclose'}¨(~bool)/list
+[8]        :EndIf
+[9]        lists.containers←bool/lists.containers
+[10]   :EndIf
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.RemoveLevels">
+<p class="caption">41. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.RemoveLevels</p>
+<pre><code>     ∇ RemoveLevels←{
+[1]        noOf←⍺
+[2]        path←⍵
+[3]        (,'#')≡,path:path
+[4]        buff←+\'.'=⍵
+[5]        path←(+/∧\noOf&gt;buff)↓path
+[6]        ('.'=1⍴path)↓path
+[7]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.Run">
+<p class="caption">42. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.Run</p>
+<pre><code>     ∇ filename←{parms}Run namespaces;refs
+[1]   ⍝ Collects the code and variables in the (non-scripted) namespaces listed in `namespaces` and
+[2]   ⍝ compiles an HTML page with the code in it.\\
+[3]   ⍝ `namespaces` must be a text vector with fully qualified namespace name(s). You can use either
+[4]   ⍝ a space or a comma as separator.\\
+[5]   ⍝ `parms` is optional. If provided it must be a parameter space, typically created with `CreateParms`.\\
+[6]   ⍝ Returns the name of the file the HTML is written to.\\
+[7]   ⍝ The HTML page contains the CSS and JavaScript needed and is therefore fully self-contained.
+[8]   ⍝ You should not attempt to view it in an outdated browser like IE9.
+[9]    ⎕IO←1 ⋄ ⎕ML←1
+[10]   Init ⍬
+[11]   namespaces←MassageNameLists namespaces
+[12]   parms←{0&lt;⎕NC ⍵:⍎⍵ ⋄ CreateParms''}'parms'
+[13]   parms.namespaces←namespaces
+[14]   ⎕SIGNAL/HandleParms parms namespaces
+[15]   filename←CreateHtml parms
+[16]   :If parms.viewInBrowser
+[17]       {}A.GoToWebPage filename
+[18]   :EndIf
+[19]   parms.cssfilename←{0∊⍴⍵:⍵ ⋄ 0 1∊⍨≡⍵:⍵ ⋄ ⊃{⍺,', ',⍵}/⍵}parms.cssfilename
+[20]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.Selfie">
+<p class="caption">43. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.Selfie</p>
+<pre><code>     ∇ r←Selfie;parms
+[1]   ⍝ Create an HTML document of CodeBrowser itself.
+[2]   ⍝ This is not an official method.
+[3]    parms←CreateParms''
+[4]    parms.caption←'CodeBrowser'
+[5]    parms.info←'Documenting itself'
+[6]    parms.showParms←1
+[7]    parms.footer←'Created by ',⎕AN,' on ',##.APLTreeUtils.FormatDateTime ⎕TS
+[8]    parms.processScripts←0
+[9]    parms.processVars←0
+[10]   parms.twoSidedPrint←1
+[11]   r←parms GUI.Run'#._CodeBrowser.CodeBrowser' ''
+[12]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.Version">
+<p class="caption">44. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.Version</p>
+<pre><code>     ∇ r←Version
+[1]   ⍝ See also `History`
+[2]    r←'CodeBrowser' '0.0.2.1' '2018-04-??'
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.WriteHeader">
+<p class="caption">45. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.WriteHeader</p>
+<pre><code>     ∇ {r}←WriteHeader parms;html;thisCssFile
+[1]    html←⊂'&lt;!DOCTYPE html&gt;'
+[2]    html,←⊂'&lt;html lang="',parms.lang,'"&gt;'
+[3]    html,←⊂'&lt;head&gt;'
+[4]    html,←⊂'&lt;meta http-equiv="X-UA-Compatible" content="IE=edge" /&gt;'
+[5]    html,←⊂'&lt;meta charset="utf-8"&gt;'
+[6]    html,←⊂'&lt;title&gt;',(ExchangeHtmlSpecialChars parms.caption),'&lt;/title&gt;'
+[7]    :If parms.linkcssfile
+[8]        :For thisCssFile :In parms.cssfilename
+[9]            html,←⊂'&lt;link href="',thisCssFile,'" rel="stylesheet"&gt;'
+[10]       :EndFor
+[11]   :Else
+[12]       html,←⊂CompressCSS GetCSS parms
+[13]   :EndIf
+[14]   ⍝html,←GetCodeMirrorLib parms  ⍝ Not implemented yet   ⍝TODO⍝
+[15]   html,←⊂'&lt;/head&gt;'
+[16]   html,←⊂'&lt;body&gt;'
+[17]   r←WriteHTML html
+[18]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div id="_CodeBrowser.CodeBrowser.ADOC_Doc">
+<p class="caption">1. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.ADOC_Doc</p>
+</div>
+<pre><code>Rank: 1; Shape: 88; Depth: 2; Data Representation: 326</code></pre>
+<h3 id="_CodeBrowser.CodeBrowser.GUI">1.1. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a></h3>
+<nav class="sub">
+<div class="toclist">
+<p><b>Functions: 42</b></p>
+<div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.AddPosnAndSize">1. AddPosnAndSize</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CheckInput">2. CheckInput</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CopyGuiToParms">3. CopyGuiToParms</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateButtons">4. CreateButtons</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateCaption">5. CreateCaption</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateCssFilename">6. CreateCssFilename</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateFileBox">7. CreateFileBox</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateFileBoxParms">8. CreateFileBoxParms</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateFilename">9. CreateFilename</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateFonts">10. CreateFonts</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateFooter">11. CreateFooter</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateForm">12. CreateForm</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateGUI">13. CreateGUI</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateIgnoreGuiInstances">14. CreateIgnoreGuiInstances</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateInfo">15. CreateInfo</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateLang">16. CreateLang</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateNamespaces">17. CreateNamespaces</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateNativeFile">18. CreateNativeFile</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateOtherParms">19. CreateOtherParms</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateParmsTabChildren">20. CreateParmsTabChildren</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreatePrintParms">21. CreatePrintParms</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateScanTabChildren">22. CreateScanTabChildren</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateSubForms">23. CreateSubForms</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateTabControlAndChildren">24. CreateTabControlAndChildren</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateTabs">25. CreateTabs</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateTextTabChildren">26. CreateTextTabChildren</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.CreateToBeIgnored">27. CreateToBeIgnored</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.DQ">28. DQ</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.GetRefTo_n">29. GetRefTo_n</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.Init">30. Init</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.OnBrowseForCssFile">31. OnBrowseForCssFile</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.OnBrowseForFilename">32. OnBrowseForFilename</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.OnKeyPressInInfo">33. OnKeyPressInInfo</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.OnKeyPressInLang">34. OnKeyPressInLang</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.OnOK">35. OnOK</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.OnPreview">36. OnPreview</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.OnSelectCancelButtonInFileBox">37. OnSelectCancelButtonInFileBox</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.OnSelectOkButtonInFileBox">38. OnSelectOkButtonInFileBox</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.PolishNamespaceList">39. PolishNamespaceList</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.Run">40. Run</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.SetFocusTo">41. SetFocusTo</a></div>
+<div style="width:24em;"><a href="#_CodeBrowser.CodeBrowser.GUI.ShowInStatusbar">42. ShowInStatusbar</a></div>
+</div>
+</div>
+</nav>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.AddPosnAndSize">
+<p class="caption">1. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.AddPosnAndSize</p>
+<pre><code>     ∇ AddPosnAndSize←{+⌿↑⍵.(Posn Size)}
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CheckInput">
+<p class="caption">2. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CheckInput</p>
+<pre><code>     ∇ (success msg)←CheckInput n;list;bool
+[1]    success←0
+[2]    msg←''
+[3]   
+[4]    :If 0∊⍴∊list←PolishNamespaceList n.namespaces.Text
+[5]        ShowInStatusbar'Nothing to scan?!'
+[6]        →SetFocusTo n.Scan n.namespaces
+[7]    :EndIf
+[8]    bool←list∊,¨'#' '⎕SE'
+[9]    :If 1∊bool←~{(⍵∊,¨'#' '⎕SE')∨9.1=⎕NC∘⊂¨⍵}list
+[10]       ShowInStatusbar'Scan: not a namespace: ',⊃{⍺,',',⍵}/bool/list
+[11]       →SetFocusTo n.Scan n.namespaces
+[12]   :EndIf
+[13]   n.namespaces.Text←⊃{⍺,', ',⍵}/list
+[14]  
+[15]   :If ~0∊⍴list←n.toBeIgnored.Text
+[16]       ((list=',')/list)←' '
+[17]       list←##.A.dmb list
+[18]       list←∪' '##.A.Split list
+[19]       :If 1∊bool←~{((,'#')∘≡¨⍵)∨9=⎕NC¨⍵}list
+[20]           ShowInStatusbar'To be ignored: not a namespace: ',⊃{⍺,',',⍵}/bool/list
+[21]           →SetFocusTo n.Scan n.toBeIgnored
+[22]       :EndIf
+[23]       n.toBeIgnored.Text←⊃{⍺,',',⍵}/list
+[24]   :EndIf
+[25]  
+[26]   :If ~0∊⍴n.filename.Text
+[27]   :AndIf 0=##.F.IsFile n.filename.Text
+[28]   :AndIf ~CreateNativeFile n.filename.Text
+[29]       ShowInStatusbar'HTML filename is invalid (not pointing to a file)'
+[30]       →SetFocusTo n.Parms n.filename
+[31]   :EndIf
+[32]  
+[33]   :If ~0∊⍴n.cssFilename.Text
+[34]   :AndIf 0=##.F.IsFile n.cssFilename.Text
+[35]       ShowInStatusbar'CSS filename is invalid (not pointing to a file)'
+[36]       →SetFocusTo n.Parms n.cssFilename
+[37]   :EndIf
+[38]  
+[39]   :If 0=+/n.(processFns processOpr processScripts processVars).State
+[40]       ShowInStatusbar'Nothing to be processed?!'
+[41]       →SetFocusTo n.Parms n.processFns
+[42]   :EndIf
+[43]   success←1
+[44]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CopyGuiToParms">
+<p class="caption">3. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CopyGuiToParms</p>
+<pre><code>     ∇ {r}←CopyGuiToParms n
+[1]    r←⍬
+[2]    n.∆Parms.namespaces←n.namespaces.Text
+[3]    n.∆Parms.ignore←n.toBeIgnored.Text
+[4]    n.∆Parms.ignoreEmpty←n.ignoreEmptyNamespaces.State
+[5]    n.∆Parms.recursive←n.recursive.State
+[6]    n.∆Parms.processGuiInstances←n.processGuiInstances.State
+[7]    n.∆Parms.filename←n.filename.Text
+[8]    n.∆Parms.cssfilename←n.cssFilename.Text
+[9]    n.∆Parms.lang←n.lang.Text
+[10]   n.∆Parms.showParms←n.showParms.State
+[11]   n.∆Parms.viewInBrowser←n.viewInBrowser.State
+[12]   n.∆Parms.processFunctions←n.processFns.State
+[13]   n.∆Parms.processOperators←n.processOpr.State
+[14]   n.∆Parms.processScripts←n.processScripts.State
+[15]   n.∆Parms.processVars←n.processVars.State
+[16]   n.∆Parms.backgroundColorPrint←n.printBgrCol.State
+[17]   n.∆Parms.twoSidedPrint←n.twoSidedPrint.State
+[18]   n.∆Parms.printFontSize←⊃(//)⎕VFI n.fontSizeForPrint.Text
+[19]   n.∆Parms.caption←n.caption.Text
+[20]   n.∆Parms.footer←n.footer.Text
+[21]   n.∆Parms.info←,n.info.Text
+[22]   n.∆Parms.infoIsHTML←n.infoIsHtml.State
+[23]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateButtons">
+<p class="caption">4. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateButtons</p>
+<pre><code>     ∇ n←CreateButtons n;∆
+[1]    ∆←⊂'Button'
+[2]    ∆,←⊂'Style' 'Push'
+[3]    ∆,←⊂'Caption' '&amp;Done'
+[4]    ∆,←⊂'Size'(⍬ 120)
+[5]    ∆,←⊂'TipObj'n.∆Tip
+[6]    ∆,←⊂'Tip'('Create the HTML page, close the GUI and' 'print the HTML filename to the session')
+[7]    ∆,←⊂'Attach'(4⍴'Bottom' 'Left')
+[8]    n.OK←⍎'ok'n.∆Form.⎕WC ∆
+[9]    n.∆Buttons←n.OK
+[10]   n.OK.Posn[1]←n.∆Form.Size[1]-n.OK.Size[1]+(⌊0.5×n.∆vgap)+n.StatusMsg.##.Size[1]
+[11]   n.OK.Posn[2]←n.∆hgap
+[12]  
+[13]   ∆←⊂'Button'
+[14]   ∆,←⊂'Style' 'Push'
+[15]   ∆,←⊂'Caption' 'Cancel'
+[16]   ∆,←⊂'Size'(⍬ 120)
+[17]   ∆,←⊂'Attach'(4⍴'Bottom' 'Left')
+[18]   ∆,←⊂'TipObj'n.∆Tip
+[19]   ∆,←⊂'Tip'('Close the GUI without taking any action')
+[20]   n.Cancel←⍎'cancel'n.∆Form.⎕WC ∆
+[21]   n.∆Buttons,←n.Cancel
+[22]   n.Cancel.Posn[1]←n.OK.Posn[1]
+[23]   n.Cancel.Posn[2]←n.∆hgap+2⊃AddPosnAndSize n.OK
+[24]  
+[25]   ∆←⊂'Button'
+[26]   ∆,←⊂'Style' 'Push'
+[27]   ∆,←⊂'Caption' '&amp;Preview'
+[28]   ∆,←⊂'Size'(⍬ 120)
+[29]   ∆,←⊂'Attach'(4⍴'Bottom' 'Left')
+[30]   ∆,←⊂'TipObj'n.∆Tip
+[31]   ∆,←⊂'Tip'('Put what''s defined on display' 'with the default browser.')
+[32]   n.Preview←⍎'preview'n.∆Form.⎕WC ∆
+[33]   n.∆Buttons,←n.Preview
+[34]   n.Preview.Posn[1]←n.OK.Posn[1]
+[35]   n.Preview.Posn[2]←n.∆hgap+2⊃AddPosnAndSize n.Cancel
+[36]   n.Preview.onSelect←'OnPreview'
+[37]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateCaption">
+<p class="caption">5. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateCaption</p>
+<pre><code>     ∇ n←n CreateCaption parent;∆;ref
+[1]    ∆←⊂'Label'
+[2]    ∆,←⊂'Posn'(n.(∆vgap ∆hgap))
+[3]    ∆,←⊂'Caption' '&amp;Caption:'
+[4]    ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Left')
+[5]    ref←⍎'caption_label'parent.⎕WC ∆
+[6]   
+[7]    ∆←⊂'Edit'
+[8]    ∆,←⊂'Posn'(((⌈n.∆vgap÷2)+⊃↑+⌿⊃ref.(Posn Size)),n.∆hgap)
+[9]    ∆,←⊂'Font'n.∆APL_Font
+[10]   ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Right')
+[11]   ∆,←⊂'Size'(⍬(parent.Size[2]-2×n.∆hgap))
+[12]   ∆,←⊂'Text'({¯1≡⍵:'' ⋄ ⍵}n.∆Parms.caption)
+[13]   ∆,←⊂'TipObj'n.∆Tip
+[14]   ∆,←⊂'Tip'('Specify the overall caption.' 'If you leave this empty it will default to' 'the names of all namespaces to be scanned.')
+[15]   n.caption←⍎'caption'parent.⎕WC ∆
+[16]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateCssFilename">
+<p class="caption">6. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateCssFilename</p>
+<pre><code>     ∇ n←n CreateCssFilename(parent above);∆;ref
+[1]    ∆←⊂'Label'
+[2]    ∆,←⊂'Posn'((n.∆vgap+⊃+⌿↑above.(Posn Size)),n.∆hgap)
+[3]    ∆,←⊂'Caption' '&amp;CSS filename:'
+[4]    ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Left')
+[5]    ref←⍎'cssfile_label'parent.⎕WC ∆
+[6]   
+[7]    ∆←⊂'Edit'
+[8]    ∆,←⊂'Posn'(((⌈n.∆vgap÷2)+⊃↑+⌿⊃ref.(Posn Size)),n.∆hgap)
+[9]    ∆,←⊂'Font'n.∆APL_Font
+[10]   ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Right')
+[11]   ∆,←⊂'Size'(⍬(parent.Size[2]-2×n.∆hgap))
+[12]   ∆,←⊂'FontObj'n.∆APL_Font
+[13]   ∆,←⊂'TipObj'n.∆Tip
+[14]   ∆,←⊂'Tip'('The name of the CSS file to be used.' 'Change this only if you have created your own CSS file.')
+[15]   ∆,←⊂'Text'n.∆Parms.cssfilename
+[16]   n.cssFilename←⍎'cssfile'parent.⎕WC ∆
+[17]  
+[18]   ∆←⊂'Button'
+[19]   ∆,←⊂'Style' 'Push'
+[20]   ∆,←⊂'Caption' '...'
+[21]   ∆,←⊂'Posn'((n.cssFilename.Posn[1])⍬)
+[22]   ∆,←⊂'Size'((n.cssFilename.Size[1])⍬)
+[23]   ∆,←⊂'FontObj'n.∆APL_Font
+[24]   ∆,←⊂'TipObj'n.∆Tip
+[25]   ∆,←⊂'Tip'('Browse for the CSS file to be used')
+[26]   ∆,←⊂'Attach'('Top' 'Right' 'Top' 'Right')
+[27]   n.selectDirCssFile←⍎'selectDirFilename'parent.⎕WC ∆
+[28]   n.selectDirCssFile.onSelect←'OnBrowseForCssFile'
+[29]   n.selectDirCssFile.Posn[2]←n.TabCtrl.Size[2]-n.∆hgap+n.selectDirCssFile.Size[2]
+[30]   n.cssFilename.Size[2]-←2+n.selectDirCssFile.Size[2]
+[31]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateFileBox">
+<p class="caption">7. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateFileBox</p>
+<pre><code>     ∇ n←CreateFileBox parms;n;∆;path
+[1]   ⍝ Builds up a `FileBox` control which will remain invisible until it is `⎕DQ`ed.\\
+[2]   ⍝ Returns an `n` namepsace.
+[3]    n←⎕NS''
+[4]    ∆←''
+[5]    ∆,←⊂'Caption'parms.caption
+[6]    ∆,←⊂'Style' 'Single'
+[7]    ∆,←⊂'Filters'parms.filters
+[8]    ∆,←⊂'FileMode'parms.fileMode
+[9]    ∆,←⊂'Index'(parms.index-1)
+[10]   path←parms.path
+[11]   ((path='/')/path)←'\'
+[12]   ∆,←⊂'Directory'path
+[13]   :If 0∊⍴parms.file
+[14]       ∆,←⊂'File'(↑,/1↓⎕NPARTS path)
+[15]   :Else
+[16]       ∆,←⊂'File'(↑,/1↓⎕NPARTS parms.file)
+[17]   :EndIf
+[18]   n.∆Form←parms.parent.⎕NEW'FileBox'∆
+[19]   n.∆Form.⎕DF'[FileBox]'
+[20]   n.∆Form.onFileBoxOK←'OnSelectOkButtonInFileBox'
+[21]   n.∆Form.onFileBoxCancel←'OnSelectCancelButtonInFileBox'
+[22]   n.∆parms←parms
+[23]   n.∆result←''
+[24]   n.∆Form.n←n
+[25]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateFileBoxParms">
+<p class="caption">8. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateFileBoxParms</p>
+<pre><code>     ∇ r←filename CreateFileBoxParms n
+[1]   ⍝ Returns a parameter namespace with default settings:
+[2]    r←⎕NS''
+[3]    r.caption←''
+[4]    r.file←filename
+[5]    r.fileMode←'Read'
+[6]    r.filters←⊂'*.*' 'All files (*.*)'
+[7]    r.index←1
+[8]    r.parent←n.∆Form
+[9]    r.path←{0∊⍴⍵:##.F.PWD ⋄ ⍵}path
+[10]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateFilename">
+<p class="caption">9. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateFilename</p>
+<pre><code>     ∇ n←n CreateFilename parent;∆;ref
+[1]    ∆←⊂'Label'
+[2]    ∆,←⊂'Posn'(n.(∆vgap ∆hgap))
+[3]    ∆,←⊂'Caption' '&amp;HTML filename:'
+[4]    ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Left')
+[5]    ref←⍎'filename_label'parent.⎕WC ∆
+[6]   
+[7]    ∆←⊂'Edit'
+[8]    ∆,←⊂'Posn'((⊃↑+⌿↑ref.(Posn Size)),n.∆hgap)
+[9]    ∆,←⊂'Font'n.∆APL_Font
+[10]   ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Right')
+[11]   ∆,←⊂'Size'(⍬(parent.Size[2]-2×n.∆hgap))
+[12]   ∆,←⊂'Text'('html'##.F.GetTempFilename2'')
+[13]   ∆,←⊂'FontObj'n.∆APL_Font
+[14]   ∆,←⊂'TipObj'n.∆Tip
+[15]   ∆,←⊂'Tip'('The name of the file the HTML will be saved in.' 'There is not default.')
+[16]   n.filename←⍎'footer'parent.⎕WC ∆
+[17]  
+[18]   ∆←⊂'Button'
+[19]   ∆,←⊂'Style' 'Push'
+[20]   ∆,←⊂'Caption' '...'
+[21]   ∆,←⊂'Posn'((n.filename.Posn[1])⍬)
+[22]   ∆,←⊂'Size'((n.filename.Size[1])⍬)
+[23]   ∆,←⊂'FontObj'n.∆APL_Font
+[24]   ∆,←⊂'TipObj'n.∆Tip
+[25]   ∆,←⊂'Tip'('Browse for the file the HTML is going to be written to.')
+[26]   ∆,←⊂'Attach'('Top' 'Right' 'Top' 'Right')
+[27]   n.selectDirFilename←⍎'selectDirFilename'parent.⎕WC ∆
+[28]   n.selectDirFilename.onSelect←'OnBrowseForFilename'
+[29]   n.selectDirFilename.Posn[2]←n.TabCtrl.Size[2]-n.∆hgap+n.selectDirFilename.Size[2]
+[30]   n.filename.Size[2]-←2+n.selectDirFilename.Size[2]
+[31]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateFonts">
+<p class="caption">10. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateFonts</p>
+<pre><code>     ∇ n←CreateFonts n
+[1]    n.∆APL_Font←'APLFont'n.∆Form.⎕WC'Font'('PName' 'APL385 Unicode')
+[2]    n.∆STD_Font←'APLFont'n.∆Form.⎕WC'Font'('PName' 'Verdana')('Size' 15)
+[3]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateFooter">
+<p class="caption">11. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateFooter</p>
+<pre><code>     ∇ n←n CreateFooter(parent above);∆;ref
+[1]    ∆←⊂'Label'
+[2]    ∆,←⊂'Posn'((n.∆vgap+⊃+⌿↑above.(Posn Size)),n.∆hgap)
+[3]    ∆,←⊂'Caption' '&amp;Footer:'
+[4]    ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Left')
+[5]    ref←⍎'footer_label'parent.⎕WC ∆
+[6]   
+[7]    ∆←⊂'Edit'
+[8]    ∆,←⊂'Posn'((⊃+⌿↑ref.(Posn Size)),n.∆hgap)
+[9]    ∆,←⊂'Font'n.∆APL_Font
+[10]   ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Right')
+[11]   ∆,←⊂'Size'(⍬(parent.Size[2]-2×n.∆hgap))
+[12]   ∆,←⊂'Text'n.∆Parms.footer
+[13]   ∆,←⊂'TipObj'n.∆Tip
+[14]   ∆,←⊂'Tip'('The footer may be a single line or several lines with ⋄ used as separators.' 'There is no default.')
+[15]   n.footer←⍎'footer'parent.⎕WC ∆
+[16]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateForm">
+<p class="caption">12. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateForm</p>
+<pre><code>     ∇ n←CreateForm n;∆;ref;∆Form
+[1]    ∆←⊂'Form'
+[2]    ∆,←⊂'Caption'({(1⊃⍵),' version ',(2⊃⍵),' from ',(3⊃⍵)}##.Version)
+[3]    ∆,←⊂'Size'(⍬ ⍬)
+[4]    ∆,←⊂'Coord' 'Pixel'
+[5]    ∆,←⊂'Posn'(300 280)
+[6]    ∆,←⊂'Size'(525 900)
+[7]    n.∆Form←⍎'gui'⎕WC ∆
+[8]   
+[9]    ref←⍎'SB'n.∆Form.⎕WC⊂'Statusbar'
+[10]   n.StatusMsg←⍎'StatusMsg'ref.⎕WC'StatusField'('Coord' 'Prop')('Size'⍬ 99)
+[11]   n←CreateFonts n
+[12]   n.∆Form.FontObj←n.∆STD_Font
+[13]   n.∆Tip←'MyTip'n.∆Form.⎕WC⊂'TipField'
+[14]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateGUI">
+<p class="caption">13. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateGUI</p>
+<pre><code>     ∇ n←CreateGUI n;∆;size
+[1]    n←CreateForm n
+[2]    n←CreateTabs n
+[3]    n(CreateScanTabChildren)←parms.namespaces
+[4]    n←CreateParmsTabChildren n
+[5]    n←CreateButtons n
+[6]    n←CreateTextTabChildren n
+[7]    n.OK.onSelect←'OnOK'
+[8]    n.Cancel.onSelect←1
+[9]    n.∆Form.n←n
+[10]   2 ⎕NQ n.Scan'Select'
+[11]   ⎕NQ n.namespaces'GotFocus'
+[12]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateIgnoreGuiInstances">
+<p class="caption">14. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateIgnoreGuiInstances</p>
+<pre><code>     ∇ n←n CreateIgnoreGuiInstances(parent above);∆
+[1]    ∆←⊂'Button'
+[2]    ∆,←⊂'Caption' 'Ignore &amp;GUI instances'
+[3]    ∆,←⊂'Style' 'Check'
+[4]    ∆,←⊂'State'(~n.∆Parms.processGuiInstances)
+[5]    ∆,←⊂'Attach'('Top' 'Left' 'Top' 'left')
+[6]    ∆,←⊂'TipObj'n.∆Tip
+[7]    ∆,←⊂'Tip'('GUI instances with' 'KeepOnClose←0' 'are ignored in any case')
+[8]    ∆,←⊂'Posn'((⊃+⌿↑above.(Posn Size)),n.∆hgap+2)
+[9]    n.processGuiInstances←⍎'processGuiInstances'parent.⎕WC ∆
+[10]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateInfo">
+<p class="caption">15. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateInfo</p>
+<pre><code>     ∇ n←n CreateInfo(parent above);∆;ref;tip
+[1]    ∆←⊂'Label'
+[2]    ∆,←⊂'Posn'((n.∆vgap+⊃+⌿↑above.(Posn Size)),n.∆hgap)
+[3]    ∆,←⊂'Caption' '&amp;Info:'
+[4]    ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Left')
+[5]    ref←⍎'info_label'parent.⎕WC ∆
+[6]   
+[7]    ∆←⊂'Edit'
+[8]    ∆,←⊂'Posn'((⊃+⌿↑ref.(Posn Size)),n.∆hgap)
+[9]    ∆,←⊂'Font'n.∆APL_Font
+[10]   ∆,←⊂'Attach'('Top' 'Left' 'Bottom' 'Right')
+[11]   ∆,←⊂'Size'(⍬(parent.Size[2]-2×n.∆hgap))
+[12]   ∆,←⊂'Text'n.∆Parms.info
+[13]   ∆,←⊂'Style' 'Multi'
+[14]   ∆,←⊂'TipObj'n.∆Tip
+[15]   tip←⊂'"Info" goes right after the "Caption".'
+[16]   tip,←⊂'There is no default, so if you leave this'
+[17]   tip,←⊂'empty then there will be no "Info".'
+[18]   ∆,←⊂'Tip'tip
+[19]   n.info←⍎'info'parent.⎕WC ∆
+[20]   n.info.onKeyPress←'OnKeyPressInInfo'
+[21]  
+[22]   ∆←⊂'Button'
+[23]   ∆,←⊂'Style' 'Check'
+[24]   ∆,←⊂'Caption' '"Info" is &amp;HTML'
+[25]   ∆,←⊂'TipObj'n.∆Tip
+[26]   tip←⊂'Use this in case you want "Info" to be left alone (normally "&lt;" etc. would be translated).'
+[27]   tip,←⊂'This allows you to transform Markdown to HTML and then insert that HTML as "Info".'
+[28]   ∆,←⊂'Tip'tip
+[29]   ∆,←⊂'Posn'(((⌈n.∆vgap÷2)+⊃+⌿↑n.info.(Posn Size)),n.∆hgap)
+[30]   ∆,←⊂'State'n.∆Parms.infoIsHTML
+[31]   ∆,←⊂'Attach'(4⍴'Bottom' 'Left')
+[32]   n.infoIsHtml←⍎'infoIsHtml'parent.⎕WC ∆
+[33]   n.infoIsHtml.Posn[2]+←2
+[34]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateLang">
+<p class="caption">16. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateLang</p>
+<pre><code>     ∇ n←n CreateLang(parent above);∆;list
+[1]    ∆←⊂'Label'
+[2]    ∆,←⊂'Caption' '&amp;Language:'
+[3]    ∆,←⊂'Posn'((n.∆vgap+⊃+⌿↑above.(Posn Size)),n.∆hgap)
+[4]    ∆,←⊂'Attach'(4⍴'Top' 'Left')
+[5]    ref←⍎'lang_label'parent.⎕WC ∆
+[6]   
+[7]    ∆←⊂'Combo'
+[8]    ∆,←⊂'Style' 'DropEdit'
+[9]    ∆,←⊂'Posn'((⊃+⌿↑ref.(Posn Size)),n.∆hgap)
+[10]   ∆,←⊂'index' 1
+[11]   ∆,←⊂'Size'(21 50)
+[12]   list←'en' 'de' 'da' 'fr' 'it' 'es'
+[13]   ∆,←⊂'Items'list
+[14]   ∆,←⊂'TipObj'n.∆Tip
+[15]   ∆,←⊂'Tip'('This two-character code is used for setting the "lang" attribute of the &lt;html&gt; tag.')
+[16]   ∆,←⊂'Attach'(4⍴'Top' 'Left')
+[17]   ∆,←⊂'SelItems'({b←(⍴⍵)⍴0 ⋄ b[1]←1 ⋄ b}list)
+[18]   n.lang←⍎'lang'parent.⎕WC ∆
+[19]   n.lang.onKeyPress←'OnKeyPressInLang'
+[20]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateNamespaces">
+<p class="caption">17. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateNamespaces</p>
+<pre><code>     ∇ n←n CreateNamespaces(parent namespaces);∆;ref
+[1]    ∆←⊂'Label'
+[2]    ∆,←⊂'Posn'n.(∆vgap ∆hgap)
+[3]    ∆,←⊂'Caption' '&amp;Namespace(s) to be scanned:'
+[4]    ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Left')
+[5]    ref←⍎'ns_label'parent.⎕WC ∆
+[6]   
+[7]    ∆←⊂'Edit'
+[8]    ∆,←⊂'Posn'(((⌈n.∆vgap÷2)+⊃↑+⌿⊃ref.(Posn Size)),n.∆hgap)
+[9]    ∆,←⊂'Font'n.∆APL_Font
+[10]   ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Right')
+[11]   ∆,←⊂'Text'(⊃{⍺,',',⍵}/{0∊⍴,⍵:'#' ⋄ ⍵}##.A.Nest namespaces)
+[12]   ∆,←⊂'Size'(⍬(n.ScanSubForm.Size[2]-2×n.∆hgap))
+[13]   ∆,←⊂'FontObj'n.∆APL_Font
+[14]   ∆,←⊂'TipObj'n.∆Tip
+[15]   ∆,←⊂'Tip'('Specify all the namespaces to be scanned.' 'Use spaces or commata as separators.')
+[16]   n.namespaces←⍎'namespaces'parent.⎕WC ∆
+[17]  
+[18]   ∆←⊂'Button'
+[19]   ∆,←⊂'Style' 'Check'
+[20]   ∆,←⊂'Caption' 'Process &amp;recursively'
+[21]   ∆,←⊂'Posn'((n.∆hgap+⊃+⌿↑n.namespaces.(Posn Size)),n.∆vgap)
+[22]   ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Right')
+[23]   ∆,←⊂'State'n.∆Parms.recursive
+[24]   ∆,←⊂'TipObj'n.∆Tip
+[25]  ⍝∆,←⊂'Tip'('')
+[26]   n.recursive←⍎'recursive'parent.⎕WC ∆
+[27]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateNativeFile">
+<p class="caption">18. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateNativeFile</p>
+<pre><code>     ∇ success←CreateNativeFile filename;tno
+[1]   ⍝ Tries to create native file with `filename` and returns 1 in case of success and 0 otherwise.
+[2]    :Trap 22
+[3]        tno←filename ⎕NCREATE 0
+[4]        ⎕NUNTIE tno
+[5]        success←1
+[6]    :Case 22
+[7]        success←0
+[8]    :EndTrap
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateOtherParms">
+<p class="caption">19. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateOtherParms</p>
+<pre><code>     ∇ n←n CreateOtherParms(parent above);∆;ref
+[1]    ∆←⊂'Button'
+[2]    ∆,←⊂'Style' 'Check'
+[3]    ∆,←⊂'Caption' '&amp;Show parameters at the end of the document'
+[4]    ∆,←⊂'Posn'((n.∆vgap+⊃+⌿↑above.(Posn Size)),n.∆vgap)
+[5]    ∆,←⊂'State'n.∆Parms.showParms
+[6]    ∆,←⊂'TipObj'n.∆Tip
+[7]    ∆,←⊂'Tip'('Use this for documenting the parameters.' 'When printed the parameter go onto a separate page.')
+[8]    ∆,←⊂'Attach'(4⍴'Top' 'Left')
+[9]    n.showParms←⍎'showParms'parent.⎕WC ∆
+[10]  
+[11]   ∆←⊂'Button'
+[12]   ∆,←⊂'Style' 'Check'
+[13]   ∆,←⊂'Caption' '&amp;View resulting HTML page in default browser'
+[14]   ∆,←⊂'Posn'((⊃+⌿↑n.showParms.(Posn Size)),n.∆hgap)
+[15]   ∆,←⊂'State'n.∆Parms.viewInBrowser
+[16]   ∆,←⊂'TipObj'n.∆Tip
+[17]  ⍝ ∆,←⊂'Tip'('')
+[18]   ∆,←⊂'Attach'(4⍴'Top' 'Left')
+[19]   n.viewInBrowser←⍎'viewInBrowser'parent.⎕WC ∆
+[20]  
+[21]   ∆←⊂'Group'
+[22]   ∆,←⊂'Caption' ' &amp;Process '
+[23]   ∆,←⊂'Posn'((n.∆vgap+⊃+⌿↑n.viewInBrowser.(Posn Size)),n.∆hgap)
+[24]   ∆,←⊂'Size'(135 300)
+[25]   ∆,←⊂'Attach'(4⍴'Top' 'Left')
+[26]   ∆,←⊂'TipObj'n.∆Tip
+[27]  ⍝ ∆,←⊂'Tip'('')
+[28]   ref←⍎'process_group'parent.⎕WC ∆
+[29]  
+[30]   ∆←⊂'Button'
+[31]   ∆,←⊂'Style' 'Check'
+[32]   ∆,←⊂'Caption' '&amp;Functions'
+[33]   ∆,←⊂'Posn'n.(2 1×∆vgap ∆hgap)
+[34]   ∆,←⊂'State'n.∆Parms.processFunctions
+[35]   ∆,←⊂'TipObj'n.∆Tip
+[36]  ⍝ ∆,←⊂'Tip'('')
+[37]   ∆,←⊂'Attach'(4⍴'Top' 'Left')
+[38]   n.processFns←⍎'processFns'ref.⎕WC ∆
+[39]  
+[40]   ∆←⊂'Button'
+[41]   ∆,←⊂'Style' 'Check'
+[42]   ∆,←⊂'Caption' '&amp;Operators'
+[43]   ∆,←⊂'Posn'((⊃+⌿↑n.processFns.(Posn Size)),n.∆hgap)
+[44]   ∆,←⊂'State'n.∆Parms.processOperators
+[45]   ∆,←⊂'TipObj'n.∆Tip
+[46]  ⍝ ∆,←⊂'Tip'('')
+[47]   ∆,←⊂'Attach'(4⍴'Top' 'Left')
+[48]   n.processOpr←⍎'processOpr'ref.⎕WC ∆
+[49]  
+[50]   ∆←⊂'Button'
+[51]   ∆,←⊂'Style' 'Check'
+[52]   ∆,←⊂'Caption' '&amp;Scripts (classes, namespaces, interfaces)'
+[53]   ∆,←⊂'Posn'((⊃+⌿↑n.processOpr.(Posn Size)),n.∆hgap)
+[54]   ∆,←⊂'State'n.∆Parms.processScripts
+[55]   ∆,←⊂'TipObj'n.∆Tip
+[56]  ⍝ ∆,←⊂'Tip'('')
+[57]   ∆,←⊂'Attach'(4⍴'Top' 'Left')
+[58]   n.processScripts←⍎'processScripts'ref.⎕WC ∆
+[59]  
+[60]   ∆←⊂'Button'
+[61]   ∆,←⊂'Style' 'Check'
+[62]   ∆,←⊂'Caption' '&amp;Variables'
+[63]   ∆,←⊂'Posn'((⊃+⌿↑n.processScripts.(Posn Size)),n.∆hgap)
+[64]   ∆,←⊂'State'n.∆Parms.processVars
+[65]   ∆,←⊂'TipObj'n.∆Tip
+[66]  ⍝ ∆,←⊂'Tip'('')
+[67]   ∆,←⊂'Attach'(4⍴'Top' 'Left')
+[68]   n.processVars←⍎'processVars'ref.⎕WC ∆
+[69]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateParmsTabChildren">
+<p class="caption">20. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateParmsTabChildren</p>
+<pre><code>     ∇ n←CreateParmsTabChildren n;∆;ref
+[1]    n(CreateFilename)←n.ParmsSubForm
+[2]    n(CreateCssFilename)←n.ParmsSubForm n.filename
+[3]    n(CreateLang)←n.ParmsSubForm n.cssFilename
+[4]    n(CreateOtherParms)←n.ParmsSubForm n.lang
+[5]    n(CreatePrintParms)←n.processVars.## n.ParmsSubForm
+[6]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreatePrintParms">
+<p class="caption">21. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreatePrintParms</p>
+<pre><code>     ∇ n←n CreatePrintParms(above parent);∆;ref;ref2;list
+[1]    ∆←⊂'Group'
+[2]    ∆,←⊂'Caption' ' P&amp;rint parameters'
+[3]    ∆,←⊂'Posn'(above.Posn[1],n.∆hgap+2⊃+⌿↑above.(Posn Size))
+[4]    ∆,←⊂'Size'(135 275)
+[5]    ∆,←⊂'Attach'(4⍴'Top' 'Left')
+[6]    ref←⍎'printParms_group'parent.⎕WC ∆
+[7]   
+[8]    ∆←⊂'Button'
+[9]    ∆,←⊂'Style' 'Check'
+[10]   ∆,←⊂'Caption' '&amp;Use background colour for print'
+[11]   ∆,←⊂'TipObj'n.∆Tip
+[12]   ∆,←⊂'State'n.∆Parms.backgroundColorPrint
+[13]   ∆,←⊂'Tip'('By default when printing background colours are ignored.' 'For some browsers that default behaviour can be overwritten.')
+[14]   ∆,←⊂'Posn'(n.(2 1×∆vgap ∆hgap))
+[15]   ∆,←⊂'Attach'(4⍴'Top' 'Left')
+[16]   n.printBgrCol←⍎'printBgrCol'ref.⎕WC ∆
+[17]  
+[18]   ∆←⊂'Button'
+[19]   ∆,←⊂'Style' 'Check'
+[20]   ∆,←⊂'Caption' '&amp;Two-sided print'
+[21]   ∆,←⊂'State'n.∆Parms.twoSidedPrint
+[22]   ∆,←⊂'TipObj'n.∆Tip
+[23]   ∆,←⊂'Tip'('The left margin is different on odd and even pages then.')
+[24]   ∆,←⊂'Posn'((⊃+⌿↑n.printBgrCol.(Posn Size)),n.∆hgap)
+[25]   ∆,←⊂'Attach'(4⍴'Top' 'Left')
+[26]   n.twoSidedPrint←⍎'twoSidedPrint'ref.⎕WC ∆
+[27]  
+[28]   ∆←⊂'Label'
+[29]   ∆,←⊂'Caption' '&amp;Font size to be used for print:'
+[30]   ∆,←⊂'Posn'((n.∆vgap+⊃+⌿↑n.twoSidedPrint.(Posn Size)),n.∆hgap)
+[31]   ∆,←⊂'Attach'(4⍴'Top' 'Left')
+[32]   ref2←⍎'fontsize_label'ref.⎕WC ∆
+[33]  
+[34]   ∆←⊂'Combo'
+[35]   ∆,←⊂'Style' 'Drop'
+[36]   ∆,←⊂'Posn'(ref2.Posn[1],ref2.Size[2]+n.∆hgap)
+[37]   ∆,←⊂'index' 1
+[38]   ∆,←⊂'Size'(21 40)
+[39]   list←'4' '5' '6' '7' '8' '9' '10' '11' '12' '16' '17' '18' '20' '22' '23' '24' '25' '27' '28' '29' '31'
+[40]   ∆,←⊂'Items'list
+[41]   ∆,←⊂'TipObj'n.∆Tip
+[42]  ⍝∆,←⊂'Tip' ('')
+[43]   ∆,←⊂'Attach'(4⍴'Top' 'Left')
+[44]   ∆,←⊂'SelItems'(list{b←(⍴⍺)⍴0 ⋄ b[(⍎¨⍺)⍳⍵]←1 ⋄ b}n.∆Parms.printFontSize)
+[45]   n.fontSizeForPrint←⍎'fontSizeForPrint'ref.⎕WC ∆
+[46]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateScanTabChildren">
+<p class="caption">22. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateScanTabChildren</p>
+<pre><code>     ∇ n←n CreateScanTabChildren namespaces
+[1]    n(CreateNamespaces)←n.ScanSubForm namespaces
+[2]    n(CreateToBeIgnored)←n.ScanSubForm n.recursive
+[3]    n(CreateIgnoreGuiInstances)←n.ScanSubForm n.ignoreEmptyNamespaces
+[4]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateSubForms">
+<p class="caption">23. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateSubForms</p>
+<pre><code>     ∇ n←CreateSubForms n;∆
+[1]    ∆←⊂'SubForm'
+[2]    ∆,←⊂'TabObj'n.Scan
+[3]    ∆,←⊂'Coord' 'Prop'
+[4]    ∆,←⊂'Posn'(0 0)
+[5]    ∆,←⊂'Size'(100 100)
+[6]    ∆,←⊂'EdgeStyle' 'Dialog'
+[7]    ∆,←⊂'Attach'('Top' 'Left' 'Bottom' 'Right')
+[8]    n.ScanSubForm←⍎'subformScan'n.TabCtrl.⎕WC ∆
+[9]    n.ScanSubForm.Coord←'Pixel'
+[10]  
+[11]   ∆←⊂'SubForm'
+[12]   ∆,←⊂'TabObj'n.Parms
+[13]   ∆,←⊂'Coord' 'Prop'
+[14]   ∆,←⊂'Posn'(0 0)
+[15]   ∆,←⊂'Size'(100 100)
+[16]   ∆,←⊂'EdgeStyle' 'Dialog'
+[17]   ∆,←⊂'Attach'('Top' 'Left' 'Bottom' 'Right')
+[18]   n.ParmsSubForm←⍎'subformParms'n.TabCtrl.⎕WC ∆
+[19]   n.ParmsSubForm.Coord←'Pixel'
+[20]  
+[21]   ∆←⊂'SubForm'
+[22]   ∆,←⊂'TabObj'n.Text
+[23]   ∆,←⊂'Coord' 'Prop'
+[24]   ∆,←⊂'Posn'(0 0)
+[25]   ∆,←⊂'Size'(100 100)
+[26]   ∆,←⊂'EdgeStyle' 'Dialog'
+[27]   ∆,←⊂'Attach'('Top' 'Left' 'Bottom' 'Right')
+[28]   n.TextSubForm←⍎'subformText'n.TabCtrl.⎕WC ∆
+[29]   n.TextSubForm.Coord←'Pixel'
+[30]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateTabControlAndChildren">
+<p class="caption">24. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateTabControlAndChildren</p>
+<pre><code>     ∇ n←CreateTabControlAndChildren n;∆
+[1]    ∆←⊂'TabControl'
+[2]    ∆,←⊂'Size'(n.∆Form.Size-70 20)
+[3]    ∆,←⊂'Posn'(0 10)
+[4]    ∆,←⊂'Attach'('Top' 'Left' 'Bottom' 'Right')
+[5]    n.TabCtrl←⍎'tabctrl'n.∆Form.⎕WC ∆
+[6]   
+[7]    ∆←⊂'TabButton'
+[8]    ∆,←⊂'Caption' 'Scan'
+[9]    n.Scan←⍎'tabbtnScan'n.TabCtrl.⎕WC ∆
+[10]  
+[11]   ∆←⊂'TabButton'
+[12]   ∆,←⊂'Caption' 'Parms'
+[13]   n.Parms←⍎'tabbtnParms'n.TabCtrl.⎕WC ∆
+[14]  
+[15]   ∆←⊂'TabButton'
+[16]   ∆,←⊂'Caption' 'Text'
+[17]   n.Text←⍎'tabbtnText'n.TabCtrl.⎕WC ∆
+[18]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateTabs">
+<p class="caption">25. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateTabs</p>
+<pre><code>     ∇ n←CreateTabs n;∆
+[1]    n←CreateTabControlAndChildren n
+[2]    n←CreateSubForms n
+[3]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateTextTabChildren">
+<p class="caption">26. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateTextTabChildren</p>
+<pre><code>     ∇ n←CreateTextTabChildren n;∆;ref;list
+[1]    n(CreateCaption)←n.TextSubForm
+[2]    n(CreateFooter)←n.TextSubForm n.caption
+[3]    n(CreateInfo)←n.TextSubForm n.footer
+[4]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.CreateToBeIgnored">
+<p class="caption">27. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.CreateToBeIgnored</p>
+<pre><code>     ∇ n←n CreateToBeIgnored(parent above);∆;ref
+[1]    ∆←⊂'Label'
+[2]    ∆,←⊂'Posn'((n.∆vgap+⊃+⌿↑above.(Posn Size)),n.∆hgap)
+[3]    ∆,←⊂'Caption' '&amp;To be ignored:'
+[4]    ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Left')
+[5]    ref←⍎'ignored_label'parent.⎕WC ∆
+[6]   
+[7]    ∆←⊂'Edit'
+[8]    ∆,←⊂'Posn'(((⌈n.∆vgap÷2)+⊃↑+⌿⊃ref.(Posn Size)),n.∆hgap)
+[9]    ∆,←⊂'Font'n.∆APL_Font
+[10]   ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Right')
+[11]   ∆,←⊂'Size'(⍬(parent.Size[2]-2×n.∆hgap))
+[12]   ∆,←⊂'FontObj'n.∆APL_Font
+[13]   ∆,←⊂'TipObj'n.∆Tip
+[14]   ∆,←⊂'Tip'('Specify everything inside the namespaces to be scanned that you want to be ignored.' 'Specify fully qualified names. Use spaces or commata as separators.')
+[15]   n.toBeIgnored←⍎'tobeignored'parent.⎕WC ∆
+[16]  
+[17]   ∆←⊂'Button'
+[18]   ∆,←⊂'Caption' '&amp;Ignore empty namespaces'
+[19]   ∆,←⊂'Style' 'Check'
+[20]   ∆,←⊂'State'n.∆Parms.ignoreEmpty
+[21]   ∆,←⊂'Attach'('Top' 'Left' 'Top' 'left')
+[22]   ∆,←⊂'Tip'('If this is not ticked empty namespaces will be listed')
+[23]   ∆,←⊂'Posn'(((⌈n.∆vgap÷2)+⊃+⌿↑n.toBeIgnored.(Posn Size)),n.∆hgap+2)
+[24]   n.ignoreEmptyNamespaces←⍎'ignoreEmpty'parent.⎕WC ∆
+[25]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.DQ">
+<p class="caption">28. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.DQ</p>
+<pre><code>     ∇ {r}←DQ ref
+[1]    r←⎕DQ ref
+[2]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.GetRefTo_n">
+<p class="caption">29. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.GetRefTo_n</p>
+<pre><code>     ∇ GetRefTo_n←{
+[1]        0&lt;⍵.⎕NC'n':⍵.n
+[2]        ∇ ⍵.##
+[3]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.Init">
+<p class="caption">30. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.Init</p>
+<pre><code>     ∇ n←Init dummy
+[1]    n←⎕NS''
+[2]    n.(∆vgap ∆hgap)←15
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.OnBrowseForCssFile">
+<p class="caption">31. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.OnBrowseForCssFile</p>
+<pre><code>     ∇ OnBrowseForCssFile msg;n;parms;fb;res;path;filename;extension
+[1]    n←GetRefTo_n⊃msg
+[2]    (path filename extension)←⎕NPARTS n.cssFilename.Text
+[3]    filename←filename,extension
+[4]    parms←filename CreateFileBoxParms n
+[5]    :If 0∊⍴path
+[6]        parms.path←##.F.PWD
+[7]    :Else
+[8]        parms.path←path
+[9]    :EndIf
+[10]   parms.caption←'Read CSS file'
+[11]   parms.filters←⊂'*.css' 'CSS file'
+[12]   fb←CreateFileBox parms
+[13]   res←DQ fb.∆Form
+[14]   :If ~0∊⍴fb.∆result
+[15]       n.cssFilename.Text←fb.∆result
+[16]   :EndIf
+[17]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.OnBrowseForFilename">
+<p class="caption">32. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.OnBrowseForFilename</p>
+<pre><code>     ∇ OnBrowseForFilename msg;parms;fb;n;res;path;filename;extension
+[1]    n←GetRefTo_n⊃msg
+[2]    (path filename extension)←⎕NPARTS n.filename.Text
+[3]    filename←filename,extension
+[4]    parms←filename CreateFileBoxParms n
+[5]    :If 0∊⍴path
+[6]        parms.path←##.F.PWD
+[7]    :Else
+[8]        parms.path←path
+[9]    :EndIf
+[10]   parms←filename CreateFileBoxParms n
+[11]   parms.caption←'Save HTML file'
+[12]   parms.fileMode←'Write'
+[13]   parms.filters←('*.HTML' 'HTML files')('*.HTM' 'HTML files')
+[14]   fb←CreateFileBox parms
+[15]   res←DQ fb.∆Form
+[16]   :If ~0∊⍴fb.∆result
+[17]       n.filename.Text←fb.∆result
+[18]   :EndIf
+[19]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.OnKeyPressInInfo">
+<p class="caption">33. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.OnKeyPressInInfo</p>
+<pre><code>     ∇ OnKeyPressInInfo←{
+[1]        ⍵[4 5 6]≢0 9 2:1
+[2]        ⍝ Suppress Ctrl+Tab: that should change the current tab
+[3]        n←GetRefTo_n⊃⍵
+[4]        0⊣⎕NQ n.TabCtrl.TabObj,1↓⍵
+[5]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.OnKeyPressInLang">
+<p class="caption">34. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.OnKeyPressInLang</p>
+<pre><code>     ∇ OnKeyPressInLang←{
+[1]        1≠⍴,3⊃⍵:1
+[2]        2≥1+⍴,⍵[1].Text
+[3]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.OnOK">
+<p class="caption">35. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.OnOK</p>
+<pre><code>     ∇ r←OnOK msg;n
+[1]    n←GetRefTo_n⊃msg
+[2]    (r msg)←CheckInput n
+[3]    :If r
+[4]        ShowInStatusbar'Processing...'
+[5]        n.∆Parms←n.∆Parms
+[6]        CopyGuiToParms n
+[7]        n.∆Parms ##.Run n.∆Parms.namespaces
+[8]        ⎕NQ n.∆Form'Close'
+[9]    :EndIf
+[10]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.OnPreview">
+<p class="caption">36. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.OnPreview</p>
+<pre><code>     ∇ OnPreview←{
+[1]        n←GetRefTo_n⊃⍵
+[2]        (r msg)←CheckInput n
+[3]        0=r:0
+[4]        n.∆Parms←n.∆Parms
+[5]        _←CopyGuiToParms n
+[6]        0∊⍴n.∆Parms.filename:0
+[7]        _←n.∆Parms ##.Run n.∆Parms.namespaces
+[8]        _←##.A.GoToWebPage⍣(⊃~n.∆Parms.viewInBrowser)⊣n.∆Parms.filename
+[9]        0
+[10]   }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.OnSelectCancelButtonInFileBox">
+<p class="caption">37. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.OnSelectCancelButtonInFileBox</p>
+<pre><code>     ∇ OnSelectCancelButtonInFileBox←{
+[1]        n←GetRefTo_n⊃⍵
+[2]        n.∆result←''
+[3]        1
+[4]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.OnSelectOkButtonInFileBox">
+<p class="caption">38. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.OnSelectOkButtonInFileBox</p>
+<pre><code>     ∇ OnSelectOkButtonInFileBox←{
+[1]        n←GetRefTo_n⊃⍵
+[2]        n.∆result←n.∆Form.Directory,n.∆Form.File
+[3]        1
+[4]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.PolishNamespaceList">
+<p class="caption">39. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.PolishNamespaceList</p>
+<pre><code>     ∇ PolishNamespaceList←{
+[1]    ⍝ ⍵ is typically n.namespaces.Text
+[2]        list←⍵
+[3]        ((list=',')/list)←' '
+[4]        list←∪' '##.A.Split ##.A.dmb list
+[5]        '⎕se'⎕R'⎕SE'⊣list
+[6]    }
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.Run">
+<p class="caption">40. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.Run</p>
+<pre><code>     ∇ {r}←{parms}Run(namespaces homePath);∆;n
+[1]   ⍝ `namespaces` can be one of:
+[2]   ⍝ * Single ref
+[3]   ⍝ * Vector of refs
+[4]   ⍝ * Simple text vector
+[5]   ⍝ * Vector of text vectors
+[6]   ⍝ In case `homePath` is not empty it is assumed that `Run` is executed by the user command framework.
+[7]    r←⍬
+[8]    ##.Init ⍬
+[9]    :If 0=⎕NC'parms'
+[10]       parms←##.CreateParms homePath
+[11]   :EndIf
+[12]   parms.namespaces←namespaces
+[13]   n←Init ⍬
+[14]   n.∆Parms←parms
+[15]   n←CreateGUI n
+[16]   DQ n.∆Form
+[17]   :Trap 0 ⋄ ⎕NQ n.∆Form'Close' ⋄ :EndTrap
+[18]  ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.SetFocusTo">
+<p class="caption">41. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.SetFocusTo</p>
+<pre><code>     ∇ r←SetFocusTo(tab control)
+[1]    r←0
+[2]    ⎕NQ tab'Select'
+[3]    ⎕NQ control'GotFocus'
+[4]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<div class="code_block" id="_CodeBrowser.CodeBrowser.GUI.ShowInStatusbar">
+<p class="caption">42. _CodeBrowser.<a href="#_CodeBrowser.CodeBrowser">CodeBrowser</a>.<a href="#_CodeBrowser.CodeBrowser.GUI">GUI</a>.ShowInStatusbar</p>
+<pre><code>     ∇ {r}←ShowInStatusbar msg
+[1]    n.StatusMsg.Text←msg
+[2]   ⍝Done
+     ∇
+</code></pre>
+</div>
+<footer>
+<hr>
+<p>Created 2018-04-19</p>
+</footer>
+</body>
+</html>
