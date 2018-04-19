@@ -9,6 +9,8 @@ The HTML carries plenty of links. That makes it easy to jump around when reviewi
 
 The CSS is optimized for printing the document in order to make it look nice.
 
+[**Demo:** CodeBrowser processing itself](CodeBrowser_CodeReview.html)
+
 
 ## Installation
 
