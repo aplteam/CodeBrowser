@@ -10,7 +10,11 @@
  ∆,←⊂'Font'n.∆APL_Font
  ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Right')
  ∆,←⊂'Size'(⍬(parent.Size[2]-2×n.∆hgap))
- ∆,←⊂'Text'('html'##.F.GetTempFilename2'')
+ :If 0∊≢n.∆Parms.filename
+     ∆,←⊂'Text'('html'##.F.GetTempFilename2'')
+ :Else
+     ∆,←⊂'Text'n.∆Parms.filename
+ :EndIf
  ∆,←⊂'FontObj'n.∆APL_Font
  ∆,←⊂'TipObj'n.∆Tip
  ∆,←⊂'Tip'('The name of the file the HTML will be saved in.' 'There is not default.')
