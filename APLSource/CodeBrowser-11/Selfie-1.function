@@ -3,11 +3,10 @@
 ⍝ This is not an official method.
  parms←CreateParms''
  parms.caption←'CodeBrowser'
- parms.info←'Documenting itself'
+ parms.info←'Contains the CodeBrowser code without the test cases.'
  parms.showParms←1
  parms.footer←'Created by ',⎕AN,' on ',##.APLTreeUtils.FormatDateTime ⎕TS
- parms.processScripts←0
- parms.processVars←0
  parms.twoSidedPrint←1
+ parms.filename←'CodeBrowser_CodeReview.html'
  r←parms GUI.Run'#._CodeBrowser.CodeBrowser' ''
 ⍝Done
