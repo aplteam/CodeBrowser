@@ -45,6 +45,8 @@ The `-view` flag stands for `view in default browser`. This will allow you to se
 
 Although many (though not all) parameters can be specified as flags and options via the user command in order to make it possible to run CodeBrowser under program control, for a user the most convenient way is certainly to make use of the `-gui` flag.
 
+However, although `]CodeBrowser` works on all platforms the `-gui` works under **Windows only**.
+
 This lets the user command show a GUI that allows the user to comfortably define all parameters she wants to amend:
 
 ![](images/gui_1.png "First tab of CodeBrowser's GUI")

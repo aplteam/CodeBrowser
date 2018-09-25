@@ -3,7 +3,7 @@
 ⍝ The workspace "CodeBrowse.dws" must be a sibling of this user command script.
 ⍝ The WS is copied into a namespace ⎕SE.CodeBrowser which is deleted afterwards except when -load is specified.
 ⍝ Kai Jaeger ⋄ APL Team Ltd
-⍝ Version 1.0.0 - 2018-09-25
+⍝ Version 1.0.1 - 2018-09-26
 
     ∇ r←List;⎕IO;⎕ML
       :Access Shared Public
@@ -33,6 +33,7 @@
           'Could not find/load CodeBrowser'⎕SIGNAL 11/⍨~Load CodeBrowser
           r←ref.CodeBrowser.Version
       :ElseIf Args.gui
+          'The -gui flag is available under Windows only'⎕SIGNAL 11/⍨~##.WIN
           ⎕SE.⎕SHADOW'CodeBrowser'
           ref←⍎'CodeBrowser'⎕SE.⎕NS''
           'Could not find/load CodeBrowser'⎕SIGNAL 11/⍨~Load CodeBrowser
@@ -69,7 +70,7 @@
           r,←⊂'-footer=     No default. If specified it goes underneath a horizontal line at the bottom of the document.'
           r,←⊂'-gui=        Puts a GUI on display that lets you specify all parameters. Everything else is ignored but -version.'
           r,←⊂'             Note that the GUI allows you to specify parameters that are not available via the user command.'
-          r,←⊂'-info=       No default. Ordinary text that goes underneath the main header ("caption"). No HTML please.'         
+          r,←⊂'-info=       No default. Ordinary text that goes underneath the main header ("caption"). No HTML please.'
           r,←⊂'-lang=       "language"; defaults to "en".'
           r,←⊂'-p           Add table with parameters to the end of the document with a page break before the table.'
           r,←⊂'-r=          Recursive; defaults to 1. Must be a Boolean.'

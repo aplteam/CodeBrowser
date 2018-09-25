@@ -1,2 +1,4 @@
  History
+⍝ * Version 1.0.1
+⍝   * The `-gui` parameter is Windows only but did not check; now it does (in the user command).
 ⍝ * Version 1.0.0
