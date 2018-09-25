@@ -29,4 +29,14 @@
  n.selectDirCssFile.onSelect←'OnBrowseForCssFile'
  n.selectDirCssFile.Posn[2]←n.TabCtrl.Size[2]-n.∆hgap+n.selectDirCssFile.Size[2]
  n.cssFilename.Size[2]-←2+n.selectDirCssFile.Size[2]
+
+ ∆←⊂'Button'
+ ∆,←⊂'Style' 'Check'
+ ∆,←⊂'Caption' 'Link the CSS file rather than emebedd'
+ ∆,←⊂'Posn'((n.∆vgap+⊃↑+⌿⊃n.cssFilename.(Posn Size)),n.∆hgap)
+ ∆,←⊂'FontObj'n.∆APL_Font
+ ∆,←⊂'TipObj'n.∆Tip
+ ∆,←⊂'Tip'('Linking can be very useful for changing the CSS')
+ ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Left')
+ n.linkCssFile←⍎'linkCssFile'parent.⎕WC ∆
 ⍝Done

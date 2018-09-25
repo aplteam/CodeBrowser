@@ -1,6 +1,5 @@
- filename←CreateHtml parms;ns;collect;WriteHTML;info
- ns←⎕NS''
- ns.html←''
+ filename←CreateHtml parms;collect;WriteHTML;info
+ parms.bookmarkCounter←1
  WriteHTML←parms.tno∘{0∊⍴⍵:r←⍬ ⋄ 'append'A.WriteUtf8File ⍺(,A.Nest,⍵)}
  WriteHTML WriteHeader parms
  WriteHTML⊂'<h1>',(ExchangeHtmlSpecialChars parms.caption),'</h1>'
@@ -16,15 +15,18 @@
  :EndIf
  collect←⎕NS''
  collect.namespaces←⍬
- collect.remove←¯1+⌊/{+/'.'=⍵}¨namespaces
+ collect.remove←⌊/{+/'.'=⍵}¨namespaces
  :If parms.recursive
      collect.hasMainMenu←AddMainMenu parms collect
  :Else
      collect.hasMainMenu←0
  :EndIf
+ WriteHTML'<div id="',(GetBookmark_ID parms),'"></div>'
+ parms.bookmarkCounter+←1
  1 CollectAplObjects parms collect
  WriteHTML AddFooter parms
  WriteHTML AddParameters parms
+ WriteHTML InjectJavaScriptLate ⍬
  WriteHTML('</body>' '</html>')
  filename←parms.filename
  ⎕NUNTIE parms.tno

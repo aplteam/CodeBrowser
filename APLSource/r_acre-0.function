@@ -1,0 +1,10 @@
+ r_acre viewInBrowser;parms
+ parms←CodeBrowser.CreateParms ⍬
+ parms.viewInBrowser←viewInBrowser
+ parms.showParms←1
+ parms.filename←'D:/Temp/acre.html'
+ parms.linkcssfile←0
+ parms.cssfilename←'C:/T\Projects/APL-cation/CodeBrowser/codebrowser_styles.css'
+ parms.caption←'acre'
+ ⎕←parms CodeBrowser.Run'⎕se.acre'
+⍝Done

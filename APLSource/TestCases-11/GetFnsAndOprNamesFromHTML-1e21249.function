@@ -1,5 +1,17 @@
- GetFnsAndOprNamesFromHTML←{
+ r←GetFnsAndOprNamesFromHTML html;b;noOfSpaces;dlb;ns;list
 ⍝ ⍵ is HTML.
 ⍝ We look for <pre><code> and look for names in the lines carrying those tags.
-     {⍵↑⍨¯1+⍵⍳'←'}∘{⍵↓⍨1+⍵⍳'∇'}¨⍵[1+'<pre><code>.*$'⎕S 2⊣⍵]
- }
+ list←html[1+'<pre><code>.*$'⎕S 2⊣html]           ⍝ Just the code blocks
+ dlb←#.APLTreeUtils.dlb
+ list←('∇'=⊃¨dlb(⍴'<pre><code>')↓¨list)/list      ⍝ Just the lines that define headers
+ list←{dlb ⍵↓⍨⍵⍳'∇'}¨list                         ⍝ Drop leading part until the ∇
+ list←{'⍝'∊⍵:⍵↑⍨¯1+⍵⍳'⍝' ⋄ ⍵}¨list                ⍝ Drop comments
+ list←{';'∊⍵:⍵↑⍨¯1+⍵⍳';' ⋄ ⍵}¨list                ⍝ Drop local vars
+ ns←⎕NS''
+ r←ns.{⎕FX,⊂⍵}¨list                               ⍝ ⎕FX returns the names of the object fixed.
+ :If 0<+/b←1=⊃¨r                                  ⍝ Dfns that are not one-liners must have failed due to missing closing "}"
+     b←b\∨/¨'←{'∘⍷¨b/list                         ⍝ Those are potentially dfns
+     b∧←b\{⊃0=⍴⍵↓⍨⍵⍳'}'}¨b/list                   ⍝ Those _are_ dfns
+     (b/r)←{⍵↑⍨¯1+⍵⍳'←'}¨b/list                   ⍝ Get the names of all dfns
+ :EndIf
+ ⍝Done

@@ -7,11 +7,12 @@
  html,←⊂'<title>',(ExchangeHtmlSpecialChars parms.caption),'</title>'
  :If parms.linkcssfile
      :For thisCssFile :In parms.cssfilename
-         html,←⊂'<link href="',thisCssFile,'" rel="stylesheet">'
+         html,←⊂'<link href="',({r←⍵ ⋄ (('\'=r)/r)←'/' ⋄ r}thisCssFile),'" rel="stylesheet">'
      :EndFor
  :Else
      html,←⊂CompressCSS GetCSS parms
  :EndIf
+ html,←InjectJavaScriptEarly ⍬
  ⍝html,←GetCodeMirrorLib parms  ⍝ Not implemented yet   ⍝TODO⍝
  html,←⊂'</head>'
  html,←⊂'<body>'

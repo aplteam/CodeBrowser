@@ -1,0 +1,10 @@
+ r_QSE viewInBrowserFlag;parms
+ parms←CodeBrowser.CreateParms ⍬
+ parms.viewInBrowser←viewInBrowserFlag
+ parms.showParms←1
+ parms.filename←'D:/Temp/QuadSE.html'
+ parms.linkcssfile←1
+ parms.cssfilename←'C:/T\Projects/APL-cation/CodeBrowser/codebrowser_styles.css'
+ parms.caption←'⎕SE'
+ ⎕←parms CodeBrowser.Run'⎕se'
+⍝Done

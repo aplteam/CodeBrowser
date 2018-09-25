@@ -6,7 +6,8 @@
  n.∆Parms.recursive←n.recursive.State
  n.∆Parms.processGuiInstances←n.processGuiInstances.State
  n.∆Parms.filename←n.filename.Text
- n.∆Parms.cssfilename←n.cssFilename.Text
+ n.∆Parms.cssfilename←MassageCssFilename n.cssFilename.Text
+ n.∆Parms.linkcssfile←n.linkCssFile.State
  n.∆Parms.lang←n.lang.Text
  n.∆Parms.showParms←n.showParms.State
  n.∆Parms.viewInBrowser←n.viewInBrowser.State

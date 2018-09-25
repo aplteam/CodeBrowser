@@ -35,5 +35,6 @@
      :EndIf
      html,←(~flag)/⊂'</nav>'
  :EndIf
+⍝ Collapsible: html,←⊂'</div>'
  {}WriteHTML html
 ⍝Done

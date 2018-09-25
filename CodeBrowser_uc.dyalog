@@ -3,7 +3,7 @@
 ⍝ The workspace "CodeBrowse.dws" must be a sibling of this user command script.
 ⍝ The WS is copied into a namespace ⎕SE.CodeBrowser which is deleted afterwards except when -load is specified.
 ⍝ Kai Jaeger ⋄ APL Team Ltd
-⍝ Version 1.0.0 - 2018-04-17
+⍝ Version 1.0.0 - 2018-09-25
 
     ∇ r←List;⎕IO;⎕ML
       :Access Shared Public
@@ -12,7 +12,7 @@
       r.Name←'CodeBrowser'
       r.Desc←'Starts "CodeBrowser"'
       r.Group←'Tools'
-      r.Parse←'-ignore= -caption= -filename= -footer= -info= -r= -vib -twosided -pfs= -obj= -lang= -p -load -gui'
+      r.Parse←'-ignore= -caption= -filename= -footer= -info= -r= -view -twosided -pfs= -obj= -lang= -p -load -gui -version'
     ∇
 
     ∇ r←Run(Cmd Args);⎕IO;⎕ML;parms;ref;CR
@@ -23,12 +23,16 @@
           'CodeBrowser'⎕SE.⎕NS''
           'Could not find/load CodeBrowser'⎕SIGNAL 11/⍨~Load ⍬
           ⎕SE.CodeBrowser.⎕FX↑'r←parms Run namespaces' 'r←parms CodeBrowser.Run namespaces'
-          ⎕SE.CodeBrowser.⎕FX 'r←CreateParms dummy' ('r←CodeBrowser.CreateParms ''',((⊃⎕NPARTS ##.SourceFile),'CodeBrowser'),'''')
+          ⎕SE.CodeBrowser.⎕FX'r←CreateParms dummy'('r←CodeBrowser.CreateParms ''',((⊃⎕NPARTS ##.SourceFile),'CodeBrowser'),'''')
           CR←⎕UCS 13
           ⎕←'CodeBrowser loaded into ⎕SE. Call:',CR,' parms←⎕SE.CodeBrowser.CreateParms ⍬',CR,'and',CR,' parms ⎕SE.CodeBrowser.Run #'
           r←''
+      :ElseIf Args.version
+          ⎕SE.⎕SHADOW'CodeBrowser'
+          ref←⍎'CodeBrowser'⎕SE.⎕NS''
+          'Could not find/load CodeBrowser'⎕SIGNAL 11/⍨~Load CodeBrowser
+          r←ref.CodeBrowser.Version
       :ElseIf Args.gui
-          'Don''t specify any other flags with -gui'⎕SIGNAL 11/⍨1≠⍴,Args.gui
           ⎕SE.⎕SHADOW'CodeBrowser'
           ref←⍎'CodeBrowser'⎕SE.⎕NS''
           'Could not find/load CodeBrowser'⎕SIGNAL 11/⍨~Load CodeBrowser
@@ -59,21 +63,23 @@
           r,←⊂''
           r,←⊂'There are plenty of switches available to make CodeBrowser suit your needs:'
           r,←⊂''
-          r,←⊂'-ignore=    List of space or comma-separated namespace names to be ignored.'
-          r,←⊂'-caption=   Defaults to the list of namespaces to be scanned.'
-          r,←⊂'-filename=  Defaults to a temp filename.'
-          r,←⊂'-footer=    No default. If specified it goes underneath a horizontal line at the bottom of the document.'
-          r,←⊂'-gui=       Puts a GUI on display. You may specify namespace(s) with -gui but no other flags.'
-          r,←⊂'-info=      No default. Ordinary text that goes underneath the main header ("caption"). No HTML please.'
-          r,←⊂'-lang=      "language"; defaults to "en".'
-          r,←⊂'-p          Add table with parameters to the end of the document with a page break before the table.'
-          r,←⊂'-r          Recursive; defaults to 1. Must be a Boolean.'
-          r,←⊂'-vib        View In Browser. Boolean that defaults to 0.  A 1 shows the HTML in your default browser.'
-          r,←⊂'-twosided   Boolean that defaults to 0. Two-side prints have different left margins on odd/even pages.'
-          r,←⊂'-pfs=       Print Font Size. Defaults to 8. Must be numeric (pt).'
-          r,←⊂'-obj=       f=function, g=GUI (only when KeepOnClose is 1), o=operators, v=variables, s=scripts (classes, interfaces, namespaces).'
-          r,←⊂'-load       If you specify this flag then all other flags are ignored. CodeBrowser is copied into ⎕SE.'
-          r,←⊂'            You then have two functions at your disposal ⎕SE.CodeBrowser: CreateParms and Run.'
+          r,←⊂'-ignore=     List of space- or comma-separated namespace names to be ignored.'
+          r,←⊂'-caption=    Defaults to the list of namespaces to be scanned.'
+          r,←⊂'-filename=   Defaults to a temp filename.'
+          r,←⊂'-footer=     No default. If specified it goes underneath a horizontal line at the bottom of the document.'
+          r,←⊂'-gui=        Puts a GUI on display that lets you specify all parameters. Everything else is ignored but -version.'
+          r,←⊂'             Note that the GUI allows you to specify parameters that are not available via the user command.'
+          r,←⊂'-info=       No default. Ordinary text that goes underneath the main header ("caption"). No HTML please.'         
+          r,←⊂'-lang=       "language"; defaults to "en".'
+          r,←⊂'-p           Add table with parameters to the end of the document with a page break before the table.'
+          r,←⊂'-r=          Recursive; defaults to 1. Must be a Boolean.'
+          r,←⊂'-view        View in default browser.'
+          r,←⊂'-twosided    Boolean that defaults to 0. Two-side prints have different left margins on odd/even pages.'
+          r,←⊂'-pfs         Print Font Size. Defaults to 8. Must be numeric (pt).'
+          r,←⊂'-obj=        f=function, g=GUI (only when KeepOnClose is 1), o=operators, v=variables, s=scripts (classes, interfaces, namespaces).'
+          r,←⊂'-load        If you specify this flag then all other flags are ignored. CodeBrowser is copied into ⎕SE permanently.'
+          r,←⊂'-version     If you specify this flag then all other flags are ignored. Returns CodeBrowser''s version number.'
+          r,←⊂'             You then have two functions at your disposal: ⎕SE.CodeBrowser.CreateParms and ⎕SE.CodeBrowser.Run.'
       :Case 1
           ⎕SE.⎕SHADOW'CodeBrowser'
           ref←⍎'CodeBrowser'⎕SE.⎕NS''
@@ -165,7 +171,7 @@
           '"lang" is not text like "en"'⎕SIGNAL 11/⍨~(1=≡args.lang)∧(' '=1↑0⍴∊args.lang)∧(2=⍴,args.lang)
           parms.lang←args.lang
       :EndIf
-      parms.viewInBrowser←Args.Switch'vib'
+      parms.viewInBrowser←Args.Switch'view'
       parms.showParms←Args.Switch'p'
       parms.twoSidedPrint←Args.Switch'twosided'
     ∇

@@ -12,10 +12,10 @@
  html←⊃,/(⎕UCS 13),¨html
  nav←html{⍵[2]↑⍵[1]↓⍺}⊃'<nav id="main">.*</nav>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
  nav←(⎕UCS 13)#.APLTreeUtils.Split nav
- expected←⊂'<a href="#TestData.NS1">'
- expected,←⊂'<a href="#TestData.NS1.NS1_a">'
- expected,←⊂'<a href="#TestData.NS1.NS1_b">'
- expected,←⊂'<a href="#TestData.NS2">'
+ expected←⊂'<a href="#NS1">'
+ expected,←⊂'<a href="#NS1.NS1_a">'
+ expected,←⊂'<a href="#NS1.NS1_b">'
+ expected,←⊂'<a href="#NS2">'
  →GoToTidyUp~∧/∨/¨expected⍷¨⊂∊nav
 
  R←∆OK

@@ -1,0 +1,22 @@
+ R←Test_Misc_021(stopFlag batchFlag);⎕TRAP;filename;html
+⍝ Function refs
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ #.⎕SHADOW'Temp'
+ 'Temp'#.⎕NS''
+ 'Temp.Target'#.⎕NS''
+ #.Temp.Target.⎕FX'r←Hello' 'r←''World'''
+ #.Temp.myHello←#.Temp.Target.Hello
+
+ filename←##.CodeBrowser.Run #.Temp.Target
+ →GoToTidyUp 0∊⍴filename
+
+ html←#.APLTreeUtils.ReadUtf8File filename
+ →FailsIf 5≠+/'Hello'⍷∊html         ⍝ Headers, Toc, etc.
+
+ R←∆OK
+
+∆TidyUp:
+ #.FilesAndDirs.DeleteFile filename
+⍝Done

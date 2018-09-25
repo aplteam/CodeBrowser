@@ -12,7 +12,7 @@
  →GoToTidyUp 0∊⍴filename1
  html←'flat'#.APLTreeUtils.ReadUtf8File filename1
  →GoToTidyUp 1≠+/'''World'''⍷html
- →GoToTidyUp 1≠+/'<div id="Temp.NS1.vars">'⍷html
+ →GoToTidyUp 1≠+/'<div id="NS1.vars">'⍷html
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.processVars←0
@@ -20,7 +20,7 @@
  →GoToTidyUp 0∊⍴filename2
  html←'flat'#.APLTreeUtils.ReadUtf8File filename2
  →GoToTidyUp 1≠+/'''World'''⍷html
- →GoToTidyUp 0≠+/'<div id="Temp.NS1.vars">'⍷html
+ →GoToTidyUp 0≠+/'<div id="NS1.vars">'⍷html
 
  R←∆OK
 

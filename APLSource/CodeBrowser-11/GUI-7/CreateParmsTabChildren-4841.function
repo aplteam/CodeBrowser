@@ -1,7 +1,7 @@
  n←CreateParmsTabChildren n;∆;ref
  n(CreateFilename)←n.ParmsSubForm
  n(CreateCssFilename)←n.ParmsSubForm n.filename
- n(CreateLang)←n.ParmsSubForm n.cssFilename
+ n(CreateLang)←n.ParmsSubForm n.linkCssFile
  n(CreateOtherParms)←n.ParmsSubForm n.lang
  n(CreatePrintParms)←n.processVars.## n.ParmsSubForm
 ⍝Done

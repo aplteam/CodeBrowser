@@ -21,7 +21,7 @@ Any newly started instance of Dyalog APL then knows a user commands `]CodeBrowse
 Enter 
 
 ```
-]?CodeBrowser
+]CodeBrowser -?
 ```
 
 for how to run the user command (reference)
@@ -29,13 +29,13 @@ for how to run the user command (reference)
 For a detailed documentation including examples enter
 
 ```
-]??CodeBrowser
+]CodeBrowser -??
 ```
 
 The simplest example:
 
 ```
-]CodeBrowser ⎕se -vib
+]CodeBrowser ⎕se -view
 ```
 
-The `-vib` flag stands for `view in browser`. This will allow you to see everything in `⎕SE`.
+The `-view` flag stands for `view in default browser`. This will allow you to see everything in `⎕SE`.

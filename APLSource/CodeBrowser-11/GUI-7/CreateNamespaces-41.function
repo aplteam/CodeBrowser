@@ -9,7 +9,7 @@
  ∆,←⊂'Posn'(((⌈n.∆vgap÷2)+⊃↑+⌿⊃ref.(Posn Size)),n.∆hgap)
  ∆,←⊂'Font'n.∆APL_Font
  ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Right')
- ∆,←⊂'Text'(⊃{⍺,',',⍵}/{0∊⍴,⍵:'#' ⋄ ⍵}##.A.Nest namespaces)
+ ∆,←⊂'Text'(⊃{⍺,',',⍵}/{0∊⍴,⍵:'#' ⋄ ⍕¨⍵}##.A.Nest namespaces)
  ∆,←⊂'Size'(⍬(n.ScanSubForm.Size[2]-2×n.∆hgap))
  ∆,←⊂'FontObj'n.∆APL_Font
  ∆,←⊂'TipObj'n.∆Tip

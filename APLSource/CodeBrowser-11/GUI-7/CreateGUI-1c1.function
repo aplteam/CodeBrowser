@@ -9,5 +9,6 @@
  n.Cancel.onSelect←1
  n.∆Form.n←n
  2 ⎕NQ n.Scan'Select'
+ n.namespaces.SelText←2⍴1+⍴,n.namespaces.Text
  ⎕NQ n.namespaces'GotFocus'
 ⍝Done

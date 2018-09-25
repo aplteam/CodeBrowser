@@ -1,0 +1,11 @@
+ r_CodeBrowser viewInBrowser;parms
+ parms←CodeBrowser.CreateParms ⍬
+ parms.viewInBrowser←viewInBrowser
+ parms.showParms←1
+ parms.filename←'D:/Temp/CodeBrowser.html'
+ parms.linkcssfile←0
+ parms.cssfilename←'C:/T\Projects/APL-cation/CodeBrowser/codebrowser_styles.css'
+ parms.caption←'Code Browser'
+ parms.info←'This document comprises the full CodeBrowser project' 'That includes development tools and test cases'
+ ⎕←parms CodeBrowser.Run'#._CodeBrowser'
+⍝Done

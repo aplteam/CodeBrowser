@@ -17,9 +17,9 @@
      html,←⊂'<p><b>Sub namespace',((1<⍴lists.containers)/'s'),': ',(⍕⊃⍴lists.containers),'</b>',recursiveMsg,'</p>'
      html,←⊂'<div>'
      :If parms.recursive
-         html,←⊃,/ref{⊂'<div style="width:',width,'em;"><a ',(collect MakeBookmarkRef(⍕⍺),'.',⍵),'>',⍵,'</a></div>'}¨lists.containers
+         html,←⊃,/ref{(no name)←⍵ ⋄ ⊂'<div style="width:',width,'em;"><a ',(collect MakeBookmarkRef(⍕⍺),'.',name),'>',(⍕no),'. ',name,'</a></div>'}¨(⍳≢lists.containers),¨⊂¨lists.containers
      :Else
-         html,←('<div style="width:',width,'em;">')∘,¨lists.containers,¨⊂'</div>'
+         html,←lists.containers{('<div style="width:',width,'em;">'),(⍕⍵),'. ',⍺,'</div>'}¨⍳≢lists.containers
      :EndIf
      html,←'</div>' '</div>'
  :EndIf

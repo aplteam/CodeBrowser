@@ -25,5 +25,6 @@
  R←∆OK
 
 ∆TidyUp:
- :Trap 0 ⋄ #.FilesAndDirs.DeleteFile filename1 filename2 ⋄ :EndTrap
+ :Trap 0 ⋄ #.FilesAndDirs.DeleteFile filename1 ⋄ :EndTrap
+ :Trap 0 ⋄ #.FilesAndDirs.DeleteFile filename2 ⋄ :EndTrap
 ⍝Done

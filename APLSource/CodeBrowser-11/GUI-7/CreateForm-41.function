@@ -1,10 +1,9 @@
  n←CreateForm n;∆;ref;∆Form
  ∆←⊂'Form'
  ∆,←⊂'Caption'({(1⊃⍵),' version ',(2⊃⍵),' from ',(3⊃⍵)}##.Version)
- ∆,←⊂'Size'(⍬ ⍬)
  ∆,←⊂'Coord' 'Pixel'
  ∆,←⊂'Posn'(300 280)
- ∆,←⊂'Size'(525 900)
+ ∆,←⊂'Size'(565 900)
  n.∆Form←⍎'gui'⎕WC ∆
 
  ref←⍎'SB'n.∆Form.⎕WC⊂'Statusbar'

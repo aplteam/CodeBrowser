@@ -11,6 +11,7 @@
  :EndIf
  r←⊂level ref
  :If ~0∊⍴list←' '~¨⍨↓ref.⎕NL 9.1 9.2                                ⍝ All namespaces
+ :AndIf ~0∊⍴list←(ref.{((⍕⎕THIS),'.',⍵)≡⍕⍎⍵}¨list)/list             ⍝ We are not interested in refs pointing elsewhere
      list←ref.⍎¨list                                                ⍝ Make them refs
      list~←ref,{0∊⍴⊃,/⍵:⍵ ⋄ ⍎¨⍵}MassageNameLists parms.ignore       ⍝ Remove any self references and those to be ignored
  :AndIf ~0∊⍴list

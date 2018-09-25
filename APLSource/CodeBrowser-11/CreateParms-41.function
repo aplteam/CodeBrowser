@@ -50,5 +50,5 @@
  r.viewInBrowser←0
  r.showParms←0
  r.version←{(1⊃⍵),' ',(2⊃⍵),' from ',(3⊃⍵)}Version
- r.⎕FX'r←∆List' 'r←{⍵,[1.5]⍎¨⍵}↓⎕nl 2'
+ r.⎕FX'r←∆List' 'r←{⍵,[1.5]⍎¨⍵}↓⎕nl 2' 'r←(~(r[;1]~¨'' '')∊''tno'' ''refs'' ''bookmarkCounter'')⌿r'
  ⍝Done

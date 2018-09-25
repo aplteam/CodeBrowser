@@ -1,0 +1,22 @@
+ R←Test_Misc_012(stopFlag batchFlag);⎕TRAP;filename;html;expected
+⍝ Empty namespace.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ #.⎕SHADOW'Temp'
+ 'Temp'#.⎕NS''
+
+ filename←##.CodeBrowser.Run #.Temp
+ →GoToTidyUp 0∊⍴filename
+
+ html←#.APLTreeUtils.ReadUtf8File filename
+ html←(html⍳⊂'<body>')↓html
+ html←(¯1+html⍳⊂'<script>')↑html
+ expected←'<h1> #.Temp </h1>' '<div id="bookmark_00001"></div>' '<div id="bookmark_00002"></div>'
+ →PassesIf expected≡html
+
+ R←∆OK
+
+∆TidyUp:
+ #.FilesAndDirs.DeleteFile filename
+⍝Done
