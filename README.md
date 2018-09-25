@@ -51,7 +51,7 @@ This lets the user command show a GUI that allows the user to comfortably define
 
 ![](http://htmlpreview.github.com/?https://github.com/aplteam/CodeBrowser/images/gui_1.png "Second tab of CodeBrowser's GUI")
 
-![](aplteam.github.com/CodeBrowser/images/gui_1.png "Third tab of CodeBrowser's GUI")
+![](https://aplteam.github.com/CodeBrowser/images/gui_1.png "Third tab of CodeBrowser's GUI")
 
 
 ...
