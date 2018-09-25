@@ -39,3 +39,16 @@ The simplest example:
 ```
 
 The `-view` flag stands for `view in default browser`. This will allow you to see everything in `⎕SE`.
+
+
+## Parameters
+
+Although many (though not all) parameters can be specified as flags and options via the user command in order to make it possible to run CodeBrowser under program control, for a user the most convinient way is certainly to make use of the `-gui` flag.
+
+This lets the user command show a GUI that allows the user to comfortably define all parameters she wants to amend:
+
+![](http://htmlpreview.github.com/?https://github.com/aplteam/CodeBrowser/blob/master/images/gui_1.png "First tab of CodeBrowser's GUI")
+
+![](http://htmlpreview.github.com/?https://github.com/aplteam/CodeBrowser/blob/master/images/gui_2.png "Second tab of CodeBrowser's GUI")
+
+![](http://htmlpreview.github.com/?https://github.com/aplteam/CodeBrowser/blob/master/images/gui_3.png "Third tab of CodeBrowser's GUI")
