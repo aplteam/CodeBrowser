@@ -47,10 +47,10 @@ Although many (though not all) parameters can be specified as flags and options 
 
 This lets the user command show a GUI that allows the user to comfortably define all parameters she wants to amend:
 
-![](images/gui_1.png "First tab of CodeBrowser's GUI")
+![](images/gui_1.png "First tab of CodeBrowser's GUI"{height="767" width="508")
 
-![](images/gui_2.png "Second tab of CodeBrowser's GUI")
+![](images/gui_2.png "Second tab of CodeBrowser's GUI"){height="812" width="538")
 
-![](images/gui_3.png "Third tab of CodeBrowser's GUI")
+![](images/gui_3.png "Third tab of CodeBrowser's GUI"){height="812" width="538")
 
 
