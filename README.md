@@ -47,9 +47,9 @@ Although many (though not all) parameters can be specified as flags and options 
 
 This lets the user command show a GUI that allows the user to comfortably define all parameters she wants to amend:
 
-![](CodeBrowser/images/gui_1.png "First tab of CodeBrowser's GUI")
+![](http://htmlpreview.github.com/?https://github.com/aplteam/CodeBrowser/blob/master/CodeBrowser/images/gui_1.png "First tab of CodeBrowser's GUI")
 
-![](CodeBrowser/images/gui_1.png "Second tab of CodeBrowser's GUI")
+![](http://htmlpreview.github.com/?https://github.com/aplteam/CodeBrowser/images/gui_1.png "Second tab of CodeBrowser's GUI")
 
 ![](CodeBrowser/images/gui_1.png "Third tab of CodeBrowser's GUI")
 
