@@ -3,7 +3,7 @@
 ⍝ The workspace "CodeBrowse.dws" must be a sibling of this user command script.
 ⍝ The WS is copied into a namespace ⎕SE.CodeBrowser which is deleted afterwards except when -load is specified.
 ⍝ Kai Jaeger ⋄ APL Team Ltd
-⍝ Version 1.0.1 - 2018-09-26
+⍝ Version 1.0.3 - 2018-10-10
 
     ∇ r←List;⎕IO;⎕ML
       :Access Shared Public
@@ -12,12 +12,24 @@
       r.Name←'CodeBrowser'
       r.Desc←'Starts "CodeBrowser"'
       r.Group←'Tools'
-      r.Parse←'-ignore= -caption= -filename= -footer= -info= -r= -view -twosided -pfs= -obj= -lang= -p -load -gui -version'
+      r.Parse←'-ignore= -caption= -filename= -footer= -info= -r= -view -twosided -pfs= -obj= -lang= -p -load -gui -version -lines='
     ∇
 
-    ∇ r←Run(Cmd Args);⎕IO;⎕ML;parms;ref;CR
+    ∇ r←Run(Cmd Args);⎕IO;⎕ML;parms;ref;CR;values;flags
       :Access Shared Public
       ⎕IO←1 ⋄ ⎕ML←1 ⋄ ⎕WX←3
+      :If ' '={⎕ML←3 ⋄ 1↑0⍴∊⍵}Args.lines
+          (flags values)←⎕VFI Args.lines
+      :Else
+          flags←1
+          values←Args.lines
+      :EndIf
+      'Invalid: "lines"'⎕SIGNAL 11/⍨1≠≢flags
+      'Invalid: "lines"'⎕SIGNAL 11/⍨((,¯1)≢,values)∧(,¯1)≡,×values
+      :If 0=values
+          values←20  ⍝ The default
+      :EndIf
+      Args.lines←values
       :If Args.load
           ⎕SE.⎕EX'CodeBrowser'
           'CodeBrowser'⎕SE.⎕NS''
@@ -25,7 +37,7 @@
           ⎕SE.CodeBrowser.⎕FX↑'r←parms Run namespaces' 'r←parms CodeBrowser.Run namespaces'
           ⎕SE.CodeBrowser.⎕FX'r←CreateParms dummy'('r←CodeBrowser.CreateParms ''',((⊃⎕NPARTS ##.SourceFile),'CodeBrowser'),'''')
           CR←⎕UCS 13
-          ⎕←'CodeBrowser loaded into ⎕SE. Call:',CR,' parms←⎕SE.CodeBrowser.CreateParms ⍬',CR,'and',CR,' parms ⎕SE.CodeBrowser.Run #'
+          ⎕←'*** CodeBrowser loaded into ⎕SE. Call:',CR,' parms←⎕SE.CodeBrowser.CreateParms ⍬',CR,'and',CR,' parms ⎕SE.CodeBrowser.Run #'
           r←''
       :ElseIf Args.version
           ⎕SE.⎕SHADOW'CodeBrowser'
@@ -72,6 +84,7 @@
           r,←⊂'             Note that the GUI allows you to specify parameters that are not available via the user command.'
           r,←⊂'-info=       No default. Ordinary text that goes underneath the main header ("caption"). No HTML please.'
           r,←⊂'-lang=       "language"; defaults to "en".'
+          r,←⊂'-lines=      By default just 20 (or less) lines per object are shown. Specifying ¯1 means "no limit".'
           r,←⊂'-p           Add table with parameters to the end of the document with a page break before the table.'
           r,←⊂'-r=          Recursive; defaults to 1. Must be a Boolean.'
           r,←⊂'-view        View in default browser.'

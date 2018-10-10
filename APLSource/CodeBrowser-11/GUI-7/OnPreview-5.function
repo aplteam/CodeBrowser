@@ -2,7 +2,6 @@
      n←GetRefTo_n⊃⍵
      (r msg)←CheckInput n
      0=r:0
-     n.∆Parms←n.∆Parms
      _←CopyGuiToParms n
      0∊⍴n.∆Parms.filename:0
      _←n.∆Parms ##.Run n.∆Parms.namespaces

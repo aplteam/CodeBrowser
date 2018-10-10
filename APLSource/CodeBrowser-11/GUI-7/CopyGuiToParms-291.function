@@ -22,4 +22,5 @@
  n.∆Parms.footer←n.footer.Text
  n.∆Parms.info←,n.info.Text
  n.∆Parms.infoIsHTML←n.infoIsHtml.State
+ n.∆Parms.lines←n.lines.Value
 ⍝Done

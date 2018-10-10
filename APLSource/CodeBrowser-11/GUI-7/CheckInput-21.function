@@ -41,5 +41,11 @@
      ShowInStatusbar'Nothing to be processed?!'
      →SetFocusTo n.Parms n.processFns
  :EndIf
+
+ :If (0=n.lines.Value)∨n.lines.Value<¯1
+     ShowInStatusbar'"Lines" must be either a positive integer or ¯1'
+     →SetFocusTo n.Parms n.lines
+ :EndIf
+
  success←1
 ⍝Done

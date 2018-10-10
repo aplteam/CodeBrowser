@@ -6,5 +6,6 @@
  parms.linkcssfile←0
  parms.cssfilename←'C:/T\Projects/APL-cation/CodeBrowser/codebrowser_styles.css'
  parms.caption←'acre'
+ parms.lines←¯1
  ⎕←parms CodeBrowser.Run'⎕se.acre'
 ⍝Done

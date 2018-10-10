@@ -1,8 +1,8 @@
- n←n CreatePrintParms(above parent);∆;ref;ref2;list
+ n←n CreatePrintParms(sibling parent);∆;ref;ref2;list
  ∆←⊂'Group'
  ∆,←⊂'Caption' ' P&rint parameters'
- ∆,←⊂'Posn'(above.Posn[1],n.∆hgap+2⊃+⌿↑above.(Posn Size))
- ∆,←⊂'Size'(135 275)
+ ∆,←⊂'Posn'(sibling.Posn[1],n.∆hgap+2⊃+⌿↑sibling.(Posn Size))
+ ∆,←⊂'Size'(135 300)
  ∆,←⊂'Attach'(4⍴'Top' 'Left')
  ref←⍎'printParms_group'parent.⎕WC ∆
 

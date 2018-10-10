@@ -24,7 +24,7 @@
      parms.cssfilename←A.Nest parms.cssfilename
  :EndIf
  parms.filename{~0∊⍴⍺:⍺ ⋄ (¯4↓F.GetTempFilename''),'.html'}←⍬
- parms.caption{~(⊂⍺)∊¯1 '':⍺ ⋄ 1=⍴,⍵:⍕⍵ ⋄ ⊃,/{⍺,',',⍵}/⍵}←namespaces
+ parms.caption{~(⊂⍺)∊¯1 '':⍺ ⋄ 1=⍴,⍵:⍕⍵ ⋄ ⊃,/{⍺,', ',⍵}/⍵}←namespaces
  parms.tno←CreateOrReplaceFile parms
  :Trap 0
      parms.ignore←{0∊⍴⊃,/⍵:⍵ ⋄ ⍎¨⍵}MassageNameLists parms.ignore

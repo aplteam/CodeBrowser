@@ -7,7 +7,6 @@
 
  ∆←⊂'Edit'
  ∆,←⊂'Posn'((⊃+⌿↑ref.(Posn Size)),n.∆hgap)
- ∆,←⊂'Font'n.∆APL_Font
  ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Right')
  ∆,←⊂'Size'(⍬(parent.Size[2]-2×n.∆hgap))
  ∆,←⊂'Text'n.∆Parms.footer

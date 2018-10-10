@@ -39,7 +39,7 @@
  table.refs > tbody > tr> td {padding: 3px;}
  button.accordion {content:"Hide"; display:inline; padding: 0 5px; margin-right:5px;}
  p.caption {display:inline;}
- .accordion-content {padding: 0; display:block; overflow-y:scroll; overflow-x:hidden; transition: max-height 0.5s ease; max-height: 20em;}
+ .accordion-content {padding: 0; display:block; overflow-y:auto; overflow-x:hidden; transition: max-height 0.5s ease; max-height: 20em;}
  .jump2next {padding: 0 5px; margin-right:5px;}
  .floatright {float: right; }
 

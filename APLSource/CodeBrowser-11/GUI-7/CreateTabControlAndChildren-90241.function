@@ -10,7 +10,7 @@
  n.Scan←⍎'tabbtnScan'n.TabCtrl.⎕WC ∆
 
  ∆←⊂'TabButton'
- ∆,←⊂'Caption' 'Parms'
+ ∆,←⊂'Caption' 'Parameters'
  n.Parms←⍎'tabbtnParms'n.TabCtrl.⎕WC ∆
 
  ∆←⊂'TabButton'

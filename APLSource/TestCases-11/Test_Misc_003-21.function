@@ -21,7 +21,7 @@
  parms.twoSidedPrint←1
  parms.viewInBrowser←1
 
- parms ##.CodeBrowser.Run ##.TestData.NS1
+ {}parms ##.CodeBrowser.Run ##.TestData.NS1
 
  html←'flat'#.APLTreeUtils.ReadUtf8File parms.filename
  →GoToTidyUp 1≠∨/'@media print{html{font-size:48pt;'⍷html

@@ -1,0 +1,5 @@
+ r_gui viewInBrowser;parms
+ parms←CodeBrowser.CreateParms''
+ parms.viewInBrowser←1
+ ⎕←parms CodeBrowser.GUI.Run #''
+⍝Done
