@@ -1,4 +1,9 @@
  History
+⍝ * Version 1.0.2
+⍝   * Help polished.
+⍝   * "Make" updated.
+⍝   * Bug fixes:
+⍝     * The `lines` parameter did not work when specified via the user command interface.
 ⍝ * Version 1.0.1
 ⍝   * New parameter `lines` introduced which defaults to 20, defining the number of lines to be
 ⍝     be displayed in terms of lines.

@@ -3,7 +3,7 @@
 ⍝ The workspace "CodeBrowse.dws" must be a sibling of this user command script.
 ⍝ The WS is copied into a namespace ⎕SE.CodeBrowser which is deleted afterwards except when -load is specified.
 ⍝ Kai Jaeger ⋄ APL Team Ltd
-⍝ Version 1.0.3 - 2018-10-10
+⍝ Version 1.0.4 - 2019-07-31
 
     ∇ r←List;⎕IO;⎕ML
       :Access Shared Public
@@ -65,7 +65,7 @@
       :EndIf
     ∇
 
-    ∇ r←level Help Cmd;⎕IO;⎕ML;ref
+    ∇ r←level Help Cmd;⎕IO;⎕ML;ref;parms
       ⎕IO←1 ⋄ ⎕ML←1
       :Access Shared Public
       r←''
@@ -94,14 +94,22 @@
           r,←⊂'-load        If you specify this flag then all other flags are ignored. CodeBrowser is copied into ⎕SE permanently.'
           r,←⊂'-version     If you specify this flag then all other flags are ignored. Returns CodeBrowser''s version number.'
           r,←⊂'             You then have two functions at your disposal: ⎕SE.CodeBrowser.CreateParms and ⎕SE.CodeBrowser.Run.'
+          r,←⊂'For processing CodeBrowser''s code by CodeBrowser execute ]CodeBrowser -??'
+          r,←⊂'For getting CodeBrowser''s internal documentation execute ]CodeBrowser -???'
       :Case 1
+          ref←⍎'CodeBrowser'⎕SE.⎕NS''
+          'Could not find/load CodeBrowser'⎕SIGNAL 11/⍨~Load ⍬
+          parms←ref.CodeBrowser.CreateParms''
+          parms.viewInBrowser←1
+          parms.cssfilename←((ref.FilesAndDirs.NormalizePath '%USERPROFILE%'),'\Documents\MyUCMDs\CodeBrowser\' ),parms.cssfilename
+          parms.footer←'Created with CoderBrowser version ',⊃{⍺,' from ',⍵}/1↓ref⍎'CodeBrowser.Version' 
+          parms ref.CodeBrowser.Run(⍕ref),'.CodeBrowser'
+      :Case 2
           ⎕SE.⎕SHADOW'CodeBrowser'
           ref←⍎'CodeBrowser'⎕SE.⎕NS''
           'Could not find/load CodeBrowser'⎕SIGNAL 11/⍨~Load ⍬
           {}⎕SE.UCMD']ADOC ⎕SE.CodeBrowser.CodeBrowser'
           r,←⊂'Watch your default browser'
-      :Case 2
-          r←⊂'Not available'
       :EndSelect
     ∇
 
@@ -144,6 +152,7 @@
     ∇
 
     ∇ parms←parms Args2Parms args
+      parms.lines←args.lines  ⍝ Already processed
       :If 0≢args.ignore
           '"ignore": invalid data type'⎕SIGNAL 11/⍨' '≠1↑0⍴∊args.ignore
           parms.ignore←args.ignore
