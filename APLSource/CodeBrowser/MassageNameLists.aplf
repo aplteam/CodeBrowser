@@ -5,5 +5,5 @@
      1<|≡⍵:⍕¨⍵
      r←⍕,⍵
      ((','=r)/r)←' '
-     ' 'A.Split A.dmb r
+     ' 'A.Split A.DMB r
  }

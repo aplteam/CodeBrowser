@@ -15,7 +15,7 @@
 
  :If ~0∊⍴list←n.toBeIgnored.Text
      ((list=',')/list)←' '
-     list←##.A.dmb list
+     list←##.A.DMB list
      list←∪' '##.A.Split list
      :If 1∊bool←~{((,'#')∘≡¨⍵)∨9=⎕NC¨⍵}list
          ShowInStatusbar'To be ignored: not a namespace: ',⊃{⍺,',',⍵}/bool/list

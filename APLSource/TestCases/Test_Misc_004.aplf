@@ -2,45 +2,45 @@
 ⍝ Includes the CodeMirror library (APL syntax colouring). (Not implemented yet)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
- R←∆Inactive
+ R←T._Inactive
  :Return
 
- R←∆Failed
+ R←T._Failed
 
  parms←##.CodeBrowser.CreateParms ⍬
- →GoToTidyUp 2≠⍴⍴parms.∆List
+ →T.GoToTidyUp 2≠⍴⍴parms.∆List
  parms.author←'John Doe'
  parms.date←'1982-12-31'
  parms.codeMirrorLib←1
  filename←parms ##.CodeBrowser.Run ##.TestData.NS1
 
- html←1↓⊃,/(⎕UCS 13),¨#.APLTreeUtils.ReadUtf8File filename
+ html←1↓⊃,/(⎕UCS 13),¨APLTreeUtils2.⊃FilesAndDirs.NGET filename
  footer←html{⍵[2]↑⍵[1]↓⍺}⊃'<footer>.*</footer>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
  expected←'<p>Created by John Doe &mdash; Created at 1982-12-31</p>'
- →GoToTidyUp expected≢3⊃(⎕UCS 13)#.APLTreeUtils.Split footer
+ →T.GoToTidyUp expected≢3⊃(⎕UCS 13)APLTreeUtils2.Split footer
 
  parms.date←''
  filename←parms ##.CodeBrowser.Run ##.TestData.NS1
- html←1↓⊃,/(⎕UCS 13),¨#.APLTreeUtils.ReadUtf8File filename
+ html←1↓⊃,/(⎕UCS 13),¨APLTreeUtils2.⊃FilesAndDirs.NGET filename
  footer←html{⍵[2]↑⍵[1]↓⍺}⊃'<footer>.*</footer>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
  expected←'<p>Created by John Doe</p>'
- →GoToTidyUp expected≢3⊃(⎕UCS 13)#.APLTreeUtils.Split footer
+ →T.GoToTidyUp expected≢3⊃(⎕UCS 13)APLTreeUtils2.Split footer
 
  parms.author←''
  parms.date←'1766-03-02'
  filename←parms ##.CodeBrowser.Run ##.TestData.NS1
- html←1↓⊃,/(⎕UCS 13),¨#.APLTreeUtils.ReadUtf8File filename
+ html←1↓⊃,/(⎕UCS 13),¨APLTreeUtils2.⊃FilesAndDirs.NGET filename
  footer←html{⍵[2]↑⍵[1]↓⍺}⊃'<footer>.*</footer>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
  expected←'<p>Created at 1766-03-02</p>'
- →GoToTidyUp expected≢3⊃(⎕UCS 13)#.APLTreeUtils.Split footer
+ →T.GoToTidyUp expected≢3⊃(⎕UCS 13)APLTreeUtils2.Split footer
 
  parms.date←''
  filename←parms ##.CodeBrowser.Run ##.TestData.NS1
- html←1↓⊃,/(⎕UCS 13),¨#.APLTreeUtils.ReadUtf8File filename
- →GoToTidyUp∨/'<footer'⍷html
+ html←1↓⊃,/(⎕UCS 13),¨APLTreeUtils2.⊃FilesAndDirs.NGET filename
+ →T.GoToTidyUp∨/'<footer'⍷html
 
- R←∆OK
+ R←T._OK
 
 ∆TidyUp:
- #.FilesAndDirs.DeleteFile filename
+ Assert 1=FilesAndDirs.DeleteFile filename
 ⍝Done

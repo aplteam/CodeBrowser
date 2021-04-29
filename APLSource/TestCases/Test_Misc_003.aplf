@@ -1,12 +1,12 @@
  R←Test_Misc_003(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;parms;footer;ind
 ⍝ Check all parameters but `recursive`, `showParms` and `ignore`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  parms←##.CodeBrowser.CreateParms ⍬
- →GoToTidyUp 2≠⍴⍴parms.∆List
+ →T.GoToTidyUp 2≠⍴⍴parms.∆List
  parms.caption←'Foo Goo'
- parms.filename←#.FilesAndDirs.GetTempPath,'CodeViewer_Test_002.html'
+ parms.filename←FilesAndDirs.GetTempPath,'CodeViewer_Test_002.html'
  parms.lang←'de'
  parms.backgroundColorPrint←0
  parms.footer←'My footer'
@@ -23,13 +23,13 @@
 
  {}parms ##.CodeBrowser.Run ##.TestData.NS1
 
- html←'flat'#.APLTreeUtils.ReadUtf8File parms.filename
- →GoToTidyUp 1≠∨/'@media print{html{font-size:48pt;'⍷html
- →GoToTidyUp 1≠∨/'@page:left{margin:20mm 20mm 20mm 10mm;}'⍷html
+ html←⊃FilesAndDirs.NGET parms.filename
+ →T.GoToTidyUp 1≠∨/'@media print{html{font-size:48pt;'⍷html
+ →T.GoToTidyUp 1≠∨/'@page:left{margin:20mm 20mm 20mm 10mm;}'⍷html
 
- R←∆OK
+ R←T._OK
 
 ∆TidyUp:
  ⎕DL 0.2
- :Trap 0 ⋄ #.FilesAndDirs.DeleteFile parms.filename ⋄ :EndTrap
+ :Trap 0 ⋄ FilesAndDirs.DeleteFile parms.filename ⋄ :EndTrap
 ⍝Done

@@ -5,6 +5,6 @@
  parms ##.CodeBrowser.Run⍎n.Source_.Text
  {}Write n('HTML created: ',n.filename.Text)
  :If n.view.State
-     ##.APLTreeUtils.GoToWebPage n.filename.Text
+     ##.APLTreeUtils2.GoToWebPage n.filename.Text
  :EndIf
 ⍝Done

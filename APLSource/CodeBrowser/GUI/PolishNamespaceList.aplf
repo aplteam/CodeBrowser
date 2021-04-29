@@ -2,6 +2,6 @@
  ⍝ ⍵ is typically n.namespaces.Text
      list←⍵
      ((list=',')/list)←' '
-     list←∪' '##.A.Split ##.A.dmb list
+     list←∪' '##.A.Split ##.A.DMB list
      '⎕se'⎕R'⎕SE'⊣list
  }

@@ -1,19 +1,19 @@
  R←Test_Misc_090(stopFlag batchFlag);⎕TRAP;parms;filename;html
 ⍝ Exercise the `LoadCodeBrowser` user command
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  ⎕SE.⎕EX'CodeBrowser'
  {}⎕SE.UCMD']CodeBrowser -load'
- →GoToTidyUp 9≠⎕SE.⎕NC'CodeBrowser'
+ →T.GoToTidyUp 9≠⎕SE.⎕NC'CodeBrowser'
  parms←⎕SE.CodeBrowser.CodeBrowser.CreateParms ⍬
  parms.caption←'Author: ',⎕AN
  filename←parms ⎕SE.CodeBrowser.CodeBrowser.Run'⎕SE'
- html←'flat'##.APLTreeUtils.ReadUtf8File filename
- →GoToTidyUp 0=+/('Author: ',⎕AN)⍷html
+ html←⊃FilesAndDirs.NGET filename
+ →T.GoToTidyUp 0=+/('Author: ',⎕AN)⍷html
 
- R←∆OK
+ R←T._OK
 
 ∆TidyUp:
  ⎕SE.⎕EX'CodeBrowser'
- :Trap 0 ⋄ ##.FilesAndDirs.DeleteFile filename ⋄ :EndTrap
+ Assert 1=FilesAndDirs.DeleteFile filename

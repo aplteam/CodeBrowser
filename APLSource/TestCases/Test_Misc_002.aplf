@@ -1,20 +1,20 @@
  R←Test_Misc_002(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;footer;parms;filename
 ⍝ Checks handling of footers.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  parms←##.CodeBrowser.CreateParms ⍬
- →GoToTidyUp 2≠⍴⍴parms.∆List
+ →T.GoToTidyUp 2≠⍴⍴parms.∆List
  parms.footer←'John Doe on the 1982-12-31'
  filename←parms ##.CodeBrowser.Run ##.TestData.NS1
 
- html←1↓⊃,/(⎕UCS 13),¨#.APLTreeUtils.ReadUtf8File filename
+ html←1↓⊃,/(⎕UCS 13),¨APLTreeUtils2.⊃FilesAndDirs.NGET filename 1
  footer←html{⍵[2]↑⍵[1]↓⍺}⊃'<footer>.*</footer>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣html
  expected←'<p>John Doe on the 1982-12-31</p>'
- →GoToTidyUp expected≢3⊃(⎕UCS 13)#.APLTreeUtils.Split footer
+ →T.GoToTidyUp expected≢3⊃(⎕UCS 13)APLTreeUtils2.Split footer
 
- R←∆OK
+ R←T._OK
 
 ∆TidyUp:
- #.FilesAndDirs.DeleteFile filename
+ Assert 1=FilesAndDirs.DeleteFile filename
 ⍝Done

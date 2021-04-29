@@ -1,17 +1,17 @@
  R←Test_Parms_011(stopFlag batchFlag);⎕TRAP;filename;html;parms
 ⍝ Check the `caption` parameter
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.info←'This is my caption'
  filename←parms ##.CodeBrowser.Run'#._CodeBrowser.TestData.NS1'
- html←'flat'#.APLTreeUtils.ReadUtf8File filename
- →GoToTidyUp 0∊⍴html
- →GoToTidyUp 1≠+/('<div id="info">',CRLF,'<p>This is my caption</p>',CRLF,'</div>')⍷html
+ html←⊃FilesAndDirs.NGET filename
+ →T.GoToTidyUp 0∊⍴html
+ →T.GoToTidyUp 1≠+/('<div id="info">',CRLF,'<p>This is my caption</p>',CRLF,'</div>')⍷html
 
- R←∆OK
+ R←T._OK
 
 ∆TidyUp:
- :Trap 0 ⋄ #.FilesAndDirs.DeleteFile filename ⋄ :EndTrap
+ Assert 1=FilesAndDirs.DeleteFile filename
 ⍝Done

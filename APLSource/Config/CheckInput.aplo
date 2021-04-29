@@ -14,7 +14,7 @@
      :EndIf
  :ElseIf ~0∊⍴list←n.ignore.Text
      ((','=list)/list)←' '
-     list←' '##.APLTreeUtils.Split ##.APLTreeUtils.dmb list
+     list←' '##.APLTreeUtils2.Split ##.APLTreeUtils2.DMB list
      :If ∨/bool←9.1≠⎕NC¨⊂¨list
          obj←n.ignore
          flag←WriteErr'Invalid: ',⊃{⍺,', ',⍵}/bool/list

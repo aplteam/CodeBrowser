@@ -1,24 +1,24 @@
  R←Test_Misc_020(stopFlag batchFlag);⎕TRAP;filename;html
 ⍝ Refs to scripts pointing elsewhere
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  #.⎕SHADOW'Temp'
  'Temp'#.⎕NS''
  'Temp.Target'#.⎕NS''
  #.Temp.Target.⎕FX'r←Hello' 'r←''World'''
- #.Temp.Target.APLTreeUtils←#.APLTreeUtils
- #.Temp.Target.FilesAndDirs←#.FilesAndDirs
+ #.Temp.Target.APLTreeUtils2←⍎⍕APLTreeUtils2
+ #.Temp.Target.FilesAndDirs←⍎⍕FilesAndDirs
  #.Temp.Target.Temp←#.Temp
 
  filename←##.CodeBrowser.Run #.Temp.Target
- →GoToTidyUp 0∊⍴filename
+ →T.GoToTidyUp 0∊⍴filename
 
- html←#.APLTreeUtils.ReadUtf8File filename
- →FailsIf∨/∨/¨'APLTreeUtils' 'FileAndDirs'⍷¨⊂html
+ html←APLTreeUtils2.⊃FilesAndDirs.NGET filename
+ →T.FailsIf∨/∨/¨'APLTreeUtils2' 'FileAndDirs'⍷¨⊂html
 
- R←∆OK
+ R←T._OK
 
 ∆TidyUp:
- #.FilesAndDirs.DeleteFile filename
+ Assert 1=FilesAndDirs.DeleteFile filename
 ⍝Done

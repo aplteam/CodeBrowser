@@ -6,6 +6,6 @@
  options,←' -obj=fo'
  options,←' -lang="de"'
  options,←' -p'
- options,←' -vib'
- r←⎕SE.UCMD'CodeBrowser #._CodeBrowser.CodeBrowser ',options,stopFlag/' -'
+ options,←' -view'
+ r←⎕SE.UCMD'CodeBrowser #.CodeBrowser.CodeBrowser ',options,stopFlag/' -'
 ⍝Done

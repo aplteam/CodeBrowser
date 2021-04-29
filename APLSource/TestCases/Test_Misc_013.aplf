@@ -1,7 +1,7 @@
  R←Test_Misc_013(stopFlag batchFlag);⎕TRAP;filename;html;expected
 ⍝ Namespace without any fns/opr/vars but with empty sub namespaces.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  #.⎕SHADOW'Temp'
  'Temp'#.⎕NS''
@@ -10,18 +10,18 @@
  'NS3'#.Temp.⎕NS''
 
  filename←##.CodeBrowser.Run #.Temp
- →GoToTidyUp 0∊⍴filename
+ →T.GoToTidyUp 0∊⍴filename
 
  expected←'!DOCTYPE' 'html' 'head' 'meta' 'meta' 'title' 'body' 'h1' 'div' 'div'
- html←#.APLTreeUtils.ReadUtf8File filename
+ html←APLTreeUtils2.⊃FilesAndDirs.NGET filename 1
  html←'<script>.*</script>'⎕R''⍠('DotAll' 1)('Greedy' 0)('Mode' 'D')⊣html
  html←'<style>.*</style>'⎕R''⍠('DotAll' 1)('Greedy' 0)('Mode' 'D')⊣html
  html←(0<≢¨html)/html
  html←1↓∊(⎕UCS 13),¨html
- →PassesIf expected≡{⍵/⍨'/'≠⊃¨⍵}(⊂'')~⍨{⍵↑⍨¯1+⌊/⍵⍳' >'}¨'<'#.APLTreeUtils.Split html
+ →T.PassesIf expected≡{⍵/⍨'/'≠⊃¨⍵}(⊂'')~⍨{⍵↑⍨¯1+⌊/⍵⍳' >'}¨'<'APLTreeUtils2.Split html
 
- R←∆OK
+ R←T._OK
 
 ∆TidyUp:
- #.FilesAndDirs.DeleteFile filename
+ Assert 1=FilesAndDirs.DeleteFile filename
 ⍝Done

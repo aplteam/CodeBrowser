@@ -3,7 +3,7 @@
      :Trap 19
          ⎕NDELETE parms.filename
      :Case 19
-         ⎕NUNTIE((A.dtb↓⎕NNAMES)⍳⊂parms.filename)⊃⎕NNUMS
+         ⎕NUNTIE((A.DTB↓⎕NNAMES)⍳⊂parms.filename)⊃⎕NNUMS
          ⎕NDELETE parms.filename
      :EndTrap
  :EndIf
@@ -20,4 +20,5 @@
      :EndTrap
  :Until (tno<0)∨5<errCounter ⍝ Try max 5 times.
  'Unable to create the HTML file'⎕SIGNAL 22/⍨tno=0
+ ⎕NUNTIE tno
 ⍝Done

@@ -2,6 +2,6 @@
  NL←⎕UCS 13
  options←''
  options,←' -caption="acre"'
- options,←' -vib'
+ options,←' -view'
  r←⎕SE.UCMD'CodeBrowser ⎕se.acre',options,stopFlag/' -'
 ⍝Done

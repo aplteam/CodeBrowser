@@ -1,7 +1,7 @@
  R←Test_Parms_019(stopFlag batchFlag);⎕TRAP;html;parms;filename2;filename1
 ⍝ Check the `processFunctions` parameter
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  #.⎕SHADOW'Temp'
  'Temp'#.⎕NS''
@@ -9,21 +9,21 @@
  #.Temp.NS1.⎕FX'r←Hello' 'r←''World'''
  #.Temp.NS1.⎕FX'r←(fns Do) arg' 'r←''Hello Universe'''
  filename1←##.CodeBrowser.Run'#.Temp.NS1'
- →GoToTidyUp 0∊⍴filename1
- html←'flat'#.APLTreeUtils.ReadUtf8File filename1
- →GoToTidyUp 1≠+/'''World'''⍷html
- →GoToTidyUp 1≠+/'''Hello Universe'''⍷html
+ →T.GoToTidyUp 0∊⍴filename1
+ html←⊃FilesAndDirs.NGET filename1
+ →T.GoToTidyUp 1≠+/'''World'''⍷html
+ →T.GoToTidyUp 1≠+/'''Hello Universe'''⍷html
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.processFunctions←0
  filename2←parms ##.CodeBrowser.Run'#.Temp.NS1'
- →GoToTidyUp 0∊⍴filename2
- html←'flat'#.APLTreeUtils.ReadUtf8File filename2
- →GoToTidyUp 0≠+/'''World'''⍷html
- →GoToTidyUp 1≠+/'''Hello Universe'''⍷html
+ →T.GoToTidyUp 0∊⍴filename2
+ html←⊃FilesAndDirs.NGET filename2
+ →T.GoToTidyUp 0≠+/'''World'''⍷html
+ →T.GoToTidyUp 1≠+/'''Hello Universe'''⍷html
 
- R←∆OK
+ R←T._OK
 
 ∆TidyUp:
- :Trap 0 ⋄ #.FilesAndDirs.DeleteFile filename1 filename2 ⋄ :EndTrap
+ Assert 1 1≡FilesAndDirs.DeleteFile filename1 filename2
 ⍝Done

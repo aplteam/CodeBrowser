@@ -1,21 +1,21 @@
  R←Test_Parms_005(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;parms;footer;ind;filename
 ⍝ Check the `infoIsHTML` parameter
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
- filename←#.FilesAndDirs.GetTempPath,'CodeViewer_Test_013.html'
+ filename←FilesAndDirs.GetTempPath,'CodeViewer_Test_013.html'
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.filename←filename
- parms.info←⊃#.MarkAPL.Markdown2HTML⊂'This **is** in `_code`.'
+ parms.info←⊃MarkAPL.Markdown2HTML⊂'This **is** in `_code`.'
  parms.infoIsHTML←1
  {}parms ##.CodeBrowser.Run ##.TestData.NS1
- html←'flat'#.APLTreeUtils.ReadUtf8File parms.filename
+ html←⊃FilesAndDirs.NGET parms.filename
  expected←'<p><p>This <strong>is</strong> in <code>_code</code>.</p></p>'
- →GoToTidyUp 1≠+/expected⍷html
+ →T.GoToTidyUp 1≠+/expected⍷html
 
- R←∆OK
+ R←T._OK
 
 ∆TidyUp:
- :Trap 0 ⋄ #.FilesAndDirs.DeleteFile parms.filename ⋄ :EndTrap
+ Assert 1=FilesAndDirs.DeleteFile parms.filename
 ⍝Done

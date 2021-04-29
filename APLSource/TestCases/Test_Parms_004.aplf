@@ -1,20 +1,20 @@
  R←Test_Parms_004(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;parms;footer;ind;filename
 ⍝ Check the `info` parameter with "<>&"
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
- filename←#.FilesAndDirs.GetTempPath,'CodeViewer_Test_013.html'
+ filename←FilesAndDirs.GetTempPath,'CodeViewer_Test_013.html'
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.filename←filename
  parms.info←'Press <alt>+132 & <alt>+148 & <alt>+132'
  {}parms ##.CodeBrowser.Run ##.TestData.NS1
- html←'flat'#.APLTreeUtils.ReadUtf8File parms.filename
+ html←⊃FilesAndDirs.NGET parms.filename
  expected←'<p>Press &lt;alt&gt;+132 &amp; &lt;alt&gt;+148 &amp; &lt;alt&gt;+132</p>'
- →GoToTidyUp 1≠+/expected⍷html
+ →T.GoToTidyUp 1≠+/expected⍷html
 
- R←∆OK
+ R←T._OK
 
 ∆TidyUp:
- :Trap 0 ⋄ #.FilesAndDirs.DeleteFile parms.filename ⋄ :EndTrap
+ Assert 1=FilesAndDirs.DeleteFile parms.filename
 ⍝Done

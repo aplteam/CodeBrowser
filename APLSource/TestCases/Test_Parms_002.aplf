@@ -1,40 +1,40 @@
  R←Test_Parms_002(stopFlag batchFlag);⎕TRAP;html;names;nav;expected;parms;footer;ind;filename
 ⍝ Check the `ignore` parameter
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
- filename←#.FilesAndDirs.GetTempPath,'CodeViewer_Test_013.html'
+ filename←FilesAndDirs.GetTempPath,'CodeViewer_Test_013.html'
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.filename←filename
  parms.ignore←'##.TestData.NS1.NS1_a' '##.TestData.NS1.NS1_b'
  {}parms ##.CodeBrowser.Run ##.TestData.NS1
- html←'flat'#.APLTreeUtils.ReadUtf8File parms.filename
- →GoToTidyUp(⊃⍴##.TestData.NS1.⎕NL 3 4)≠+/'<code>'⍷html
+ html←⊃FilesAndDirs.NGET parms.filename
+ →T.GoToTidyUp(⊃⍴##.TestData.NS1.⎕NL 3 4)≠+/'<code>'⍷html
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.filename←filename
  parms.ignore←##.TestData.NS1.NS1_a ##.TestData.NS1.NS1_b
  {}parms ##.CodeBrowser.Run ##.TestData.NS1
- html←'flat'#.APLTreeUtils.ReadUtf8File parms.filename
- →GoToTidyUp(⊃⍴##.TestData.NS1.⎕NL 3 4)≠+/'<code>'⍷html
+ html←⊃FilesAndDirs.NGET parms.filename
+ →T.GoToTidyUp(⊃⍴##.TestData.NS1.⎕NL 3 4)≠+/'<code>'⍷html
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.filename←filename
  parms.ignore←'##.TestData.NS1.NS1_a ##.TestData.NS1.NS1_b'
  {}parms ##.CodeBrowser.Run ##.TestData.NS1
- html←'flat'#.APLTreeUtils.ReadUtf8File parms.filename
- →GoToTidyUp(⊃⍴##.TestData.NS1.⎕NL 3 4)≠+/'<code>'⍷html
+ html←⊃FilesAndDirs.NGET parms.filename
+ →T.GoToTidyUp(⊃⍴##.TestData.NS1.⎕NL 3 4)≠+/'<code>'⍷html
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.filename←filename
  parms.ignore←'##.TestData.NS1.NS1_a,##.TestData.NS1.NS1_b'
  {}parms ##.CodeBrowser.Run ##.TestData.NS1
- html←'flat'#.APLTreeUtils.ReadUtf8File parms.filename
- →GoToTidyUp(⊃⍴##.TestData.NS1.⎕NL 3 4)≠+/'<code>'⍷html
+ html←⊃FilesAndDirs.NGET parms.filename
+ →T.GoToTidyUp(⊃⍴##.TestData.NS1.⎕NL 3 4)≠+/'<code>'⍷html
 
- R←∆OK
+ R←T._OK
 
 ∆TidyUp:
- :Trap 0 ⋄ #.FilesAndDirs.DeleteFile parms.filename ⋄ :EndTrap
+ Assert 1=FilesAndDirs.DeleteFile parms.filename
 ⍝Done

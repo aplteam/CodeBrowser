@@ -4,7 +4,7 @@
  html←''
  captions←'Functions:' 'Operators:' 'Scripts:' 'Variables:'
  :For i :In ⍳≢lists.(fns opr scripts variables)
-     :If ~0∊⍴names←i⊃lists.(fns opr scripts variables)
+     :If 0≠≢names←i⊃lists.(fns opr scripts variables)
          html,←⊂'<p class="type">',(i⊃captions),'</p>'
          :For k :In ⍳⍴names
              name←k⊃names

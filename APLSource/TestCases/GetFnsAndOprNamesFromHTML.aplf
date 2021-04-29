@@ -2,7 +2,7 @@
 ⍝ ⍵ is HTML.
 ⍝ We look for <pre><code> and look for names in the lines carrying those tags.
  list←html[1+'<pre><code>.*$'⎕S 2⊣html]           ⍝ Just the code blocks
- dlb←#.APLTreeUtils.dlb
+ dlb←APLTreeUtils2.DLB
  list←('∇'=⊃¨dlb(⍴'<pre><code>')↓¨list)/list      ⍝ Just the lines that define headers
  list←{dlb ⍵↓⍨⍵⍳'∇'}¨list                         ⍝ Drop leading part until the ∇
  list←{'⍝'∊⍵:⍵↑⍨¯1+⍵⍳'⍝' ⋄ ⍵}¨list                ⍝ Drop comments

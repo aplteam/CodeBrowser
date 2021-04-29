@@ -16,12 +16,12 @@
      :Return
  :EndTrap
  :If 1≥|≡parms.cssfilename
-     parms.cssfilename←A.dmb parms.cssfilename
+     parms.cssfilename←A.DMB parms.cssfilename
      :If ∨/' ,'∊parms.cssfilename
          ((' '=parms.cssfilename)/parms.cssfilename)←','
          parms.cssfilename←','A.Split parms.cssfilename
      :EndIf
-     parms.cssfilename←A.Nest parms.cssfilename
+     parms.cssfilename←⊆parms.cssfilename
  :EndIf
  parms.filename{~0∊⍴⍺:⍺ ⋄ (¯4↓F.GetTempFilename''),'.html'}←⍬
  parms.caption{~(⊂⍺)∊¯1 '':⍺ ⋄ 1=⍴,⍵:⍕⍵ ⋄ ⊃,/{⍺,', ',⍵}/⍵}←namespaces

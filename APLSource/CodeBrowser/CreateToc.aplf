@@ -13,23 +13,23 @@
      (buff flag)←HandleContainers ref width flag lists parms collect
      html,←buff
      :If parms.processFunctions
-     :AndIf ~0∊⍴lists.fns←' '~¨⍨↓ref.⎕NL 3
+     :AndIf 0≠≢lists.fns←' '~¨⍨↓ref.⎕NL 3
          (html flag)←html OpenNavSub flag
          html,←CreateToc_ ref parms lists.fns'Function'collect width
      :EndIf
      :If parms.processOperators
-     :AndIf ~0∊⍴lists.opr←' '~¨⍨↓ref.⎕NL 4
+     :AndIf 0≠≢lists.opr←' '~¨⍨↓ref.⎕NL 4
          (html flag)←html OpenNavSub flag
          html,←CreateToc_ ref parms lists.opr'Operator'collect width
      :EndIf
      :If parms.processScripts
-     :AndIf ~0∊⍴lists.scripts←ListScriptsIn ref
-     :AndIf ~0∊⍴lists.scripts←(~(ref.{0∊⍴⊃,/⍵:⍵ ⋄ ⍎¨⍵}lists.scripts)∊parms.ignore)/lists.scripts
+     :AndIf 0≠≢lists.scripts←ListScriptsIn ref
+     :AndIf 0≠≢lists.scripts←(~(ref.{0∊⍴⊃,/⍵:⍵ ⋄ ⍎¨⍵}lists.scripts)∊parms.ignore)/lists.scripts
          (html flag)←html OpenNavSub flag
          html,←CreateToc_ ref parms lists.scripts'Script'collect width
      :EndIf
      :If parms.processVars
-     :AndIf ~0∊⍴lists.variables←' '~¨⍨↓ref.⎕NL 2
+     :AndIf 0≠≢lists.variables←' '~¨⍨↓ref.⎕NL 2
          (html flag)←html OpenNavSub flag
          html,←CreateToc_ ref parms lists.variables'Variable'collect width
      :EndIf

@@ -1,13 +1,13 @@
  filename←CreateHtml parms;collect;WriteHTML;info
  parms.bookmarkCounter←1
- WriteHTML←parms.tno∘{0∊⍴⍵:r←⍬ ⋄ 'append'A.WriteUtf8File ⍺(,A.Nest,⍵)}
- WriteHTML WriteHeader parms
- WriteHTML⊂'<h1>',(ExchangeHtmlSpecialChars parms.caption),'</h1>'
- :If ~0∊⍴parms.info
+ WriteHTML←parms.filename∘{0=≢⍵:r←⍬ ⋄ (⊂⍵)⎕NPUT ⍺ 2}
+ WriteHeader parms
+ WriteHTML'<h1>',(ExchangeHtmlSpecialChars parms.caption),'</h1>'
+ :If 0≠≢parms.info
      info←ExchangeHtmlSpecialChars⍣(~parms.infoIsHTML)⊣parms.info
      :If 0 1∊⍨≡info
      :AndIf ~(⎕UCS 13)∊info
-         WriteHTML(⊂'<div id="info">'),({'<p>',⍵,'</p>'}¨A.Nest info),⊂'</div>'
+         WriteHTML(⊂'<div id="info">'),({'<p>',⍵,'</p>'}¨⊆info),⊂'</div>'
      :Else
          info←(⎕UCS 13)A.Split⍣((⎕UCS 13)∊info)⊣info
          WriteHTML(⊂'<div id="info">'),({({'<p>',⍵,'</p>'}⍵)}¨info),⊂'</div>'
@@ -29,5 +29,4 @@
  WriteHTML InjectJavaScriptLate ⍬
  WriteHTML('</body>' '</html>')
  filename←parms.filename
- ⎕NUNTIE parms.tno
 ⍝Done

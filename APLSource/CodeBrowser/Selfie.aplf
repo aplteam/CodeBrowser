@@ -5,7 +5,7 @@
  parms.caption←'CodeBrowser'
  parms.info←'Contains the CodeBrowser code without the test cases.'
  parms.showParms←1
- parms.footer←'Created by ',⎕AN,' on ',##.APLTreeUtils.FormatDateTime ⎕TS
+ parms.footer←'Created by ',⎕AN,' on ',##.APLTreeUtils2.FormatDateTime ⎕TS
  parms.twoSidedPrint←1
  parms.filename←'CodeBrowser_CodeReview.html'
  r←parms GUI.Run'#._CodeBrowser.CodeBrowser' ''

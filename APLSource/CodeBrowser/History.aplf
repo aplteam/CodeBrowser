@@ -1,4 +1,6 @@
  History
+⍝ * Version 2.0.0
+⍝   * Is now a Tatin package and depends on Tatin packages
 ⍝ * Version 1.0.2
 ⍝   * Help polished.
 ⍝   * "Make" updated.
