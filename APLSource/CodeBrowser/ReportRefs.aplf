@@ -4,7 +4,7 @@
  :AndIf 0≠≢list←(ref.{∊'['∊is←⍕⍎⍵:0 ⋄ ((⍕⎕THIS),'.',⍵)≢is}¨list)/list
      html←⊂'<p class="type">References:</p>'
      html,←⊂'<table class="refs">'
-     html,←'<tr>'∘,¨(ref.{'<td>',⍵,'</td><td>==></td><td>',(⍕⍎⍵),'</td>'}¨list),¨⊂'</tr>'
+     html,←'<tr>'∘,¨(ref.{'<td>',⍵,'</td><td>==></td><td>',({0::⍵ ⋄ ⍕⍎}⍵),'</td>'}¨list),¨⊂'</tr>'
      html,←⊂'</table>'
      {}WriteHTML html
  :EndIf

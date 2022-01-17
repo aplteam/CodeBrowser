@@ -1,4 +1,5 @@
- tno←CreateOrReplaceFile parms;errCounter
+ {r}←CreateOrReplaceFile parms;errCounter;tno
+ r←⍬
  :If ⎕NEXISTS parms.filename
      :Trap 19
          ⎕NDELETE parms.filename

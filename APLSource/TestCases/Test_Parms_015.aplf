@@ -5,14 +5,14 @@
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.twoSidedPrint←0
- filename←parms ##.CodeBrowser.Run'#._CodeBrowser.TestData.NS1'
+ filename←parms ##.CodeBrowser.Run'#.CodeBrowser.TestData.NS1'
  html←⊃FilesAndDirs.NGET filename
  →T.GoToTidyUp 0∊⍴html
  →T.GoToTidyUp 0≠+/'@page :left *{margin: *20mm *20mm *20mm *20mm;}'⍷html
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.twoSidedPrint←1
- filename←parms ##.CodeBrowser.Run'#._CodeBrowser.TestData.NS1'
+ filename←parms ##.CodeBrowser.Run'#.CodeBrowser.TestData.NS1'
  html←⊃FilesAndDirs.NGET filename
  →T.GoToTidyUp 0∊⍴html
  →T.GoToTidyUp 0≠+/'@page :left {margin: 20mm 20mm 20mm 10mm;}'⍷html

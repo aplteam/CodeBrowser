@@ -3,7 +3,7 @@
      (r msg)←CheckInput n
      0=r:0
      _←CopyGuiToParms n
-     0∊⍴n.∆Parms.filename:0
+     0=≢n.∆Parms.filename:0
      _←n.∆Parms ##.Run n.∆Parms.namespaces
      _←##.A.GoToWebPage⍣(⊃~n.∆Parms.viewInBrowser)⊣n.∆Parms.filename
      0

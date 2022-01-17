@@ -5,10 +5,10 @@
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.info←'This is my caption'
- filename←parms ##.CodeBrowser.Run'#._CodeBrowser.TestData.NS1'
- html←⊃FilesAndDirs.NGET filename
+ filename←parms ##.CodeBrowser.Run'#.CodeBrowser.TestData.NS1'
+ html←⊃FilesAndDirs.NGET filename 1
  →T.GoToTidyUp 0∊⍴html
- →T.GoToTidyUp 1≠+/('<div id="info">',CRLF,'<p>This is my caption</p>',CRLF,'</div>')⍷html
+ →T.GoToTidyUp 0 1 2≢{⍵-(1⊃⍵)}html⍳'<div id="info">' '<p>This is my caption</p>' '</div>'
 
  R←T._OK
 

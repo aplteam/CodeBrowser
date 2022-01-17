@@ -1,4 +1,4 @@
- {r}←WriteHeader parms;html;thisCssFile
+ {r}←WriteHeader parms;html;thisCssFile;filename
  html←⊂'<!DOCTYPE html>'
  html,←⊂'<html lang="',parms.lang,'">'
  html,←⊂'<head>'
@@ -7,7 +7,9 @@
  html,←⊂'<title>',(ExchangeHtmlSpecialChars parms.caption),'</title>'
  :If parms.linkcssfile
      :For thisCssFile :In parms.cssfilename
-         html,←⊂'<link href="',({r←⍵ ⋄ (('\'=r)/r)←'/' ⋄ r}thisCssFile),'" rel="stylesheet">'
+         filename←F.EnforceSlash'expand'F.NormalizePath thisCssFile
+         filename←':/'⎕R'|/'⊣filename
+         html,←⊂'<link href="file://',filename,'" rel="stylesheet">'
      :EndFor
  :Else
      html,←⊂CompressCSS GetCSS parms

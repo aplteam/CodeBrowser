@@ -5,10 +5,10 @@
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.footer←'This is my footer'
- filename←parms ##.CodeBrowser.Run'#._CodeBrowser.TestData.NS1'
- html←⊃FilesAndDirs.NGET filename
+ filename←parms ##.CodeBrowser.Run'#.CodeBrowser.TestData.NS1'
+ html←⊃FilesAndDirs.NGET filename 1
  →T.GoToTidyUp 0∊⍴html
- →T.GoToTidyUp 1≠+/('<footer>',CRLF,'<hr>',CRLF,'<p>This is my footer</p>')⍷html
+ →T.GoToTidyUp 0 1 2≢{⍵-(1⊃⍵)}html⍳'<footer>' '<hr>' '<p>This is my footer</p>'
 
  R←T._OK
 

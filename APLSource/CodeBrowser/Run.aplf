@@ -17,5 +17,5 @@
  :If parms.viewInBrowser
      {}A.GoToWebPage filename
  :EndIf
- parms.cssfilename←{0∊⍴⍵:⍵ ⋄ 0 1∊⍨≡⍵:⍵ ⋄ ⊃{⍺,', ',⍵}/⍵}parms.cssfilename
+ parms.cssfilename←{0=≢⍵:⍵ ⋄ 0 1∊⍨≡⍵:⍵ ⋄ ⊃{⍺,', ',⍵}/⍵}parms.cssfilename
 ⍝Done

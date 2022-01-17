@@ -9,7 +9,7 @@
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.cssfilename←cssFilename
- filename←parms ##.CodeBrowser.Run'#._CodeBrowser.TestData.NS1'
+ filename←parms ##.CodeBrowser.Run'#.CodeBrowser.TestData.NS1'
  html←⊃FilesAndDirs.NGET filename
  →T.GoToTidyUp 0∊⍴html
  →T.GoToTidyUp 1≠+/'<style>p{font-size:96em;}</style'⍷html

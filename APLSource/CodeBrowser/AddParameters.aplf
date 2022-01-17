@@ -3,7 +3,7 @@
  :If parms.showParms
      mat←parms.∆List
      toc←mat[;1]~¨' '
-     mat⌿⍨←~toc∊'tno' 'refs'      ⍝ Strictly speaking these are not parameters
+     mat⌿⍨←~toc∊⊂'refs'      ⍝ Strictly speaking these are not parameters
      row←toc⍳⊂'info'
      mat[row;2]←⊂Max 2⊃mat[row;]
      row←toc⍳⊂'caption'

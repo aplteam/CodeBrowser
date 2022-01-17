@@ -6,7 +6,7 @@
  ref←⍎'cssfile_label'parent.⎕WC ∆
 
  ∆←⊂'Edit'
- ∆,←⊂'Posn'(((⌈n.∆vgap÷2)+⊃↑+⌿⊃ref.(Posn Size)),n.∆hgap)
+ ∆,←⊂'Posn'(((2+⌈n.∆vgap÷2)+⊃↑+⌿⊃ref.(Posn Size)),n.∆hgap)
  ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Right')
  ∆,←⊂'Size'(⍬(parent.Size[2]-2×n.∆hgap))
  ∆,←⊂'TipObj'n.∆Tip
@@ -30,7 +30,7 @@
  ∆←⊂'Button'
  ∆,←⊂'Style' 'Check'
  ∆,←⊂'Caption' 'Link the CSS file rather than emebedd'
- ∆,←⊂'Posn'((n.∆vgap+⊃↑+⌿⊃n.cssFilename.(Posn Size)),n.∆hgap)
+ ∆,←⊂'Posn'((2+n.∆vgap+⊃↑+⌿⊃n.cssFilename.(Posn Size)),n.∆hgap)
  ∆,←⊂'TipObj'n.∆Tip
  ∆,←⊂'Tip'('Linking can be very useful for changing the CSS')
  ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Left')

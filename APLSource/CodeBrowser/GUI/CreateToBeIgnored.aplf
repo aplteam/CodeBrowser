@@ -1,12 +1,12 @@
  n←n CreateToBeIgnored(parent above);∆;ref
  ∆←⊂'Label'
  ∆,←⊂'Posn'((n.∆vgap+⊃+⌿↑above.(Posn Size)),n.∆hgap)
- ∆,←⊂'Caption' '&To be ignored:'
+ ∆,←⊂'Caption' 'To be ignored:'
  ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Left')
  ref←⍎'ignored_label'parent.⎕WC ∆
 
  ∆←⊂'Edit'
- ∆,←⊂'Posn'(((⌈n.∆vgap÷2)+⊃↑+⌿⊃ref.(Posn Size)),n.∆hgap)
+ ∆,←⊂'Posn'(((2+⌈n.∆vgap÷2)+⊃↑+⌿⊃ref.(Posn Size)),n.∆hgap)
  ∆,←⊂'Font'n.∆APL_Font
  ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Right')
  ∆,←⊂'Size'(⍬(parent.Size[2]-2×n.∆hgap))
@@ -14,6 +14,7 @@
  ∆,←⊂'TipObj'n.∆Tip
  ∆,←⊂'Tip'('Specify everything inside the namespaces to be scanned that you want to be ignored.' 'Specify fully qualified names. Use spaces or commata as separators.')
  n.toBeIgnored←⍎'tobeignored'parent.⎕WC ∆
+ n.toBeIgnored.Size[1]-←5
 
  ∆←⊂'Button'
  ∆,←⊂'Caption' '&Ignore empty namespaces'

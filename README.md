@@ -18,7 +18,7 @@ Make sure that the contents of the zip file goes into a folder that is scanned b
 
 Any newly started instance of Dyalog APL then knows a user commands `]CodeBrowser`.
 
-Enter 
+Execute:
 
 ```
 ]CodeBrowser -?
@@ -38,16 +38,16 @@ The simplest example:
 ]CodeBrowser ⎕se -view
 ```
 
-The `-view` flag stands for `view in default browser`. This will allow you to see everything in `⎕SE`.
+The `-view` flag stands for "put on display with default browser". This will allow you to check on all the code in `⎕SE`.
 
 
 ## Parameters
 
-Although many (though not all) parameters can be specified as flags and options via the user command in order to make it possible to run CodeBrowser under program control, for a user the most convenient way is certainly to make use of the `-gui` flag.
+Although many (though not all) parameters can be specified as flags and options via the user command, in order to make it possible 
+to run CodeBrowser under program control, for a user the most convenient way is certainly to make use of the `-gui` flag.
 
-However, although `]CodeBrowser` works on all platforms the `-gui` works under **Windows only**.
-
-This lets the user command show a GUI that allows the user to comfortably define all parameters she wants to amend:
+However, although `]CodeBrowser` works on all platforms the `-gui` flag works under **Windows only**.
+It lets the user command show a GUI that allows the user to comfortably define all parameters she wants to amend:
 
 ![](images/gui_1.png "First tab of CodeBrowser's GUI")
 

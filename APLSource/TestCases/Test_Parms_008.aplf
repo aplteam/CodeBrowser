@@ -5,7 +5,7 @@
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.filename←'html'FilesAndDirs.GetTempFilename2''
- filename←parms ##.CodeBrowser.Run'#._CodeBrowser.TestData.NS1'
+ filename←parms ##.CodeBrowser.Run'#.CodeBrowser.TestData.NS1'
  →T.GoToTidyUp filename≢parms.filename
  html←⊃FilesAndDirs.NGET filename
  →T.GoToTidyUp 0∊⍴html

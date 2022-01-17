@@ -10,7 +10,7 @@
  parms.linkcssfile←1
  {}parms ##.CodeBrowser.Run ##.TestData
  html←⊃FilesAndDirs.NGET parms.filename 1
- →T.GoToTidyUp~(⊂'<link href="codebrowser_styles.css" rel="stylesheet">')∊html
+ →T.GoToTidyUp~∧/∨/¨'<link href="' 'codebrowser_styles.css' 'rel="stylesheet"'⍷¨⊂∊html
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.filename←filename
@@ -18,7 +18,7 @@
  parms.cssfilename←⊂'abc.css'
  {}parms ##.CodeBrowser.Run ##.TestData
  html←⊃FilesAndDirs.NGET parms.filename 1
- →T.GoToTidyUp~(⊂'<link href="abc.css" rel="stylesheet">')∊html
+ →T.GoToTidyUp~∧/∨/¨'<link href="' 'abc.css' 'rel="stylesheet"'⍷¨⊂∊html
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.filename←filename
@@ -26,19 +26,7 @@
  parms.cssfilename←'abc.css' 'foo.css'
  {}parms ##.CodeBrowser.Run ##.TestData
  html←⊃FilesAndDirs.NGET parms.filename 1
- →T.GoToTidyUp~(⊂'<link href="abc.css" rel="stylesheet">')∊html
- →T.GoToTidyUp~(⊂'<link href="foo.css" rel="stylesheet">')∊html
- →T.GoToTidyUp 2≠⍴'<link href=".*" rel="stylesheet">'⎕S 0⍠('Greedy' 0)⊣html
-
- parms←##.CodeBrowser.CreateParms ⍬
- parms.filename←filename
- parms.linkcssfile←1
- parms.cssfilename←'abc.css foo.css'
- {}parms ##.CodeBrowser.Run ##.TestData
- html←⊃FilesAndDirs.NGET parms.filename 1
- →T.GoToTidyUp~(⊂'<link href="abc.css" rel="stylesheet">')∊html
- →T.GoToTidyUp~(⊂'<link href="foo.css" rel="stylesheet">')∊html
- →T.GoToTidyUp 2≠⍴'<link href=".*" rel="stylesheet">'⎕S 0⍠('Greedy' 0)⊣html
+ →T.GoToTidyUp~∧/∨/¨'<link href="' 'abc.css' 'foo.css' 'rel="stylesheet"'⍷¨⊂∊html
 
  parms←##.CodeBrowser.CreateParms ⍬
  parms.filename←filename
@@ -46,9 +34,7 @@
  parms.cssfilename←'abc.css,foo.css'
  {}parms ##.CodeBrowser.Run ##.TestData
  html←⊃FilesAndDirs.NGET parms.filename 1
- →T.GoToTidyUp~(⊂'<link href="abc.css" rel="stylesheet">')∊html
- →T.GoToTidyUp~(⊂'<link href="foo.css" rel="stylesheet">')∊html
- →T.GoToTidyUp 2≠⍴'<link href=".*" rel="stylesheet">'⎕S 0⍠('Greedy' 0)⊣html
+ →T.GoToTidyUp~∧/∨/¨'<link href="' 'abc.css' 'foo.css' 'rel="stylesheet"'⍷¨⊂∊html
 
  R←T._OK
 

@@ -1,0 +1,3 @@
+ r←MoreHelp dummy
+ {}⎕SE.UCMD']ADOC ⎕se._CodeBrowser'
+ r←'Watch your default browser'

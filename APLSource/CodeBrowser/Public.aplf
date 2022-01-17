@@ -1,2 +1,2 @@
  r←Public
- r←'Run' 'CreateParms'
+ r←'Run' 'CreateParms' 'Selfie' 'MoreHelp'

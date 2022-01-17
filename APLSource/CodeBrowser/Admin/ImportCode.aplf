@@ -1,0 +1,9 @@
+ {success}←ImportCode path;list
+⍝ Takes a path and imports everyting found. Traps any errors but prints errors to the session for them.
+⍝ Returns a scalar 0 in case their is nothing to import, otherwise a vector with 1 for success and 0
+⍝ otherwise for every item found.
+ success←0
+ :If 0<≢list←⊃⎕NINFO⍠('Wildcard' 1)('Recurse' 2)⊣path
+     success←{0::0,0/⎕←'Error fixing ',⍵,':',⍕⎕EN ⋄ 1⊣2 ⎕FIX'file://',⍵}¨list
+ :EndIf
+⍝Done

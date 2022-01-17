@@ -3,6 +3,7 @@
  n.∆Parms.namespaces←n.namespaces.Text
  n.∆Parms.ignore←n.toBeIgnored.Text
  n.∆Parms.ignoreEmpty←n.ignoreEmptyNamespaces.State
+ n.∆Parms.ignoreTatinPkgs←n.ignoreTatinPkgs.State
  n.∆Parms.recursive←n.recursive.State
  n.∆Parms.processGuiInstances←n.processGuiInstances.State
  n.∆Parms.filename←n.filename.Text

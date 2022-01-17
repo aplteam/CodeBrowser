@@ -4,7 +4,7 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._OK
  version1←{⍵/⍨3>+\⍵∊'.+'}2⊃##.CodeBrowser.Version
- ns←⎕JSON⍠('Dialect' 'JSON5')⊣⊃⎕NGET'apl-package.json'
+ ns←⎕JSON⍠('Dialect' 'JSON5')⊣⊃⎕NGET ##.CiderConfig.HOME,'/apl-package.json'
  version2←{⍵/⍨3>+\⍵∊'.+'}ns.version
  →T.PassesIf≡/version1 version2
 

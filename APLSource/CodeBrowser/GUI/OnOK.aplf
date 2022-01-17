@@ -5,7 +5,7 @@
      ShowInStatusbar'Processing...'
      n.∆Parms←n.∆Parms
      CopyGuiToParms n
-     n.∆Parms ##.Run n.∆Parms.namespaces
+     {}n.∆Parms ##.Run n.∆Parms.namespaces
      ⎕NQ n.∆Form'Close'
  :EndIf
 ⍝Done

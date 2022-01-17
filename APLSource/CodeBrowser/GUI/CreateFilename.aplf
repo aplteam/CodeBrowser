@@ -6,7 +6,7 @@
  ref←⍎'filename_label'parent.⎕WC ∆
 
  ∆←⊂'Edit'
- ∆,←⊂'Posn'((⊃↑+⌿↑ref.(Posn Size)),n.∆hgap)
+ ∆,←⊂'Posn'((2+⊃↑+⌿↑ref.(Posn Size)),n.∆hgap)
  ∆,←⊂'Attach'('Top' 'Left' 'Top' 'Right')
  ∆,←⊂'Size'(⍬(parent.Size[2]-2×n.∆hgap))
  :If 0∊≢n.∆Parms.filename

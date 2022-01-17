@@ -1,0 +1,13 @@
+ {r}←InitializeUserCommand dummy
+⍝ Propagate refs depending on circumstances
+ r←⍬
+ :If 0=⎕NC'A'                                   ⍝ It's a Tatin package then
+     :If '⎕'=⊃⊃⎕XSI
+         A←⎕SE._CodeBrowser.APLSource.APLTreeUtils2
+         F←⎕SE._CodeBrowser.APLSource.FilesAndDirs
+     :Else
+         A←##.APLTreeUtils2
+         F←##.FilesAndDirs
+     :EndIf
+ :EndIf
+⍝Done
