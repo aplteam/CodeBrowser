@@ -1,0 +1,32 @@
+ R←Test_Misc_022(stopFlag batchFlag);⎕TRAP;html;parms
+⍝ Run the GUI
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ :If batchFlag
+     R←T._NoBatchTest
+     :Return
+ :EndIf
+
+ :If 'Win'≢##.APLTreeUtils2.GetOperatingSystem''
+     R←T._WindowsOnly
+     :Return
+ :EndIf
+
+ 0 0⍴⍞,0/⎕←'This test needs you: when a GUI appears just click "Done"; press <enter> to continue'
+
+ #.⎕SHADOW'Temp'
+ 'Temp'#.⎕NS''
+ 'Temp.Target'#.⎕NS''
+ #.Temp.Target.⎕FX'r←Hello' 'r←''World'''
+ #.Temp.myHello←#.Temp.Target.Hello
+
+ parms←##.CodeBrowser.CreateParms''
+ parms.viewInBrowser←1
+ {}parms ##.CodeBrowser.GUI.Run #.Temp.Target''
+ →T.GoToTidyUp 0=1 ∆YesOrNo'Did a page #.Temp.Target pop up in your default browser?'
+
+ R←T._OK
+
+∆TidyUp:
+⍝Done
