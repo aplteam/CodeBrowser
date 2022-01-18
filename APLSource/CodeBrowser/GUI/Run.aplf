@@ -16,4 +16,5 @@
  n←CreateGUI n
  DQ n.∆Form
  :Trap 0 ⋄ ⎕NQ n.∆Form'Close' ⋄ :EndTrap
+ r←parms.filename
 ⍝Done
