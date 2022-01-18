@@ -9,7 +9,7 @@ The HTML carries plenty of links. That makes it easy to jump around when reviewi
 
 The CSS is optimized for printing the document in order to make it look nice.
 
-[**Demo:** CodeBrowser processing itself](http://htmlpreview.github.com/?https://github.com/aplteam/CodeBrowser/blob/master/CodeBrowser_CodeReview.html)
+Demo: [CodeBrowser processing itself](http://download.aplteam.com/CodeBrowser_Selfie.html)
 
 
 ## Installation
@@ -38,16 +38,16 @@ The simplest example:
 ]CodeBrowser ⎕se -view
 ```
 
-The `-view` flag stands for "put on display with default browser". This will allow you to check on all the code in `⎕SE`.
+The `-view` flag stands for "put on display with default browser". This will allow you to check all the code in `⎕SE`.
 
 
 ## Parameters
 
 Although many (though not all) parameters can be specified as flags and options via the user command, in order to make it possible 
-to run CodeBrowser under program control, for a user the most convenient way is certainly to make use of the `-gui` flag.
+to run `CodeBrowser` under program control, for a user the most convenient way is certainly to make use of the `-gui` flag.
 
-However, although `]CodeBrowser` works on all platforms the `-gui` flag works under **Windows only**.
-It lets the user command show a GUI that allows the user to comfortably define all parameters she wants to amend:
+However, although `]CodeBrowser` works on all platforms, the `-gui` flag works under **Windows only**.
+It lets the user command show a GUI that allows her to comfortably define all parameters she wants to amend:
 
 ![](images/gui_1.png "First tab of CodeBrowser's GUI")
 

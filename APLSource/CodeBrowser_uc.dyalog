@@ -1,4 +1,4 @@
-﻿:Class  CodeBrowser_uc
+:Class  CodeBrowser_uc
 ⍝ User Command script for "CodeBrowser"
 ⍝ Kai Jaeger ⋄ APL Team Ltd
 ⍝ Version 3.0.0.10 - 2022-01-16
@@ -13,7 +13,7 @@
           r.Name←'CodeBrowser'
           r.Desc←'Starts "CodeBrowser"'
           r.Group←'Tools'
-          r.Parse←'-ignore= -caption= -filename= -footer= -info= -load -r= -view -twosided -pfs= -obj= -lang= -p -gui -version -lines='
+          r.Parse←'-ignore= -caption= -filename= -footer= -info= -reload -r= -view -twosided -pfs= -obj= -lang= -p -gui -version -lines='
       :EndIf
     ∇
 
@@ -21,7 +21,7 @@
       :Access Shared Public
       ⎕IO←1 ⋄ ⎕ML←1
       Args←ProcessLinesParameter Args
-      C←LoadCode Args.load
+      C←LoadCode Args.reload
       :If ' '={⎕ML←3 ⋄ 1↑0⍴∊⍵}Args.lines
           (flags values)←⎕VFI Args.lines
       :Else
@@ -73,7 +73,7 @@
           r,←⊂'             Note that the GUI allows you to specify parameters that are not available via the user command.'
           r,←⊂'-info=       No default. Ordinary text that goes underneath the main header ("caption"). No HTML please.'
           r,←⊂'-lang=       "language"; defaults to "en".'
-          r,←⊂'-load        By default CodeBrowser is loaded once and then reused. -load loads it even if it''s already in ⎕SE'
+          r,←⊂'-reload      By default CodeBrowser is loaded once and then re-used. -reload loads it again no matter what.'
           r,←⊂'-lines=      Defaults to ¯1 which means "no limit". Instead you can set a max number of lines.'
           r,←⊂'-p           Add table with parameters to the end of the document with a page break before the table.'
           r,←⊂'-r=          Recursive; defaults to 1. Must be a Boolean.'
