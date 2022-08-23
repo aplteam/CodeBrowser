@@ -1,7 +1,7 @@
 :Class  CodeBrowser_uc
 ⍝ User Command script for "CodeBrowser"
-⍝ Kai Jaeger ⋄ APL Team Ltd
-⍝ Version 3.0.0.10 - 2022-01-16
+⍝ Kai Jaeger
+⍝ Version 4.0.0 - 2022-08-23
 
     ∇ r←List;⎕IO;⎕ML
       :Access Shared Public
@@ -86,6 +86,10 @@
           r,←⊂'For processing CodeBrowser''s code by CodeBrowser (selfie ;) execute ]CodeBrowser -??'
           r,←⊂'For getting CodeBrowser''s internal documentation execute ]CodeBrowser -???'
       :Case 2
+          :If 0=⎕SE.⎕NC'_CodeBrowser'
+              ⎕SE.UCMD'CodeBrowser -version'
+          :EndIf
+          {}⎕SE.UCMD'ADOC ⎕SE._CodeBrowser'
       :EndSelect
     ∇
 

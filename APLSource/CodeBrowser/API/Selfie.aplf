@@ -1,1 +1,1 @@
- Selfie←{⍺←⊣ ⋄ ⍺ ##.Selfie ⍵}
+ Selfie←{##.Selfie ⍵}

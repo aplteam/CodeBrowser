@@ -1,5 +1,4 @@
-.acre/
 aplcore
 Dist/
-change_history/
-.gitignore
+CONTINUE.dws
+conga.crash
