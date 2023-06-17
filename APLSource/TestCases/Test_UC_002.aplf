@@ -1,0 +1,17 @@
+ R←Test_UC_002(stopFlag batchFlag);⎕TRAP;stop;rc;msg;res;html
+⍝ Test the -ignore parameter
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ stop←0
+ (rc msg res)←stop ∆UCMD'CodeBrowser ',⍕##.TestData,' -ignore=',⍕##.TestData.NS2
+ msg Assert rc=0
+ html←⊃⎕NGET res
+ →T.GoToTidyUp~0<≢'\bNS1\b'⎕S 3⊣html
+ →T.GoToTidyUp~0=≢'\bNS2\b'⎕S 3⊣html
+
+ R←T._OK
+
+∆TidyUp:
+ Assert 1=rc←FilesAndDirs.DeleteFile res
+⍝Done

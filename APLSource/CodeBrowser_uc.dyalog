@@ -1,7 +1,7 @@
-:Class  CodeBrowser_uc
+﻿:Class  CodeBrowser_uc
 ⍝ User Command script for "CodeBrowser"
 ⍝ Kai Jaeger
-⍝ Version 4.0.0 - 2022-08-23
+⍝ Version 5.0.0 - 2023-06-17
 
     ∇ r←List;⎕IO;⎕ML
       :Access Shared Public
@@ -13,7 +13,7 @@
           r.Name←'CodeBrowser'
           r.Desc←'Starts "CodeBrowser"'
           r.Group←'Tools'
-          r.Parse←'-ignore= -caption= -filename= -footer= -info= -reload -r= -view -twosided -pfs= -obj= -lang= -p -gui -version -lines='
+          r.Parse←'-ignore= -caption= -filename= -footer= -info= -r= -view -twosided -pfs= -obj= -lang= -p -gui -version -lines='
       :EndIf
     ∇
 
@@ -21,7 +21,7 @@
       :Access Shared Public
       ⎕IO←1 ⋄ ⎕ML←1
       Args←ProcessLinesParameter Args
-      C←LoadCode Args.reload
+      C←⎕SE.CodeBrowser
       :If ' '={⎕ML←3 ⋄ 1↑0⍴∊⍵}Args.lines
           (flags values)←⎕VFI Args.lines
       :Else
@@ -35,20 +35,20 @@
       :EndIf
       Args.lines←values
       :If Args.version
-          r←⎕SE._CodeBrowser.Version
+          r←C.Version
           :Return
       :ElseIf Args.gui
           'The -gui flag is available under Windows only'⎕SIGNAL 11/⍨~##.WIN
-          r←⎕SE._CodeBrowser.GUI.Run Args.Arguments(⊃⎕NPARTS ##.SourceFile)
+          r←C.##.GUI.Run Args.Arguments ''
       :Else
           'No namespace(s) specified'⎕SIGNAL 11/⍨0=≢Args.Arguments
-          parms←C.CreateParms⊃⎕NPARTS ##.SourceFile
+          parms←C.CreateParms ''
           parms←parms Args2Parms Args
           :If 0≠≢parms.ignore
-              parms.ignore←' 'C.A.Split C.A.dmb parms.ignore
+              parms.ignore←' 'C.##.A.Split C.##.A.DMB parms.ignore
               parms.ignore←({⊃⍵↓⍨+/∧\'⎕'=⊃¨⍵}⎕NSI)∘{0<⎕NC ⍵:⍵ ⋄ ⍺,'.',⍕⍵}¨parms.ignore
           :EndIf
-          r←parms ⎕SE._CodeBrowser.Run Args.Arguments
+          r←parms C.Run Args.Arguments
       :EndIf
     ∇
 
@@ -65,7 +65,7 @@
           r,←⊂''
           r,←⊂'There are plenty of switches available to make CodeBrowser suit your needs:'
           r,←⊂''
-          r,←⊂'-ignore=     List of space- or comma-separated namespace names to be ignored.'
+          r,←⊂'-ignore=     List of space- or comma-separated namespaces/scripts to be ignored.'
           r,←⊂'-caption=    Defaults to the list of namespaces to be scanned.'
           r,←⊂'-filename=   Defaults to a temp filename.'
           r,←⊂'-footer=     No default. If specified it goes underneath a horizontal line at the bottom of the document.'
@@ -73,7 +73,6 @@
           r,←⊂'             Note that the GUI allows you to specify parameters that are not available via the user command.'
           r,←⊂'-info=       No default. Ordinary text that goes underneath the main header ("caption"). No HTML please.'
           r,←⊂'-lang=       "language"; defaults to "en".'
-          r,←⊂'-reload      By default CodeBrowser is loaded once and then re-used. -reload loads it again no matter what.'
           r,←⊂'-lines=      Defaults to ¯1 which means "no limit". Instead you can set a max number of lines.'
           r,←⊂'-p           Add table with parameters to the end of the document with a page break before the table.'
           r,←⊂'-r=          Recursive; defaults to 1. Must be a Boolean.'
@@ -83,13 +82,10 @@
           r,←⊂'-obj=        f=function, g=GUI (only when KeepOnClose is 1), o=operators, v=variables, s=scripts.'
           r,←⊂'-version     If you specify this flag then all other flags are ignored. Returns CodeBrowser''s version number.'
           r,←⊂''
-          r,←⊂'For processing CodeBrowser''s code by CodeBrowser (selfie ;) execute ]CodeBrowser -??'
+          r,←⊂'For processing CodeBrowser''s code by CodeBrowser execute ⎕se.CodeBrowser.Selfie ⍬'
           r,←⊂'For getting CodeBrowser''s internal documentation execute ]CodeBrowser -???'
       :Case 2
-          :If 0=⎕SE.⎕NC'_CodeBrowser'
-              ⎕SE.UCMD'CodeBrowser -version'
-          :EndIf
-          {}⎕SE.UCMD'ADOC ⎕SE._CodeBrowser'
+          {}⎕SE.UCMD'ADOC ⎕SE.CodeBrowser'
       :EndSelect
     ∇
 
@@ -176,22 +172,6 @@
     ∇
 
     IfAtLeastVersion←{⍵≤{⊃(//)⎕VFI ⍵/⍨2>+\'.'=⍵}2⊃# ⎕WG'APLVersion'}
-
-    ∇ C←LoadCode forceLoad;res;folder;msg
-      :If 0=⎕SE.⎕NC'_CodeBrowser'
-      :OrIf forceLoad
-          C←⍎'_CodeBrowser'⎕SE.⎕NS''
-          folder←(1⊃⎕NPARTS ##.SourceFile),'APLSource'
-          res←({⍵.overwrite←1 ⋄ ⍵}⎕NS'')⎕SE.Link.Import C folder
-          'Could not import the CodeBrowser application code'Assert∨/'Imported:'⍷res
-          ⎕SE.Tatin.LoadDependencies((1⊃⎕NPARTS ##.SourceFile),'packages')'⎕se._CodeBrowser.APLSource'
-          ⎕SE.CodeBrowser←⎕SE._CodeBrowser.API          ⍝ Establish the API
-          ⎕SE._CodeBrowser.InitializeUserCommand ⍬
-          ⎕SE._CodeBrowser.HOME←1⊃⎕NPARTS ##.SourceFile
-      :Else
-          C←⎕SE._CodeBrowser
-      :EndIf
-    ∇
 
     Assert←{⍺←'' ⋄ (,1)≡,⍵:r←1 ⋄ ⍺ ⎕SIGNAL 1↓(⊃∊⍵),_errno}
 

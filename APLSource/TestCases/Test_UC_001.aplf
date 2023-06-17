@@ -1,0 +1,22 @@
+ R←Test_UC_001(stopFlag batchFlag);⎕TRAP;stop;rc;msg;res
+⍝ Most simple user command
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ :If batchFlag
+     →0 ⋄ R←T._NoBatchTest
+ :EndIf
+
+ CommTools.Pause'This test needs you: open the default browser'
+
+ stop←0
+ (rc msg res)←stop ∆UCMD'CodeBrowser ',⍕##.TestData.NS1,' -view'
+ msg Assert rc=0
+ →T.GoToTidyUp 0=≢res
+ →T.GoToTidyUp 0=CommTools.YesOrNo'Did the default browser show a document for ',(⍕##.TestData.NS1),' ?'
+
+ R←T._OK
+
+∆TidyUp:
+ Assert 1=rc←FilesAndDirs.DeleteFile res
+⍝Done

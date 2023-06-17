@@ -1,0 +1,18 @@
+ R←Test_UC_003(stopFlag batchFlag);⎕TRAP;stop;rc;msg;res;filename
+⍝ Test the -filename parameter
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ filename←FilesAndDirs.GetTempPath,'CoderBrowser-',⎕AN,'-',(' '~⍨⍕⎕TS),'.html'
+ Assert 0=⎕NEXISTS filename
+ stop←0
+ (rc msg res)←stop ∆UCMD'CodeBrowser ',⍕##.TestData,' -filename=',filename
+ msg Assert rc=0
+ →T.GoToTidyUp filename≢res
+ →T.GoToTidyUp~FilesAndDirs.IsFile filename
+
+ R←T._OK
+
+∆TidyUp:
+ Assert 1=rc←FilesAndDirs.DeleteFile filename
+⍝Done

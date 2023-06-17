@@ -1,4 +1,8 @@
 (
+ '* Version 3.0.0 ⋄ 2023-06-17'
+ '  * `CodeBrowser` is a Tatin package now and can be installed as such'
+ '  * `CodeBrowser.Run` now accepts a Boolean as well as a parameter space as ⍺'
+ '  * Documentation improved'
  '* Version 2.0.1 ⋄ 2022-08-23'
  '  * ]CodeBrowser -??? did not work as expected'
  '  * Documentation polished'

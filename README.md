@@ -3,25 +3,33 @@
 
 ## Overview
 
-CodeBrowser allows you to create a stand-alone HTML document with APL code. Its purpose is to provide a tool for documentation and code reviews.
+`CodeBrowser` allows you to create a stand-alone HTML document with APL code. Its purpose is to provide a tool for documentation and code reviews.
 
 The HTML carries plenty of links. That makes it easy to jump around when reviewing code.
 
 The CSS is optimized for printing the document in order to make it look nice.
+
+All the CSS and JavaScipt that is required is injected into the HTML file, making it self-contained.
 
 Demo: [CodeBrowser processing itself](http://download.aplteam.com/CodeBrowser_Selfie.html)
 
 
 ## Installation
 
-Make sure that the contents of the zip file goes into a folder that is scanned by Dyalog APL for user commands.
+With version 3.0 `CodeBrowser` became a Tatin package. It can therefore be installed as a user command with this statement:
+
+```
+    ]InstallPackages aplteam-CoderBrowser [MyUCMDs]
+```
 
 Any newly started instance of Dyalog APL then knows a user commands `]CodeBrowser`.
+
+## Usage
 
 Execute:
 
 ```
-]CodeBrowser -?
+]CodeBrowser -??
 ```
 
 for how to run the user command (reference)
@@ -29,13 +37,13 @@ for how to run the user command (reference)
 For a detailed documentation including examples enter
 
 ```
-]CodeBrowser -??
+]CodeBrowser -???
 ```
 
-The simplest example:
+A very simple example:
 
 ```
-]CodeBrowser ⎕se -view
+]CodeBrowser ⎕se.CodeBrowser -view
 ```
 
 The `-view` flag stands for "put on display with default browser". This will allow you to check all the code in `⎕SE`.

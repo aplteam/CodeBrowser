@@ -1,0 +1,16 @@
+ R←Test_UC_999(stopFlag batchFlag);⎕TRAP;stop;rc;msg;res;version
+⍝ Check the -version flag
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ stop←0
+ (rc msg res)←stop ∆UCMD'CodeBrowser ',⍕##.TestData.NS1,' -version'
+ msg Assert rc=0
+ →T.PassesIf 2=≡res
+ →T.PassesIf 3=⍴res
+ version←{⍵↑⍨¯1+⌊/⍵⍳'+-'}2⊃res  ⍝ Remove build IDs and stuff like -beta-v1 etc
+ →T.PassesIf 2='.'+.=version
+ →T.PassesIf∧/(version~'.')∊⎕D
+
+ R←T._OK
+⍝Done

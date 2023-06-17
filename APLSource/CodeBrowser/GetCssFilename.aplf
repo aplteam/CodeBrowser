@@ -1,14 +1,11 @@
- r←GetCssFilename path;F
- F←##.FilesAndDirs
+ r←GetCssFilename path
  :If 0=≢path
-     :If 9=##.⎕NC'CiderConfig'
-         r←##.CiderConfig.HOME,'/Files/codebrowser_styles.css'
-     :ElseIf 9=##.⎕NC'TatinVars'
-         r←##.TatinVars.HOME,'/Files/codebrowser_styles.css'
+     :If 9=⎕NC'TatinVars'
+         r←TatinVars.HOME,'/Files/codebrowser_styles.css'
      :Else
-         r←HOME,'/codebrowser_styles.css'
+         r←##.TatinVars.HOME,'/Files/codebrowser_styles.css'
      :EndIf
  :Else
-     ((path∊'/\')/path)←F.CurrentSep
-     r←path,F.CurrentSep,'codebrowser_styles.css'
+     ((path∊'/\')/path)←FilesAndDirs.CurrentSep
+     r←path,FilesAndDirs.CurrentSep,'codebrowser_styles.css'
  :EndIf

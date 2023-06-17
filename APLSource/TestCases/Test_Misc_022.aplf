@@ -8,12 +8,12 @@
      :Return
  :EndIf
 
- :If 'Win'≢##.APLTreeUtils2.GetOperatingSystem''
+ :If 'Win'≢APLTreeUtils2.GetOperatingSystem''
      R←T._WindowsOnly
      :Return
  :EndIf
 
- 0 0⍴⍞,0/⎕←'This test needs you: when a GUI appears just click "Done"; press <enter> to continue'
+ CommTools.Pause'This test needs you: when a GUI appears just click "Done"'
 
  #.⎕SHADOW'Temp'
  'Temp'#.⎕NS''
@@ -24,9 +24,7 @@
  parms←##.CodeBrowser.CreateParms''
  parms.viewInBrowser←1
  {}parms ##.CodeBrowser.GUI.Run #.Temp.Target''
- →T.GoToTidyUp 0=1 ∆YesOrNo'Did a page #.Temp.Target pop up in your default browser?'
+ →T.PassesIf 1 CommTools.YesOrNo 'Did a page #.Temp.Target pop up in your default browser?'
 
  R←T._OK
-
-∆TidyUp:
 ⍝Done

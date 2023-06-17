@@ -12,7 +12,7 @@
  ∆,←⊂'Size'(⍬(parent.Size[2]-2×n.∆hgap))
  ∆,←⊂'FontObj'n.∆APL_Font
  ∆,←⊂'TipObj'n.∆Tip
- ∆,←⊂'Tip'('Specify everything inside the namespaces to be scanned that you want to be ignored.' 'Specify fully qualified names. Use spaces or commata as separators.')
+ ∆,←⊂'Tip'('Specify namespaces and scripts that you want to be ignored.' 'Specify fully qualified names. Use spaces or commata as separators.')
  n.toBeIgnored←⍎'tobeignored'parent.⎕WC ∆
  n.toBeIgnored.Size[1]-←5
 

@@ -1,0 +1,23 @@
+ R←Test_UC_005(stopFlag batchFlag);⎕TRAP;stop;rc;msg;res;filename1;html1;html2;filename2
+⍝ Test the -obj parameter
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ stop←0
+ (rc msg filename1)←stop ∆UCMD'CodeBrowser ',⍕##.TestData
+ msg Assert rc=0
+ ##.TestData.NS2.MyOperator←⎕FX'r←(f MyOperator) y' 'r←f y'
+ (rc msg filename1)←stop ∆UCMD'CodeBrowser ',⍕##.TestData.NS2
+ msg Assert rc=0
+ (rc msg filename2)←stop ∆UCMD'CodeBrowser ',⍕##.TestData.NS2,' -obj=o'
+ msg Assert rc=0
+ html1←⊃FilesAndDirs.NGET filename1
+ html2←⊃FilesAndDirs.NGET filename2
+ →T.GoToTidyUp~2000<-/≢¨html1 html2
+
+ R←T._OK
+
+∆TidyUp:
+ ##.TestData.NS2.⎕EX'MyOperator'
+ Assert 2=+/rc←FilesAndDirs.DeleteFile filename1 filename2
+⍝Done

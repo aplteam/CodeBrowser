@@ -1,6 +1,6 @@
- r←OnOK msg;n
+ r←OnOK msg;n;msg2
  n←GetRefTo_n⊃msg
- (r msg)←CheckInput n
+ (r msg2)←CheckInput n
  :If r
      ShowInStatusbar'Processing...'
      n.∆Parms←n.∆Parms

@@ -2,7 +2,7 @@
  html←⊂'<ol>'
  i←1
  :Repeat
-     :If ~0∊⍴refs
+     :If 0≠≢refs
          html,←{'<li>'('<a href="#',(collect.remove RemoveLevels⍕⍵),'">',((⊃{⍺,'.',⍵}/⍕¨level),'. ',⍕⍵),'</a>')}refs[i;2]
          :If 0<noOf←{+/∧\1↓⍵[;1]>⊃⍵}(i-1)↓refs
              html,←(level,1)AddMainMenu_(noOf↑i↓refs)collect

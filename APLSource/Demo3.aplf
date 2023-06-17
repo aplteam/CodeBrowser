@@ -1,4 +1,4 @@
  r←Demo3 stopFlag;NL
  NL←⎕UCS 13
- r←⎕SE._CodeBrowser.GUI.Run'#' ''
+ r←⎕SE.CodeBrowser.GUI.Run'#' ''
 ⍝Done

@@ -23,11 +23,11 @@
      :EndIf
      parms.cssfilename←⊆parms.cssfilename
  :EndIf
- parms.filename{~0∊⍴⍺:⍺ ⋄ (¯4↓F.GetTempFilename''),'.html'}←⍬
+ parms.filename{0≠≢⍺:⍺ ⋄ (¯4↓F.GetTempFilename''),'.html'}←⍬
  parms.caption{~(⊂⍺)∊¯1 '':⍺ ⋄ 1=⍴,⍵:⍕⍵ ⋄ ⊃,/{⍺,', ',⍵}/⍵}←namespaces
  CreateOrReplaceFile parms
  :Trap 0
-     parms.ignore←{0∊⍴⊃,/⍵:⍵ ⋄ ⍎¨⍵}MassageNameLists parms.ignore
+     parms.ignore←{0=≢⊃,/⍵:⍵ ⋄ w←(9=⊃∘⎕NC¨⍵)/⍵ ⋄ 0=≢w:w ⋄ ⍎¨w}MassageNameLists parms.ignore
  :Else
      msg←'Something went wrong - check -ignore'
      en←DE

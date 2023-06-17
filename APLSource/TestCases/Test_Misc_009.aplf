@@ -1,20 +1,20 @@
- R←Test_Misc_009(stopFlag batchFlag);⎕TRAP;filename;names;html;list
+ R←Test_Misc_009(stopFlag batchFlag);⎕TRAP;filename;names;html;list;rc
 ⍝ # as namespace.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
  filename←##.CodeBrowser.Run #
- →T.GoToTidyUp 0∊⍴filename
+ →T.GoToTidyUp 0=≢filename
 
  html←APLTreeUtils2.⊃FilesAndDirs.NGET filename 1
  names←GetFnsAndOprNamesFromHTML html
  list←{⍵[;2]}↑##.CodeBrowser.GetSubNamespaces #
  list←(~∨/¨'._tatin.'∘⍷¨⍕¨list)/list
  list←' '~¨⍨⊃,/{↓⍵.⎕NL 3 4}¨list
- →T.GoToTidyUp~names Matches list
+ →T.GoToTidyUp~∧/list∊names
 
  R←T._OK
 
 ∆TidyUp:
- Assert 1=FilesAndDirs.DeleteFile filename
+ Assert 1=rc←FilesAndDirs.DeleteFile filename
 ⍝Done

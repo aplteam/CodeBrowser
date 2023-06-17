@@ -1,0 +1,21 @@
+ R←Test_UC_004(stopFlag batchFlag);⎕TRAP;stop;rc;msg;html;filename
+⍝ Test the -lines parameter
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ :If batchFlag
+     →0 ⋄ R←T._NoBatchTest
+ :EndIf
+
+ CommTools.Pause'This test needs you: open the default browser'
+ stop←0
+ (rc msg filename)←stop ∆UCMD'CodeBrowser ',⍕##.TestData,' -lines=2 -view'
+ msg Assert rc=0
+
+ →T.GoToTidyUp 0=CommTools.YesOrNo'All code block must show just one line, correct?'
+
+ R←T._OK
+
+∆TidyUp:
+ Assert 1=rc←FilesAndDirs.DeleteFile filename
+⍝Done
