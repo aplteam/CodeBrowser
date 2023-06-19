@@ -5,7 +5,7 @@
      C←##.CiderConfig
      path←C.HOME,'/',C.CIDER.distributionFolder
      cfg←⎕JSON⍠('Dialect' 'JSON5')⊢⊃⎕NGET C.HOME,'/apl-package.json'
-     M.FetchLaterUserCommand(⊃,/1↓⎕NPARTS cfg.userCommandScript)cfg C('[MyUCMDs]',cfg.name)
+     M.FetchLaterUserCommand cfg C '[MyUCMDs]'
      version←M.CompileVersionNumberPattern cfg
      M.RecreateFolder path
      {}M.CreateAPIfromCFG(⍎'##.',cfg.name)cfg
@@ -21,37 +21,3 @@
      :EndIf
  :EndIf
  ⍝Done
-
- :If 0
-⍝ {r}←Make flag;⎕IO;⎕ML;targetPath;name;projName;myUCMDsFolder;M;home;version
-⍝ Version 4.0.0 ⋄ 2022-08-23
-     ⎕IO←1 ⋄ ⎕ML←1
-     r←⍬
-     :If flag
-         home←##.CiderConfig.HOME,'/'
-         targetPath←home,'Dist/'
-         myUCMDsFolder←⎕SE.MakeHelpers.GetMyUCMDsFolder''
-         name←'CodeBrowser'
-         M←⎕SE.MakeHelpers
-    ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
-         M.RecreateFolder targetPath
-         M.RecreateFolder targetPath,'/',name,'/APLSource'
-         :If ⎕NEXISTS myUCMDsFolder,'/',name,'/',name,'_uc.dyalog'
-             M.CopyBetter(myUCMDsFolder,'/',name,'/',name,'_uc.dyalog')(home,'APLSource/',name,'_uc.dyalog')'User command version' 'APL Code'
-             {}⎕SE.Link.Refresh #.CodeBrowser
-         :EndIf
-         version←M.IncreaseBuildID'#.',name,'.',name,'.Version'
-         version←{⍵↑⍨¯1+⍵⍳'+'}version  ⍝ Ridden build id
-         CodeBrowserOnCodeBrowser targetPath,name,'/CodeBrowser_CodeReview.html'
-         M.CreateAPI ##.CodeBrowser ##.CodeBrowser.Public
-         (targetPath,name,'/APLSource/')⎕NCOPY⍠('Wildcard' 1)⊣home,'APLSource/',name,'/*'
-         (targetPath,name,'/')⎕NCOPY home,'APLSource/',name,'_uc.dyalog'
-         (targetPath,name,'/')⎕NCOPY home,'Files/codebrowser_styles.css'
-         (targetPath,name,'/')⎕NCOPY home,'packages/'
-         M.CreateZipFile name targetPath version
-         :If 1 M.YesOrNo'Copy the user command to MyUCMDs?'
-             M.RecreateFolder myUCMDsFolder,'/',name
-             myUCMDsFolder ⎕NCOPY targetPath,name
-         :EndIf
-     :EndIf
- :EndIf
