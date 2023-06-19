@@ -1,4 +1,4 @@
- {r}←CodeBrowserOnCodeBrowser filename;parms;C
+ {r}←Selfie filename;parms;C
  r←⍬
  C←#.CodeBrowser.CodeBrowser
  parms←C.CreateParms''
