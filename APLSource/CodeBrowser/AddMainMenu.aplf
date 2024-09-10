@@ -1,14 +1,8 @@
  {hasMainMenu}←AddMainMenu(parms collect);html;refs
  refs←{1<⍴,⍵:↑⍵ ⋄ ⍉⍪⊃⍵}⊃,/parms GetSubNamespaces¨parms.refs
  refs←({(⍵⍳⍵)=⍳≢⍵}refs[;2])⌿refs        ⍝ Get rid of (additional) refs
- hasMainMenu←0
  html←1 AddMainMenu_ refs collect
- :If 1≥+/∨/¨'<li>'∘⍷¨html
-     html←''
- :EndIf
- :If 0≠≢html
-     html←('<nav id="main">' '<p>Namespace structure:</p>'),html,(⊂'</nav>')
-     WriteHTML html
-     hasMainMenu←1
- :EndIf
+ html←('<nav id="main">' '<p>Namespace structure:</p>'),html,(⊂'</nav>')
+ hasMainMenu←1
+ WriteHTML html
 ⍝Done
