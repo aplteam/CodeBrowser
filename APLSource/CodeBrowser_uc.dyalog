@@ -1,7 +1,7 @@
 ﻿:Class  CodeBrowser_uc
 ⍝ User Command script for "CodeBrowser"
 ⍝ Kai Jaeger
-⍝ Version 5.0.0 - 2023-06-17
+⍝ Version 5.1.0 - 2024-09-10
 
     ∇ r←List;⎕IO;⎕ML
       :Access Shared Public
@@ -21,7 +21,7 @@
       :Access Shared Public
       ⎕IO←1 ⋄ ⎕ML←1
       Args←ProcessLinesParameter Args
-      C←⎕SE.CodeBrowser
+      C←GetRefToCodeBrowser ⍬
       :If ' '={⎕ML←3 ⋄ 1↑0⍴∊⍵}Args.lines
           (flags values)←⎕VFI Args.lines
       :Else
@@ -39,10 +39,10 @@
           :Return
       :ElseIf Args.gui
           'The -gui flag is available under Windows only'⎕SIGNAL 11/⍨~##.WIN
-          r←C.##.GUI.Run Args.Arguments ''
+          r←C.##.GUI.Run Args.Arguments''
       :Else
           'No namespace(s) specified'⎕SIGNAL 11/⍨0=≢Args.Arguments
-          parms←C.CreateParms ''
+          parms←C.CreateParms''
           parms←parms Args2Parms Args
           :If 0≠≢parms.ignore
               parms.ignore←' 'C.##.A.Split C.##.A.DMB parms.ignore
@@ -169,6 +169,16 @@
           values←¯1  ⍝ The default
       :EndIf
       Args.lines←values
+    ∇
+
+    ∇ r←GetRefToCodeBrowser dummy
+      :If 9=⎕SE.⎕NC'Cider'
+      :AndIf (⊂'#.CodeBrowser')∊{⍵[;1]}⎕SE.Cider.ListOpenProjects 0
+      :AndIf 1 ⎕SE.Cider.##.CommTools.YesOrNo'ExecIntoRoot@Execute code in # (rather then ⎕SE)?'
+          r←#.CodeBrowser.CodeBrowser
+      :Else
+          r←⎕SE.CodeBrowser
+      :EndIf
     ∇
 
     IfAtLeastVersion←{⍵≤{⊃(//)⎕VFI ⍵/⍨2>+\'.'=⍵}2⊃# ⎕WG'APLVersion'}
