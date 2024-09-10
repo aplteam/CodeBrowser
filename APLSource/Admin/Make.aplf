@@ -5,10 +5,10 @@
      C←##.CiderConfig
      path←C.HOME,'/',C.CIDER.distributionFolder
      cfg←⎕JSON⍠('Dialect' 'JSON5')⊢⊃⎕NGET C.HOME,'/apl-package.json'
-     M.FetchLaterUserCommand cfg C '[MyUCMDs]'
+     M.FetchLaterUserCommand cfg C'[MyUCMDs]'
      version←M.CompileVersionNumberPattern cfg
      M.RecreateFolder path
-     {}M.CreateAPIfromCFG(⍎'##.',cfg.name)cfg
+     {}⎕SE.Tatin.CreateAPIfromCFG #.CodeBrowser.CodeBrowser cfg
      parms←⎕SE.Tatin.CreateBuildParms C.HOME
      parms.targetPath←path
      parms.version←version
