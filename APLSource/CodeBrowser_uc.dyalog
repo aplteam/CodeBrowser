@@ -17,11 +17,11 @@
       :EndIf
     ∇
 
-    ∇ r←Run(Cmd Args);⎕IO;⎕ML;C;parms;flags;values
+    ∇ r←Run(Cmd Args);⎕IO;⎕ML;C;parms;flags;values;noOf;list;ind;devFlag
       :Access Shared Public
       ⎕IO←1 ⋄ ⎕ML←1
       Args←ProcessLinesParameter Args
-      C←GetRefToCodeBrowser ⍬
+      (C devFlag)←GetRefToCodeBrowser ⍬
       :If ' '={⎕ML←3 ⋄ 1↑0⍴∊⍵}Args.lines
           (flags values)←⎕VFI Args.lines
       :Else
@@ -41,12 +41,37 @@
           'The -gui flag is available under Windows only'⎕SIGNAL 11/⍨~##.WIN
           r←C.##.GUI.Run Args.Arguments''
       :Else
-          'No namespace(s) specified'⎕SIGNAL 11/⍨0=≢Args.Arguments
+          :If 0=≢Args.Arguments
+              :If 9=⎕SE.⎕NC'Cider'
+              :AndIf 0<noOf←≢list←⎕SE.Cider.ListOpenProjects 0
+                  :If 1=noOf
+                      :If 1 ⎕SE.Cider.##.CommTools.YesOrNo'Sure@Sure you want create a report for ',(⊃list[;1]),'?'
+                          Args.Arguments←list[1;1]
+                      :Else
+                          'No namespace specified'⎕SIGNAL 11
+                      :EndIf
+                  :Else
+                      ind←'SelectOpenProject@Select a project to act on:' 1 ⎕SE.Cider.##.CommTools.Select↓⍕list
+                      :If 0=≢ind
+                          'Cancelled by user'⎕SIGNAL 11
+                      :Else
+                          Args.Arguments←list[ind;1]
+                      :EndIf
+                  :EndIf
+              :Else
+                  'No namespace specified'⎕SIGNAL 11
+              :EndIf
+          :EndIf
           parms←C.CreateParms''
           parms←parms Args2Parms Args
           :If 0≠≢parms.ignore
-              parms.ignore←' 'C.##.A.Split C.##.A.DMB parms.ignore
-              parms.ignore←({⊃⍵↓⍨+/∧\'⎕'=⊃¨⍵}⎕NSI)∘{0<⎕NC ⍵:⍵ ⋄ ⍺,'.',⍕⍵}¨parms.ignore
+              :If devFlag
+                  parms.ignore←' 'C.A.Split C.A.DMB parms.ignore
+                  parms.ignore←({⊃⍵↓⍨+/∧\'⎕'=⊃¨⍵}⎕NSI)∘{0<⎕NC ⍵:⍵ ⋄ ⍺,'.',⍕⍵}¨parms.ignore
+              :Else
+                  parms.ignore←' 'C.##.A.Split C.##.A.DMB parms.ignore
+                  parms.ignore←({⊃⍵↓⍨+/∧\'⎕'=⊃¨⍵}⎕NSI)∘{0<⎕NC ⍵:⍵ ⋄ ⍺,'.',⍕⍵}¨parms.ignore
+              :EndIf
           :EndIf
           r←parms C.Run Args.Arguments
       :EndIf
@@ -171,13 +196,16 @@
       Args.lines←values
     ∇
 
-    ∇ r←GetRefToCodeBrowser dummy
+    ∇ (ref devFlag)←GetRefToCodeBrowser dummy
+      devFlag←0
       :If 9=⎕SE.⎕NC'Cider'
       :AndIf (⊂'#.CodeBrowser')∊{⍵[;1]}⎕SE.Cider.ListOpenProjects 0
+      :AndIf ~∨/∨/¨'#.CodeBrowser.TestCases.'∘⍷¨⎕XSI
       :AndIf 1 ⎕SE.Cider.##.CommTools.YesOrNo'ExecIntoRoot@Execute code in # (rather then ⎕SE)?'
-          r←#.CodeBrowser.CodeBrowser
+          ref←#.CodeBrowser.CodeBrowser
+          devFlag←1
       :Else
-          r←⎕SE.CodeBrowser
+          ref←⎕SE.CodeBrowser
       :EndIf
     ∇
 

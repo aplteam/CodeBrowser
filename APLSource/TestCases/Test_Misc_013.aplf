@@ -18,7 +18,7 @@
  html←'<style>.*</style>'⎕R''⍠('DotAll' 1)('Greedy' 0)('Mode' 'D')⊣html
  html←(0<≢¨html)/html
  html←1↓∊(⎕UCS 13),¨html
- →T.PassesIf expected≡{⍵/⍨'/'≠⊃¨⍵}(⊂'')~⍨{⍵↑⍨¯1+⌊/⍵⍳' >'}¨'<'APLTreeUtils2.Split html
+ →T.PassesIf expected ∆LazyMatch {⍵/⍨'/'≠⊃¨⍵}(⊂'')~⍨{⍵↑⍨¯1+⌊/⍵⍳' >'}¨'<'APLTreeUtils2.Split html
 
  R←T._OK
 

@@ -1,6 +1,6 @@
  filename←CreateHtml parms;collect;WriteHTML;info
  parms.bookmarkCounter←1
- WriteHTML←parms.filename∘{0=≢⍵:r←⍬ ⋄ (⊂⍵)⎕NPUT ⍺ 2}
+ WriteHTML←parms.filename∘{0=≢⍵:r←⍬ ⋄ (⊂,⍵)⎕NPUT ⍺ 2}
  WriteHeader parms
  WriteHTML'<h1>',(ExchangeHtmlSpecialChars parms.caption),'</h1>'
  :If 0≠≢parms.info

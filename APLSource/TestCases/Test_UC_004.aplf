@@ -12,7 +12,7 @@
  (rc msg filename)←stop ∆UCMD'CodeBrowser ',⍕##.TestData,' -lines=2 -view'
  msg Assert rc=0
 
- →T.GoToTidyUp 0=CommTools.YesOrNo'All code block must show just one line, correct?'
+ →T.GoToTidyUp 0=1 CommTools.YesOrNo'All code blocks must show just one line, correct?'
 
  R←T._OK
 

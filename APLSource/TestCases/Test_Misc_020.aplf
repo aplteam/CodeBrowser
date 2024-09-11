@@ -1,4 +1,4 @@
- R←Test_Misc_020(stopFlag batchFlag);⎕TRAP;filename;html
+ R←Test_Misc_020(stopFlag batchFlag);⎕TRAP;filename;html;b;table;table2
 ⍝ Refs to scripts pointing elsewhere
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
@@ -7,15 +7,22 @@
  'Temp'#.⎕NS''
  'Temp.Target'#.⎕NS''
  #.Temp.Target.⎕FX'r←Hello' 'r←''World'''
- #.Temp.Target.APLTreeUtils2←⍎⍕APLTreeUtils2
- #.Temp.Target.FilesAndDirs←⍎⍕FilesAndDirs
+ #.Temp.Target.∆APLTreeUtils←⍎⍕APLTreeUtils2
+ #.Temp.Target.∆FAD←⍎⍕FilesAndDirs
  #.Temp.Target.Temp←#.Temp
 
  filename←##.CodeBrowser.Run #.Temp.Target
- →T.GoToTidyUp 0∊⍴filename
+ →T.GoToTidyUp 0=≢filename
 
  html←APLTreeUtils2.⊃FilesAndDirs.NGET filename
- →T.FailsIf∨/∨/¨'APLTreeUtils2' 'FileAndDirs'⍷¨⊂html
+ →T.GoToTidyUp 0=+/b←'<table class="tatin-packages">'⍷html
+ table←{⍵↑⍨1⍳⍨'</table>'⍷⍵}(b⍳1)↓html
+ →T.GoToTidyUp~∧/∨/¨'∆APLTreeUtils' '∆FAD'⍷¨⊂table
+ →T.GoToTidyUp~∧/∨/¨'APLTreeUtils2' 'FilesAndDirs'⍷¨⊂table
+
+ →T.GoToTidyUp 0=+/b←'<table class="refs">'⍷html
+ table2←{⍵↑⍨1⍳⍨'</table>'⍷⍵}(b⍳1)↓html
+ →T.GoToTidyUp~∨/'#.Temp'⍷table2
 
  R←T._OK
 
