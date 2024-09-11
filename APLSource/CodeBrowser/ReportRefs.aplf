@@ -3,6 +3,7 @@
  :If 0≠≢list←' '~¨⍨↓ref.⎕NL 9.1 9.4 9.5
  :AndIf 0≠≢list←(ref.{∊'['∊is←⍕⍎⍵:0 ⋄ ((⍕⎕THIS),'.',⍵)≢is}¨list)/list
  :AndIf 0<≢list←({('⎕SE._tatin.'{⍺∘≢¨(≢⍺)↑¨⍵}⍵)∧('#._tatin.'{⍺∘≢¨(≢⍺)↑¨⍵}⍵)}⍕∘ref.⍎¨list)/list
+ :AndIf 0<≢list←(~⊃∘⊃¨ref.⎕STATE¨list)/list
      html←⊂'<p class="type">References:</p>'
      html,←⊂'<table class="refs">'
      html,←'<tr>'∘,¨(ref.{'<td>',⍵,'</td><td>==></td><td>',({⍕⍎⍵}⍵),'</td>'}¨list),¨⊂'</tr>'
