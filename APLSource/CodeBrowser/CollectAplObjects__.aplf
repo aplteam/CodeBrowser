@@ -1,7 +1,7 @@
  {r}←level CollectAplObjects__(lists ref parms collect);i;html;names;k;name;captions
  r←⍬
  ReportRefs ref
- html←''
+ html←ListTatinPackages ref lists
  captions←'Functions:' 'Operators:' 'Scripts:' 'Variables:'
  :For i :In ⍳≢lists.(fns opr scripts variables)
      :If 0≠≢names←i⊃lists.(fns opr scripts variables)

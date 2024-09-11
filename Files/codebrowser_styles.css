@@ -20,6 +20,8 @@
  .toclist {margin: 1em 0 1em 0; padding: 0 0.25em;}
  .toclist > div {display:flex; flex-wrap:wrap;}
  .toclist > div div {margin: 0.12em 0 0.12em 0;}
+ table {font-family:"APL385 Unicode", monospace; margin:1em 0 1em 0; border:1px black solid;border-collapse:collapse;}
+ table td, thead th {padding:0.25em 1em;border:1px black solid;text-align:left;}
  nav.sub p {font-family: Verdana, "Serif"; margin:0 0 0.31em; padding:0;}
  div#info {display:block; margin:0.62em 0 1.87em 0; font-family:"Verdana2", "Serif"}
  p#after_h1 {display:none;}
@@ -68,6 +70,8 @@
  .toclist > p {margin-bottom: 2pt;}
  .toclist > div {display:flex; flex-wrap:wrap;}
  .toclist > div div {margin: 1pt 0 1pt 0;}
+ table {margin:1em 0 1em 0; border:1pt black solid;border-collapse:collapse;}
+ table td, thead th {padding:0.25em 1em;border:1pt black solid;text-align:left;}
  nav.sub p {font-family: Verdana, "Serif"; margin:0 0 2pt 0; padding:0;}
  div#info {display:block; margin:5pt 0 5pt 0; font-family:"Verdana2", "Serif"; page-break-after: always;}
  a {text-decoration:none; color:black}

@@ -2,5 +2,7 @@
 ⍝ Remove all Tatin packages except when the user asks for them explicitly
  :If parms.ignoreTatinPkgs
  :AndIf 0=+/'⎕SE._tatin' '#._tatin'∊parms.namespaces
-     lists.containers←(~lists.containers≡¨⊂'_tatin')/lists.containers
+ :AndIf 0<≢lists.containers
+ :AndIf 0<≢lists.containers←('#._tatin'{⍺∘≢¨(≢⍺)↑¨⍵}⍕¨ref.⍎¨lists.containers)/lists.containers
+     lists.containers←('⎕SE._tatin'{⍺∘≢¨(≢⍺)↑¨⍵}⍕¨ref.⍎¨lists.containers)/lists.containers
  :EndIf

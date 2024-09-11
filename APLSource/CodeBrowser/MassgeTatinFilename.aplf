@@ -1,0 +1,12 @@
+ r←MassgeTatinFilename filenames;list;pkg;buff;grp;name;version
+⍝ Tranforms a Tatin filename into a package name as in:
+⍝ 'aplteam CodeBrowser 1.5.1 ← MassgeTatinFilename 'aplteam-CodeBrowser-1.5.1
+ list←{1↓⍵/⍨~2>+\'.'=⍵}∘{⍵/⍨3>+\⍵='.'}¨filenames
+ r←''
+ :For pkg :In list
+     buff←'_'(≠⊆⊢)pkg
+     (grp name)←2↑buff
+     version←⊃{⍺,'.',⍵}/2↓buff
+     r,←⊂grp name version
+ :EndFor
+⍝Done

@@ -13,7 +13,7 @@
      lists←RemoveTatinPackages lists ref parms
  :AndIf 0<≢lists.containers
      collect.namespaces,←these
-     flag←{0⊣html,←⊂'<nav class="sub">'}⍣1⊣1
+     flag←{0⊣html,←⊂'<nav class="sub">'}⍣flag⊣1
      html,←⊂'<div class="toclist">'
      recursiveMsg←(~collect.hasMainMenu)/' (not scanned)'
      html,←⊂'<p><b>Sub namespace',((1<⍴lists.containers)/'s'),': ',(⍕⊃⍴lists.containers),'</b>',recursiveMsg,'</p>'

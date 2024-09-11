@@ -1,0 +1,22 @@
+ html←ListTatinPackages(ref lists);html;list;b1;b2;names;b
+ html←''
+ :If 0<≢names←' '~¨⍨↓ref.⎕NL 9
+     list←⍕¨ref.⍎¨names
+     b1←'#._tatin'{⍺∘≡¨(≢⍺)↑¨⍵}list
+     b2←'⎕SE._tatin'{⍺∘≡¨(≢⍺)↑¨⍵}list
+     b←b1∨b2
+ :AndIf 0<≢list←b/list
+     names←b/names
+     list←MassgeTatinFilename list
+     html,←⊂'<div class="tatin-packages">'
+     html,←⊂'<p>'
+     html,←⊂'<b>Tatin packages: ',(⍕≢list),'</b>'
+     html,←⊂'</p>'
+     html,←⊂'<table>'
+     html,←⊂'<thead>'
+     html,←'<tr>' '<th>Group</th>' '<th>Package Name</th>' '<th>Version</th>' '</tr>'
+     html,←⊂'</thead>'
+     html,←⊃,/{('<td>',(1⊃⍵),'</td>')('<td>',(2⊃⍵),'</td>')('<td>',(3⊃⍵),'</td>')'</tr>'}¨list
+     html,←⊂'</table>'
+     html,←⊂'</div>'
+ :EndIf
