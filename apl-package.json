@@ -20,5 +20,5 @@
   tags: "code-browsing,code-reviews",
   uri: "https://tatin.dev/",
   userCommandScript: "APLSource/CodeBrowser_uc.dyalog",
-  version: "3.1.0+73",
+  version: "3.1.0+74",
 }
